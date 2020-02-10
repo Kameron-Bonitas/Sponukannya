@@ -1,0 +1,616 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B5DA3E2223F1478D00DC8959 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DA3E2123F1478D00DC8959 /* AppDelegate.swift */; };
+		B5DA3E2423F1478D00DC8959 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DA3E2323F1478D00DC8959 /* SceneDelegate.swift */; };
+		B5DA3E2723F1478D00DC8959 /* Sponukannya.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B5DA3E2523F1478D00DC8959 /* Sponukannya.xcdatamodeld */; };
+		B5DA3E2923F1478D00DC8959 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DA3E2823F1478D00DC8959 /* ContentView.swift */; };
+		B5DA3E2B23F1478E00DC8959 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5DA3E2A23F1478E00DC8959 /* Assets.xcassets */; };
+		B5DA3E2E23F1478E00DC8959 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5DA3E2D23F1478E00DC8959 /* Preview Assets.xcassets */; };
+		B5DA3E3123F1478E00DC8959 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5DA3E2F23F1478E00DC8959 /* LaunchScreen.storyboard */; };
+		B5DA3E3C23F1478E00DC8959 /* SponukannyaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DA3E3B23F1478E00DC8959 /* SponukannyaTests.swift */; };
+		B5DA3E4723F1478E00DC8959 /* SponukannyaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DA3E4623F1478E00DC8959 /* SponukannyaUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B5DA3E3823F1478E00DC8959 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B5DA3E1623F1478D00DC8959 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B5DA3E1D23F1478D00DC8959;
+			remoteInfo = Sponukannya;
+		};
+		B5DA3E4323F1478E00DC8959 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B5DA3E1623F1478D00DC8959 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B5DA3E1D23F1478D00DC8959;
+			remoteInfo = Sponukannya;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		B5DA3E1E23F1478D00DC8959 /* Sponukannya.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sponukannya.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5DA3E2123F1478D00DC8959 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B5DA3E2323F1478D00DC8959 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		B5DA3E2623F1478D00DC8959 /* Sponukannya.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Sponukannya.xcdatamodel; sourceTree = "<group>"; };
+		B5DA3E2823F1478D00DC8959 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B5DA3E2A23F1478E00DC8959 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B5DA3E2D23F1478E00DC8959 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B5DA3E3023F1478E00DC8959 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B5DA3E3223F1478E00DC8959 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B5DA3E3723F1478E00DC8959 /* SponukannyaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SponukannyaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5DA3E3B23F1478E00DC8959 /* SponukannyaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SponukannyaTests.swift; sourceTree = "<group>"; };
+		B5DA3E3D23F1478E00DC8959 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B5DA3E4223F1478E00DC8959 /* SponukannyaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SponukannyaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5DA3E4623F1478E00DC8959 /* SponukannyaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SponukannyaUITests.swift; sourceTree = "<group>"; };
+		B5DA3E4823F1478E00DC8959 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B5DA3E1B23F1478D00DC8959 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5DA3E3423F1478E00DC8959 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5DA3E3F23F1478E00DC8959 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B5DA3E1523F1478D00DC8959 = {
+			isa = PBXGroup;
+			children = (
+				B5DA3E2023F1478D00DC8959 /* Sponukannya */,
+				B5DA3E3A23F1478E00DC8959 /* SponukannyaTests */,
+				B5DA3E4523F1478E00DC8959 /* SponukannyaUITests */,
+				B5DA3E1F23F1478D00DC8959 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B5DA3E1F23F1478D00DC8959 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B5DA3E1E23F1478D00DC8959 /* Sponukannya.app */,
+				B5DA3E3723F1478E00DC8959 /* SponukannyaTests.xctest */,
+				B5DA3E4223F1478E00DC8959 /* SponukannyaUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B5DA3E2023F1478D00DC8959 /* Sponukannya */ = {
+			isa = PBXGroup;
+			children = (
+				B5DA3E2123F1478D00DC8959 /* AppDelegate.swift */,
+				B5DA3E2323F1478D00DC8959 /* SceneDelegate.swift */,
+				B5DA3E2823F1478D00DC8959 /* ContentView.swift */,
+				B5DA3E2A23F1478E00DC8959 /* Assets.xcassets */,
+				B5DA3E2F23F1478E00DC8959 /* LaunchScreen.storyboard */,
+				B5DA3E3223F1478E00DC8959 /* Info.plist */,
+				B5DA3E2523F1478D00DC8959 /* Sponukannya.xcdatamodeld */,
+				B5DA3E2C23F1478E00DC8959 /* Preview Content */,
+			);
+			path = Sponukannya;
+			sourceTree = "<group>";
+		};
+		B5DA3E2C23F1478E00DC8959 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				B5DA3E2D23F1478E00DC8959 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B5DA3E3A23F1478E00DC8959 /* SponukannyaTests */ = {
+			isa = PBXGroup;
+			children = (
+				B5DA3E3B23F1478E00DC8959 /* SponukannyaTests.swift */,
+				B5DA3E3D23F1478E00DC8959 /* Info.plist */,
+			);
+			path = SponukannyaTests;
+			sourceTree = "<group>";
+		};
+		B5DA3E4523F1478E00DC8959 /* SponukannyaUITests */ = {
+			isa = PBXGroup;
+			children = (
+				B5DA3E4623F1478E00DC8959 /* SponukannyaUITests.swift */,
+				B5DA3E4823F1478E00DC8959 /* Info.plist */,
+			);
+			path = SponukannyaUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B5DA3E1D23F1478D00DC8959 /* Sponukannya */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B5DA3E4B23F1478E00DC8959 /* Build configuration list for PBXNativeTarget "Sponukannya" */;
+			buildPhases = (
+				B5DA3E1A23F1478D00DC8959 /* Sources */,
+				B5DA3E1B23F1478D00DC8959 /* Frameworks */,
+				B5DA3E1C23F1478D00DC8959 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Sponukannya;
+			productName = Sponukannya;
+			productReference = B5DA3E1E23F1478D00DC8959 /* Sponukannya.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B5DA3E3623F1478E00DC8959 /* SponukannyaTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B5DA3E4E23F1478E00DC8959 /* Build configuration list for PBXNativeTarget "SponukannyaTests" */;
+			buildPhases = (
+				B5DA3E3323F1478E00DC8959 /* Sources */,
+				B5DA3E3423F1478E00DC8959 /* Frameworks */,
+				B5DA3E3523F1478E00DC8959 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B5DA3E3923F1478E00DC8959 /* PBXTargetDependency */,
+			);
+			name = SponukannyaTests;
+			productName = SponukannyaTests;
+			productReference = B5DA3E3723F1478E00DC8959 /* SponukannyaTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		B5DA3E4123F1478E00DC8959 /* SponukannyaUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B5DA3E5123F1478E00DC8959 /* Build configuration list for PBXNativeTarget "SponukannyaUITests" */;
+			buildPhases = (
+				B5DA3E3E23F1478E00DC8959 /* Sources */,
+				B5DA3E3F23F1478E00DC8959 /* Frameworks */,
+				B5DA3E4023F1478E00DC8959 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B5DA3E4423F1478E00DC8959 /* PBXTargetDependency */,
+			);
+			name = SponukannyaUITests;
+			productName = SponukannyaUITests;
+			productReference = B5DA3E4223F1478E00DC8959 /* SponukannyaUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B5DA3E1623F1478D00DC8959 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1130;
+				LastUpgradeCheck = 1130;
+				ORGANIZATIONNAME = Ben;
+				TargetAttributes = {
+					B5DA3E1D23F1478D00DC8959 = {
+						CreatedOnToolsVersion = 11.3;
+					};
+					B5DA3E3623F1478E00DC8959 = {
+						CreatedOnToolsVersion = 11.3;
+						TestTargetID = B5DA3E1D23F1478D00DC8959;
+					};
+					B5DA3E4123F1478E00DC8959 = {
+						CreatedOnToolsVersion = 11.3;
+						TestTargetID = B5DA3E1D23F1478D00DC8959;
+					};
+				};
+			};
+			buildConfigurationList = B5DA3E1923F1478D00DC8959 /* Build configuration list for PBXProject "Sponukannya" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B5DA3E1523F1478D00DC8959;
+			productRefGroup = B5DA3E1F23F1478D00DC8959 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B5DA3E1D23F1478D00DC8959 /* Sponukannya */,
+				B5DA3E3623F1478E00DC8959 /* SponukannyaTests */,
+				B5DA3E4123F1478E00DC8959 /* SponukannyaUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B5DA3E1C23F1478D00DC8959 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5DA3E3123F1478E00DC8959 /* LaunchScreen.storyboard in Resources */,
+				B5DA3E2E23F1478E00DC8959 /* Preview Assets.xcassets in Resources */,
+				B5DA3E2B23F1478E00DC8959 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5DA3E3523F1478E00DC8959 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5DA3E4023F1478E00DC8959 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B5DA3E1A23F1478D00DC8959 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5DA3E2223F1478D00DC8959 /* AppDelegate.swift in Sources */,
+				B5DA3E2423F1478D00DC8959 /* SceneDelegate.swift in Sources */,
+				B5DA3E2923F1478D00DC8959 /* ContentView.swift in Sources */,
+				B5DA3E2723F1478D00DC8959 /* Sponukannya.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5DA3E3323F1478E00DC8959 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5DA3E3C23F1478E00DC8959 /* SponukannyaTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5DA3E3E23F1478E00DC8959 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5DA3E4723F1478E00DC8959 /* SponukannyaUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B5DA3E3923F1478E00DC8959 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B5DA3E1D23F1478D00DC8959 /* Sponukannya */;
+			targetProxy = B5DA3E3823F1478E00DC8959 /* PBXContainerItemProxy */;
+		};
+		B5DA3E4423F1478E00DC8959 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B5DA3E1D23F1478D00DC8959 /* Sponukannya */;
+			targetProxy = B5DA3E4323F1478E00DC8959 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B5DA3E2F23F1478E00DC8959 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B5DA3E3023F1478E00DC8959 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B5DA3E4923F1478E00DC8959 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		B5DA3E4A23F1478E00DC8959 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B5DA3E4C23F1478E00DC8959 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Sponukannya/Preview Content\"";
+				DEVELOPMENT_TEAM = 5L8ZCK6563;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = Sponukannya/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = w.Sponukannya;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B5DA3E4D23F1478E00DC8959 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Sponukannya/Preview Content\"";
+				DEVELOPMENT_TEAM = 5L8ZCK6563;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = Sponukannya/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = w.Sponukannya;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		B5DA3E4F23F1478E00DC8959 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5L8ZCK6563;
+				INFOPLIST_FILE = SponukannyaTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = w.SponukannyaTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Sponukannya.app/Sponukannya";
+			};
+			name = Debug;
+		};
+		B5DA3E5023F1478E00DC8959 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5L8ZCK6563;
+				INFOPLIST_FILE = SponukannyaTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = w.SponukannyaTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Sponukannya.app/Sponukannya";
+			};
+			name = Release;
+		};
+		B5DA3E5223F1478E00DC8959 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5L8ZCK6563;
+				INFOPLIST_FILE = SponukannyaUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = w.SponukannyaUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Sponukannya;
+			};
+			name = Debug;
+		};
+		B5DA3E5323F1478E00DC8959 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5L8ZCK6563;
+				INFOPLIST_FILE = SponukannyaUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = w.SponukannyaUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Sponukannya;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B5DA3E1923F1478D00DC8959 /* Build configuration list for PBXProject "Sponukannya" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B5DA3E4923F1478E00DC8959 /* Debug */,
+				B5DA3E4A23F1478E00DC8959 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B5DA3E4B23F1478E00DC8959 /* Build configuration list for PBXNativeTarget "Sponukannya" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B5DA3E4C23F1478E00DC8959 /* Debug */,
+				B5DA3E4D23F1478E00DC8959 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B5DA3E4E23F1478E00DC8959 /* Build configuration list for PBXNativeTarget "SponukannyaTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B5DA3E4F23F1478E00DC8959 /* Debug */,
+				B5DA3E5023F1478E00DC8959 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B5DA3E5123F1478E00DC8959 /* Build configuration list for PBXNativeTarget "SponukannyaUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B5DA3E5223F1478E00DC8959 /* Debug */,
+				B5DA3E5323F1478E00DC8959 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		B5DA3E2523F1478D00DC8959 /* Sponukannya.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B5DA3E2623F1478D00DC8959 /* Sponukannya.xcdatamodel */,
+			);
+			currentVersion = B5DA3E2623F1478D00DC8959 /* Sponukannya.xcdatamodel */;
+			path = Sponukannya.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = B5DA3E1623F1478D00DC8959 /* Project object */;
+}
