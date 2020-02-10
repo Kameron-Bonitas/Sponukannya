@@ -25,9 +25,19 @@ class MyAffirmationsViewController: UIViewController,UITableViewDelegate,UITable
         
         //  Vyrishennya zatemnenogo backgroundImage
         view.backgroundColor = .white
-        
-    }
+        }
 
+    //  MARK: - Button ACTIONS
+        // addAffiBatton
+        @objc func addAffiPopUpButtonPressed(_ sender: UIButton) {
+            let addAffiVC = AddAffirmationViewController()
+    //        addAffiVC.modalPresentationStyle = .overCurrentContext
+//            addAffiVC.zaraza = zaraza
+    //        self.present(addAffiVC, animated: true, completion: nil)
+            self.navigationController?.pushViewController(addAffiVC, animated: true)
+        print("Affa!")
+        }
+    
     //  MARK: Setup Layout
         private func setupLayout() {
         setupBackground(imageView: backgroundImage, imageNamed: "background.png", to: self.view)
@@ -44,7 +54,7 @@ class MyAffirmationsViewController: UIViewController,UITableViewDelegate,UITable
         ])
         
         //plusButton
-//        plusButton.addTarget(self, action: #selector(addAffiPopUpButtonPressed(_:)), for: .touchUpInside)
+        plusButton.addTarget(self, action: #selector(addAffiPopUpButtonPressed(_:)), for: .touchUpInside)
          plusButton.setImage(UIImage(named: "bitmap.png"), for: .normal)
          view.addSubview(plusButton)
         

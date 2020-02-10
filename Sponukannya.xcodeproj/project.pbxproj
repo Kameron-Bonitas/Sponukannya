@@ -20,6 +20,7 @@
 		B5DA3E5B23F166D400DC8959 /* MyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DA3E5A23F166D400DC8959 /* MyTableViewCell.swift */; };
 		B5DA3E5F23F173C400DC8959 /* IndieFlower-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B5DA3E5D23F1739800DC8959 /* IndieFlower-Regular.ttf */; };
 		B5DA3E6023F173CA00DC8959 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B5DA3E5E23F1739800DC8959 /* Lato-Light.ttf */; };
+		B5DA3E6223F1835100DC8959 /* AddAffirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DA3E6123F1835100DC8959 /* AddAffirmationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		B5DA3E5A23F166D400DC8959 /* MyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTableViewCell.swift; sourceTree = "<group>"; };
 		B5DA3E5D23F1739800DC8959 /* IndieFlower-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IndieFlower-Regular.ttf"; sourceTree = "<group>"; };
 		B5DA3E5E23F1739800DC8959 /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Light.ttf"; sourceTree = "<group>"; };
+		B5DA3E6123F1835100DC8959 /* AddAffirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAffirmationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				B5DA3E5623F14C3C00DC8959 /* MyAffirmationsViewController.swift */,
+				B5DA3E6123F1835100DC8959 /* AddAffirmationViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -311,6 +314,7 @@
 				B5DA3E2223F1478D00DC8959 /* AppDelegate.swift in Sources */,
 				B5DA3E2423F1478D00DC8959 /* SceneDelegate.swift in Sources */,
 				B5DA3E2923F1478D00DC8959 /* ContentView.swift in Sources */,
+				B5DA3E6223F1835100DC8959 /* AddAffirmationViewController.swift in Sources */,
 				B5DA3E5723F14C3C00DC8959 /* MyAffirmationsViewController.swift in Sources */,
 				B5DA3E2723F1478D00DC8959 /* Sponukannya.xcdatamodeld in Sources */,
 				B5DA3E5B23F166D400DC8959 /* MyTableViewCell.swift in Sources */,
