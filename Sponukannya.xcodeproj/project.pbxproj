@@ -16,6 +16,10 @@
 		B5DA3E3123F1478E00DC8959 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5DA3E2F23F1478E00DC8959 /* LaunchScreen.storyboard */; };
 		B5DA3E3C23F1478E00DC8959 /* SponukannyaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DA3E3B23F1478E00DC8959 /* SponukannyaTests.swift */; };
 		B5DA3E4723F1478E00DC8959 /* SponukannyaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DA3E4623F1478E00DC8959 /* SponukannyaUITests.swift */; };
+		B5DA3E5723F14C3C00DC8959 /* MyAffirmationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DA3E5623F14C3C00DC8959 /* MyAffirmationsViewController.swift */; };
+		B5DA3E5B23F166D400DC8959 /* MyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DA3E5A23F166D400DC8959 /* MyTableViewCell.swift */; };
+		B5DA3E5F23F173C400DC8959 /* IndieFlower-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B5DA3E5D23F1739800DC8959 /* IndieFlower-Regular.ttf */; };
+		B5DA3E6023F173CA00DC8959 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B5DA3E5E23F1739800DC8959 /* Lato-Light.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +55,10 @@
 		B5DA3E4223F1478E00DC8959 /* SponukannyaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SponukannyaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5DA3E4623F1478E00DC8959 /* SponukannyaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SponukannyaUITests.swift; sourceTree = "<group>"; };
 		B5DA3E4823F1478E00DC8959 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B5DA3E5623F14C3C00DC8959 /* MyAffirmationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAffirmationsViewController.swift; sourceTree = "<group>"; };
+		B5DA3E5A23F166D400DC8959 /* MyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTableViewCell.swift; sourceTree = "<group>"; };
+		B5DA3E5D23F1739800DC8959 /* IndieFlower-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IndieFlower-Regular.ttf"; sourceTree = "<group>"; };
+		B5DA3E5E23F1739800DC8959 /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Light.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +109,9 @@
 		B5DA3E2023F1478D00DC8959 /* Sponukannya */ = {
 			isa = PBXGroup;
 			children = (
+				B5DA3E5C23F172FC00DC8959 /* Fonts */,
+				B5DA3E5923F166A400DC8959 /* Views */,
+				B5DA3E5823F1582600DC8959 /* Controllers */,
 				B5DA3E2123F1478D00DC8959 /* AppDelegate.swift */,
 				B5DA3E2323F1478D00DC8959 /* SceneDelegate.swift */,
 				B5DA3E2823F1478D00DC8959 /* ContentView.swift */,
@@ -137,6 +148,31 @@
 				B5DA3E4823F1478E00DC8959 /* Info.plist */,
 			);
 			path = SponukannyaUITests;
+			sourceTree = "<group>";
+		};
+		B5DA3E5823F1582600DC8959 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B5DA3E5623F14C3C00DC8959 /* MyAffirmationsViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		B5DA3E5923F166A400DC8959 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B5DA3E5A23F166D400DC8959 /* MyTableViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B5DA3E5C23F172FC00DC8959 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				B5DA3E5D23F1739800DC8959 /* IndieFlower-Regular.ttf */,
+				B5DA3E5E23F1739800DC8959 /* Lato-Light.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -243,8 +279,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5DA3E6023F173CA00DC8959 /* Lato-Light.ttf in Resources */,
 				B5DA3E3123F1478E00DC8959 /* LaunchScreen.storyboard in Resources */,
 				B5DA3E2E23F1478E00DC8959 /* Preview Assets.xcassets in Resources */,
+				B5DA3E5F23F173C400DC8959 /* IndieFlower-Regular.ttf in Resources */,
 				B5DA3E2B23F1478E00DC8959 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -273,7 +311,9 @@
 				B5DA3E2223F1478D00DC8959 /* AppDelegate.swift in Sources */,
 				B5DA3E2423F1478D00DC8959 /* SceneDelegate.swift in Sources */,
 				B5DA3E2923F1478D00DC8959 /* ContentView.swift in Sources */,
+				B5DA3E5723F14C3C00DC8959 /* MyAffirmationsViewController.swift in Sources */,
 				B5DA3E2723F1478D00DC8959 /* Sponukannya.xcdatamodeld in Sources */,
+				B5DA3E5B23F166D400DC8959 /* MyTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
