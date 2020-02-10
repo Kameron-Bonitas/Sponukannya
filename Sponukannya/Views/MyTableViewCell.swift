@@ -99,4 +99,10 @@ var numberLabel = UILabel()
             }
             }
     
+    //MARK: - OTHERS
+    override func prepareForReuse() {
+        noteLabel.text = nil
+       numberLabel.text = nil
+    }
+    
 }

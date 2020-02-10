@@ -21,6 +21,9 @@
 		B5DA3E5F23F173C400DC8959 /* IndieFlower-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B5DA3E5D23F1739800DC8959 /* IndieFlower-Regular.ttf */; };
 		B5DA3E6023F173CA00DC8959 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B5DA3E5E23F1739800DC8959 /* Lato-Light.ttf */; };
 		B5DA3E6223F1835100DC8959 /* AddAffirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DA3E6123F1835100DC8959 /* AddAffirmationViewController.swift */; };
+		B5DA3E6423F1B5BE00DC8959 /* ListAffirmationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DA3E6323F1B5BE00DC8959 /* ListAffirmationsViewController.swift */; };
+		B5DA3E6623F1D72000DC8959 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DA3E6523F1D72000DC8959 /* PopUpViewController.swift */; };
+		B5DA3E6823F1DA1600DC8959 /* UIButton + Border.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DA3E6723F1DA1600DC8959 /* UIButton + Border.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +64,9 @@
 		B5DA3E5D23F1739800DC8959 /* IndieFlower-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IndieFlower-Regular.ttf"; sourceTree = "<group>"; };
 		B5DA3E5E23F1739800DC8959 /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Light.ttf"; sourceTree = "<group>"; };
 		B5DA3E6123F1835100DC8959 /* AddAffirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAffirmationViewController.swift; sourceTree = "<group>"; };
+		B5DA3E6323F1B5BE00DC8959 /* ListAffirmationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAffirmationsViewController.swift; sourceTree = "<group>"; };
+		B5DA3E6523F1D72000DC8959 /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
+		B5DA3E6723F1DA1600DC8959 /* UIButton + Border.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton + Border.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +128,7 @@
 				B5DA3E3223F1478E00DC8959 /* Info.plist */,
 				B5DA3E2523F1478D00DC8959 /* Sponukannya.xcdatamodeld */,
 				B5DA3E2C23F1478E00DC8959 /* Preview Content */,
+				B5DA3E6723F1DA1600DC8959 /* UIButton + Border.swift */,
 			);
 			path = Sponukannya;
 			sourceTree = "<group>";
@@ -157,6 +164,8 @@
 			children = (
 				B5DA3E5623F14C3C00DC8959 /* MyAffirmationsViewController.swift */,
 				B5DA3E6123F1835100DC8959 /* AddAffirmationViewController.swift */,
+				B5DA3E6323F1B5BE00DC8959 /* ListAffirmationsViewController.swift */,
+				B5DA3E6523F1D72000DC8959 /* PopUpViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -314,9 +323,12 @@
 				B5DA3E2223F1478D00DC8959 /* AppDelegate.swift in Sources */,
 				B5DA3E2423F1478D00DC8959 /* SceneDelegate.swift in Sources */,
 				B5DA3E2923F1478D00DC8959 /* ContentView.swift in Sources */,
+				B5DA3E6423F1B5BE00DC8959 /* ListAffirmationsViewController.swift in Sources */,
 				B5DA3E6223F1835100DC8959 /* AddAffirmationViewController.swift in Sources */,
 				B5DA3E5723F14C3C00DC8959 /* MyAffirmationsViewController.swift in Sources */,
 				B5DA3E2723F1478D00DC8959 /* Sponukannya.xcdatamodeld in Sources */,
+				B5DA3E6823F1DA1600DC8959 /* UIButton + Border.swift in Sources */,
+				B5DA3E6623F1D72000DC8959 /* PopUpViewController.swift in Sources */,
 				B5DA3E5B23F166D400DC8959 /* MyTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

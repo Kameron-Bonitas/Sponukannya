@@ -31,6 +31,22 @@ class AddAffirmationViewController: UIViewController {
         print("Do myAffi!'")
         }
     
+    @objc func chooseAffiButtonAction() {
+            let listVC = ListAffirmationsViewController()
+    //    self.show(tretijVC, sender: self)
+            self.navigationController?.pushViewController(listVC, animated: true)
+         print("Ups!'")
+        }
+    
+    @objc  func ownAffiButtonAction(){
+     let popaVC = PopUpViewController ()
+         popaVC.modalPresentationStyle = .overCurrentContext
+//         popaVC.reloadTable = reloadTable
+//         popaVC.dismissAddAffi = dismissAddAffi
+        self.present(popaVC, animated: true, completion: nil)
+        print("Dupa!")
+    }
+    
     //MARK:    SetupView
     func setupView() {
         //backgroundColorView shob ne bulo vydno bat'kivs'kyj VC
@@ -47,7 +63,7 @@ class AddAffirmationViewController: UIViewController {
         ownAffiButton.titleLabel?.font = UIFont(name: "Lato-Light", size: 30)
         ownAffiButton.backgroundColor = UIColor.systemBlue
         ownAffiButton.layer.cornerRadius = 10.0
-//        ownAffiButton.addTarget(self, action: #selector(ownAffiButtonAction), for: .touchUpInside)
+        ownAffiButton.addTarget(self, action: #selector(ownAffiButtonAction), for: .touchUpInside)
         self.view.addSubview(ownAffiButton)
         
         //Choose affirmations button
@@ -56,7 +72,7 @@ class AddAffirmationViewController: UIViewController {
         chooseAffiButton.titleLabel?.font = UIFont(name: "Lato-Light", size: 30)
         chooseAffiButton.backgroundColor = UIColor.systemBlue
         chooseAffiButton.layer.cornerRadius = 10.0
-//        chooseAffiButton.addTarget(self, action: #selector(chooseAffiButtonAction), for: .touchUpInside)
+        chooseAffiButton.addTarget(self, action: #selector(chooseAffiButtonAction), for: .touchUpInside)
         self.view.addSubview(chooseAffiButton)
         
         //Cancel button
@@ -105,6 +121,11 @@ class AddAffirmationViewController: UIViewController {
             ])
           }
 
+    func dismissAddAffi () ->() {
+        let myAffiVC = MyAffirmationsViewController()
+        self.navigationController?.pushViewController(myAffiVC, animated: true)
+                 print("Do myAffi!'")
+        }
     
     
     //MARK:- Reusable Function Background
