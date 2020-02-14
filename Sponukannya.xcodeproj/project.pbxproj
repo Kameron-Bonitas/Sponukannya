@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2AAA7D2765877A7EF8056607 /* Pods_Sponukannya.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20AE132B6D2694B762440945 /* Pods_Sponukannya.framework */; };
 		B5DA3E2223F1478D00DC8959 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DA3E2123F1478D00DC8959 /* AppDelegate.swift */; };
 		B5DA3E2423F1478D00DC8959 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DA3E2323F1478D00DC8959 /* SceneDelegate.swift */; };
 		B5DA3E2723F1478D00DC8959 /* Sponukannya.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B5DA3E2523F1478D00DC8959 /* Sponukannya.xcdatamodeld */; };
@@ -24,6 +25,7 @@
 		B5DA3E6423F1B5BE00DC8959 /* ListAffirmationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DA3E6323F1B5BE00DC8959 /* ListAffirmationsViewController.swift */; };
 		B5DA3E6623F1D72000DC8959 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DA3E6523F1D72000DC8959 /* PopUpViewController.swift */; };
 		B5DA3E6823F1DA1600DC8959 /* UIButton + Border.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DA3E6723F1DA1600DC8959 /* UIButton + Border.swift */; };
+		B5DA3E6A23F4036800DC8959 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DA3E6923F4036800DC8959 /* CoreDataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		20AE132B6D2694B762440945 /* Pods_Sponukannya.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sponukannya.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		366AC82AB0A9E8B25A498C5E /* Pods-Sponukannya.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sponukannya.release.xcconfig"; path = "Target Support Files/Pods-Sponukannya/Pods-Sponukannya.release.xcconfig"; sourceTree = "<group>"; };
+		787D0B774382B0A3DC5B527D /* Pods-Sponukannya.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sponukannya.debug.xcconfig"; path = "Target Support Files/Pods-Sponukannya/Pods-Sponukannya.debug.xcconfig"; sourceTree = "<group>"; };
 		B5DA3E1E23F1478D00DC8959 /* Sponukannya.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sponukannya.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5DA3E2123F1478D00DC8959 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5DA3E2323F1478D00DC8959 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +72,7 @@
 		B5DA3E6323F1B5BE00DC8959 /* ListAffirmationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAffirmationsViewController.swift; sourceTree = "<group>"; };
 		B5DA3E6523F1D72000DC8959 /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		B5DA3E6723F1DA1600DC8959 /* UIButton + Border.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton + Border.swift"; sourceTree = "<group>"; };
+		B5DA3E6923F4036800DC8959 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2AAA7D2765877A7EF8056607 /* Pods_Sponukannya.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,6 +101,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5F88D7104959E7614401498D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				787D0B774382B0A3DC5B527D /* Pods-Sponukannya.debug.xcconfig */,
+				366AC82AB0A9E8B25A498C5E /* Pods-Sponukannya.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		B5DA3E1523F1478D00DC8959 = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +118,8 @@
 				B5DA3E3A23F1478E00DC8959 /* SponukannyaTests */,
 				B5DA3E4523F1478E00DC8959 /* SponukannyaUITests */,
 				B5DA3E1F23F1478D00DC8959 /* Products */,
+				5F88D7104959E7614401498D /* Pods */,
+				F09485B146E6D82263CE0CF3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -129,6 +148,7 @@
 				B5DA3E2523F1478D00DC8959 /* Sponukannya.xcdatamodeld */,
 				B5DA3E2C23F1478E00DC8959 /* Preview Content */,
 				B5DA3E6723F1DA1600DC8959 /* UIButton + Border.swift */,
+				B5DA3E6923F4036800DC8959 /* CoreDataManager.swift */,
 			);
 			path = Sponukannya;
 			sourceTree = "<group>";
@@ -187,6 +207,14 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		F09485B146E6D82263CE0CF3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				20AE132B6D2694B762440945 /* Pods_Sponukannya.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -194,9 +222,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B5DA3E4B23F1478E00DC8959 /* Build configuration list for PBXNativeTarget "Sponukannya" */;
 			buildPhases = (
+				B101A39AEADA90969424D1A5 /* [CP] Check Pods Manifest.lock */,
 				B5DA3E1A23F1478D00DC8959 /* Sources */,
 				B5DA3E1B23F1478D00DC8959 /* Frameworks */,
 				B5DA3E1C23F1478D00DC8959 /* Resources */,
+				5E44538F0E6ED1C319ECB2D0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -315,6 +345,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		5E44538F0E6ED1C319ECB2D0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Sponukannya/Pods-Sponukannya-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Sponukannya/Pods-Sponukannya-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Sponukannya/Pods-Sponukannya-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B101A39AEADA90969424D1A5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Sponukannya-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		B5DA3E1A23F1478D00DC8959 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -330,6 +402,7 @@
 				B5DA3E6823F1DA1600DC8959 /* UIButton + Border.swift in Sources */,
 				B5DA3E6623F1D72000DC8959 /* PopUpViewController.swift in Sources */,
 				B5DA3E5B23F166D400DC8959 /* MyTableViewCell.swift in Sources */,
+				B5DA3E6A23F4036800DC8959 /* CoreDataManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -492,6 +565,7 @@
 		};
 		B5DA3E4C23F1478E00DC8959 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 787D0B774382B0A3DC5B527D /* Pods-Sponukannya.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -512,6 +586,7 @@
 		};
 		B5DA3E4D23F1478E00DC8959 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 366AC82AB0A9E8B25A498C5E /* Pods-Sponukannya.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class ListAffirmationsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
    
@@ -21,7 +22,7 @@ class ListAffirmationsViewController: UIViewController, UITableViewDelegate, UIT
     
     // Pryklady Affirmations (hardcoded)
     private var sampleAffis = ["This is a short text.", "This is another text, and it is a little bit longer.", "Wow, this text is really very very long! I hope it can be read completely! Luckily, we are using automatic row height!", "Важлива інформація!Марш Захисників України вже завтра, тому пропонуємо ознайомитись з фінальним інструктажем!1. Збір починається о 10:00 в парку Тараса Шевченка, навпроти Червоного корпусу університету.Слава Україні!","It looks like there is now cirilic version for diese blöde Lato Macciato Fonts", "Dysplaying AFFIRMATIONS in ukraine language is impossible!!!!!!!!!"]
-
+    
     
     
     override func viewDidLoad() {
@@ -43,15 +44,14 @@ class ListAffirmationsViewController: UIViewController, UITableViewDelegate, UIT
     // Rishennya pro poslidovne zberigannya vybranyh selektnutyh z selectedAffis
     // for in loop
     for affiToAdd in selectedAffis {
-    if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext {
-//                       let newMyAffirmation = MyAffirmationItem(context: context)
-//        newMyAffirmation.affirmation = affiToAdd
-//        (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
-                       }
-                }
-    // Povertannya do golovnogo (myAffi)
+        self.save(name: affiToAdd)
+        self.tableView.reloadData()
+        }
+    
+        // Povertannya do golovnogo (myAffi)
     let myAffiVC = MyAffirmationsViewController()
     self.navigationController?.pushViewController(myAffiVC, animated: true)
+    
     }
         
             
@@ -91,7 +91,7 @@ class ListAffirmationsViewController: UIViewController, UITableViewDelegate, UIT
         addButton.tintColor = .white
         addButton.layer.cornerRadius = 5
         addButton.clipsToBounds = true
-//          addButton.addTarget(self, action: #selector(addButtonPressed(_:)), for: .touchUpInside)
+        addButton.addTarget(self, action: #selector(addButtonPressed(_:)), for: .touchUpInside)
         self.view.addSubview(addButton)
         addButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -124,6 +124,75 @@ class ListAffirmationsViewController: UIViewController, UITableViewDelegate, UIT
        tableView.separatorInset = .zero
        tableView.register(MyTableViewCell.self, forCellReuseIdentifier: cellId)
        }
+    
+    
+    // MARK: CoreData Functions
+    // Insert
+      func save(name: String) {
+        let _ = CoreDataManager.sharedManager.insertAffirmation(name: name)
+        print("I. Choosen Affi Saved")
+        }
+    
+    //Fetch All Affirmations
+    /*init fetchedResultsController and set self as delegate, also you need to implement delegate methods*/
+    func fetchAllAffirmations(){
+        /*This class is delegate of fetchedResultsController protocol methods*/
+        
+        CoreDataManager.sharedManager.fetchedResultsController.delegate = self as? NSFetchedResultsControllerDelegate
+      do{
+        print("2. NSFetchResultController will start fetching :)")
+        /*initiate performFetch() call on fetchedResultsController*/
+        try CoreDataManager.sharedManager.fetchedResultsController.performFetch()
+        print("3. NSFetchResultController did end fetching :)")
+
+      }catch{
+        print(error)
+      }
+      
+    }
+    
+//    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+//        
+//        print("B. NSFetchResultController didChange NSFetchedResultsChangeType \(type.rawValue):)")
+//
+//        
+//        switch (type) {
+//        case .insert:
+//          if let indexPath = newIndexPath {
+//            tableView.insertRows(at: [indexPath], with: .fade)
+//          }
+//          break;
+//        case .delete:
+//          if let indexPath = indexPath {
+//            tableView.deleteRows(at: [indexPath], with: .fade)
+//          }
+//          break;
+//        case .update:
+//          if let indexPath = indexPath, let cell = tableView.cellForRow(at: indexPath) {
+//            configureCell(cell, at: indexPath)
+//          }
+//          break;
+//          
+//        case .move:
+//          if let indexPath = indexPath {
+//            tableView.deleteRows(at: [indexPath], with: .fade)
+//          }
+//          
+//          if let newIndexPath = newIndexPath {
+//            tableView.insertRows(at: [newIndexPath], with: .fade)
+//          }
+//          break;
+//          
+//        @unknown default:
+//            fatalError()
+//        }
+//    }
+//      
+//      /*The last delegate call*/
+//      func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+//        /*finally balance beginUpdates with endupdates*/
+//        tableView.endUpdates()
+//      }
     
     // MARK: - TableView Sachen
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

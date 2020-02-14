@@ -8,8 +8,9 @@
 
 import Foundation
 import UIKit
+import MGSwipeTableCell
 
-class MyTableViewCell: UITableViewCell{
+class MyTableViewCell: MGSwipeTableCell{
 
 var backgroundCellView = UIImageView()
 var cellView = UIView()

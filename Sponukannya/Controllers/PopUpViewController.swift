@@ -54,47 +54,42 @@ class PopUpViewController: UIViewController {
     //MARK: - Button Actions
     // OK Button
     @objc func oKButtonAction () {
-//        if textNewAffirmation.text != placeholder && textNewAffirmation.text != nil {
-//            if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext {
-//                let newMyAffirmation = MyAffirmationItem(context: context)
-//                if let affirmation =  textNewAffirmation.text {
-//                    newMyAffirmation.affirmation = affirmation
-//
-//                    (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
-//                }
-//            }
-//
-//            UIView.animate(withDuration: 0.3, animations: { [weak self] in
-//                guard let `self` = self else { return }
-//                self.backgroundColorView.alpha = 0.0
-//            }) { [weak self]  (isComplete) in
-//                guard let `self` = self else { return }
-//                self.dismiss(animated: true, completion: nil)
-//                self.textNewAffirmation.resignFirstResponder()
-//            }
-//            // Vmykannya "zaraza" (zberigannya i fetching v table)
-//               // Povertannya v MyAffirm...ViewController
-//               reloadTable? ()
-//               dismissAddAffi? ()
-//               print("Save")
-//
-//            }else if textNewAffirmation.text == placeholder && textNewAffirmation.text != nil{
-//                UIView.animate(withDuration: 2, animations: { [weak self] in
-//                    guard let `self` = self else { return }
-//                    self.textNewAffirmation.backgroundColor = UIColor.init(red: 240/255, green: 214/255, blue: 226/255, alpha: 1)
-//                   let  message = NSLocalizedString("You haven't created your new affirmation yet.", comment: "You haven't created your new affirmation yet."); self.presentAlertConfirmation(with: message)
-//                    self.view.layoutIfNeeded()
-//                })
-//
-//                UIView.animate(withDuration: 2, animations: { [weak self] in
-//                    guard let `self` = self else { return }
-//                    self.textNewAffirmation.backgroundColor = .clear
-//                    self.view.layoutIfNeeded()
-//                })
-//
-//            }else{
-//                print("text field is nill")
-//            }
+        if textNewAffirmation.text != placeholder && textNewAffirmation.text != nil {
+
+            self.save(name: textNewAffirmation.text)
+            
+
+            UIView.animate(withDuration: 0.3, animations: { [weak self] in
+                guard let `self` = self else { return }
+                self.backgroundColorView.alpha = 0.0
+            }) { [weak self]  (isComplete) in
+                guard let `self` = self else { return }
+                self.dismiss(animated: true, completion: nil)
+                self.textNewAffirmation.resignFirstResponder()
+            }
+            // Vmykannya "zaraza" (zberigannya i fetching v table)
+               // Povertannya v MyAffirm...ViewController
+               reloadTable? ()
+               dismissAddAffi? ()
+               print("Save")
+
+            }else if textNewAffirmation.text == placeholder && textNewAffirmation.text != nil{
+                UIView.animate(withDuration: 2, animations: { [weak self] in
+                    guard let `self` = self else { return }
+                    self.textNewAffirmation.backgroundColor = UIColor.init(red: 240/255, green: 214/255, blue: 226/255, alpha: 1)
+                   let  message = NSLocalizedString("You haven't created your new affirmation yet.", comment: "You haven't created your new affirmation yet."); self.presentAlertConfirmation(with: message)
+                    self.view.layoutIfNeeded()
+                })
+
+                UIView.animate(withDuration: 2, animations: { [weak self] in
+                    guard let `self` = self else { return }
+                    self.textNewAffirmation.backgroundColor = .clear
+                    self.view.layoutIfNeeded()
+                })
+
+            }else{
+                print("text field is nill")
+            }
            }
 
     //Cancel Button
@@ -110,6 +105,12 @@ class PopUpViewController: UIViewController {
             }
         
     
+    // MARK: CoreData Functions
+    // Insert
+      func save(name: String) {
+        let _ = CoreDataManager.sharedManager.insertAffirmation(name: name)
+        print("II. Mon Affi Saved")
+        }
 
    //MARK: SetupLayouts
     private func setupLayouts () {
@@ -163,7 +164,7 @@ class PopUpViewController: UIViewController {
         okButton.setTitle(NSLocalizedString("OK", comment: "OK"), for: .normal)
         okButton.backgroundColor = UIColor.clear
         okButton.setTitleColor(UIColor.black, for: .normal)
-//                okButton.addTarget(self, action: #selector(oKButtonAction), for: .touchUpInside)
+        okButton.addTarget(self, action: #selector(oKButtonAction), for: .touchUpInside)
         //cancel button
         cancelButton.setTitle(NSLocalizedString("Cancel", comment: "Cancel"), for: .normal)
         cancelButton.setTitleColor(UIColor.black, for: .normal)
