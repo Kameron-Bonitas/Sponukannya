@@ -13,6 +13,9 @@ class PopUpViewController: UIViewController {
     //MARK: Constants
         var reloadTable:(()->())?
         var dismissAddAffi:(()->())?
+    var zaraza:(()->())?
+    var transferedAffi: MyAffirmationItem?
+    var editingAffi = false
         
         let textNewAffirmation = UITextView()
         let okButton = UIButton()
@@ -37,8 +40,9 @@ class PopUpViewController: UIViewController {
     let backgroundColorView: UIView = UIView()
     let mainView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor (named: "popaBackground")
-        view.layer.cornerRadius = 10
+//        view.backgroundColor = UIColor (named: "popaBackground")
+        view.backgroundColor = UIColor.gray
+       view.layer.cornerRadius = 10
         return view
     }()
 
@@ -49,16 +53,41 @@ class PopUpViewController: UIViewController {
             setupLayouts()
             placeHolder ()
             textNewAffirmation.becomeFirstResponder()
+            print(textNewAffirmation)
             }
+    
+    override func viewDidAppear(_ animated: Bool) {
+           super.viewDidAppear(animated)
+// MARK: Zatemnennya osnovnogo ekranu
+            UIView.animate(withDuration: 1) {
+            self.backgroundColorView.alpha = 1.0
+                   }
+           }
+    
+    
     
     //MARK: - Button Actions
     // OK Button
     @objc func oKButtonAction () {
         if textNewAffirmation.text != placeholder && textNewAffirmation.text != nil {
-
-            self.save(name: textNewAffirmation.text)
-            
-
+            if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext {
+                           
+                           if editingAffi{
+                               if let affiToUpdate = transferedAffi {
+                                   affiToUpdate.name = textNewAffirmation.text
+                                   (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
+                                    }
+                               }else{
+                               let newMyAffirmation = MyAffirmationItem(context: context)
+                                if let affirmation =  textNewAffirmation.text {
+                                    newMyAffirmation.name = affirmation
+                                    (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
+                                    }
+                                 }
+                           zaraza?()
+                           dismissAddAffi?()
+                        }
+           
             UIView.animate(withDuration: 0.3, animations: { [weak self] in
                 guard let `self` = self else { return }
                 self.backgroundColorView.alpha = 0.0
@@ -66,30 +95,25 @@ class PopUpViewController: UIViewController {
                 guard let `self` = self else { return }
                 self.dismiss(animated: true, completion: nil)
                 self.textNewAffirmation.resignFirstResponder()
-            }
-            // Vmykannya "zaraza" (zberigannya i fetching v table)
-               // Povertannya v MyAffirm...ViewController
-               reloadTable? ()
-               dismissAddAffi? ()
-               print("Save")
-
+                }
+            
             }else if textNewAffirmation.text == placeholder && textNewAffirmation.text != nil{
                 UIView.animate(withDuration: 2, animations: { [weak self] in
                     guard let `self` = self else { return }
                     self.textNewAffirmation.backgroundColor = UIColor.init(red: 240/255, green: 214/255, blue: 226/255, alpha: 1)
                    let  message = NSLocalizedString("You haven't created your new affirmation yet.", comment: "You haven't created your new affirmation yet."); self.presentAlertConfirmation(with: message)
                     self.view.layoutIfNeeded()
-                })
+                    })
 
                 UIView.animate(withDuration: 2, animations: { [weak self] in
                     guard let `self` = self else { return }
                     self.textNewAffirmation.backgroundColor = .clear
                     self.view.layoutIfNeeded()
-                })
+                    })
 
             }else{
                 print("text field is nill")
-            }
+                    }
            }
 
     //Cancel Button
@@ -105,13 +129,6 @@ class PopUpViewController: UIViewController {
             }
         
     
-    // MARK: CoreData Functions
-    // Insert
-      func save(name: String) {
-        let _ = CoreDataManager.sharedManager.insertAffirmation(name: name)
-        print("II. Mon Affi Saved")
-        }
-
    //MARK: SetupLayouts
     private func setupLayouts () {
         //backgroundColorView
@@ -184,6 +201,7 @@ class PopUpViewController: UIViewController {
     
     //MARK: Placeholder func
     func placeHolder () {
+        if editingAffi == false {
         textNewAffirmation.delegate = self as? UITextViewDelegate
          textNewAffirmation.text = placeholder
          textNewAffirmation.textColor = UIColor.lightGray
@@ -191,7 +209,7 @@ class PopUpViewController: UIViewController {
          textNewAffirmation.selectedTextRange = textNewAffirmation.textRange(from:textNewAffirmation.beginningOfDocument, to: textNewAffirmation.beginningOfDocument)
         textNewAffirmation.becomeFirstResponder()
         }
-    
+        }
     }
 
 //MARK: EXTENSION
@@ -199,6 +217,7 @@ class PopUpViewController: UIViewController {
     // Placeholder disappearing when start typing
 extension PopUpViewController: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+       
         let currentText: NSString = textView.text! as NSString
         let updatedText = currentText.replacingCharacters(in: range, with:text)
         if updatedText.isEmpty {
@@ -209,9 +228,10 @@ extension PopUpViewController: UITextViewDelegate {
         }else if textView.textColor == UIColor.lightGray && !text.isEmpty {
             textView.text = nil
             textView.textColor = UIColor.black
+       
         }
         return true
-        }
+    }
     
     func textViewDidChangeSelection(_ textView: UITextView) {
         if self.view.window != nil {

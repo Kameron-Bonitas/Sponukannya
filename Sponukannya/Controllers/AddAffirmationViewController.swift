@@ -16,6 +16,8 @@ class AddAffirmationViewController: UIViewController {
         let cancelButton = UIButton()
         let backgroundColorView: UIView = UIView()
 
+     var zaraza:(()->())?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -41,8 +43,9 @@ class AddAffirmationViewController: UIViewController {
     @objc  func ownAffiButtonAction(){
      let popaVC = PopUpViewController ()
          popaVC.modalPresentationStyle = .overCurrentContext
-//         popaVC.reloadTable = reloadTable
-//         popaVC.dismissAddAffi = dismissAddAffi
+         popaVC.reloadTable = reloadTable
+         popaVC.dismissAddAffi = dismissAddAffi
+         popaVC.editingAffi = false
         self.present(popaVC, animated: true, completion: nil)
         print("Dupa!")
     }
@@ -121,11 +124,7 @@ class AddAffirmationViewController: UIViewController {
             ])
           }
 
-    func dismissAddAffi () ->() {
-        let myAffiVC = MyAffirmationsViewController()
-        self.navigationController?.pushViewController(myAffiVC, animated: true)
-                 print("Do myAffi!'")
-        }
+   
     
     
     //MARK:- Reusable Function Background
@@ -149,5 +148,17 @@ class AddAffirmationViewController: UIViewController {
                             """)
                 }
                 }
+    
+    func reloadTable() -> () {
+        
+     zaraza!()
+        print("Relodnula Table")
+    }
+    
+    func dismissAddAffi () ->() {
+           let myAffiVC = MyAffirmationsViewController()
+           self.navigationController?.pushViewController(myAffiVC, animated: true)
+                    print("Do myAffi!'")
+           }
     
 }

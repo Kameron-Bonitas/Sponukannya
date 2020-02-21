@@ -44,16 +44,19 @@ class ListAffirmationsViewController: UIViewController, UITableViewDelegate, UIT
     // Rishennya pro poslidovne zberigannya vybranyh selektnutyh z selectedAffis
     // for in loop
     for affiToAdd in selectedAffis {
-        self.save(name: affiToAdd)
+        if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext {
+        let newMyAffirmation = MyAffirmationItem(context: context)
+            newMyAffirmation.name = affiToAdd
+            (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
+            }
         self.tableView.reloadData()
         }
-    
-        // Povertannya do golovnogo (myAffi)
+    // Povertannya do golovnogo (myAffi)
     let myAffiVC = MyAffirmationsViewController()
     self.navigationController?.pushViewController(myAffiVC, animated: true)
     
     }
-        
+    
             
     // MARK: Setup Layot
        private func setupLayout() {
@@ -125,74 +128,7 @@ class ListAffirmationsViewController: UIViewController, UITableViewDelegate, UIT
        tableView.register(MyTableViewCell.self, forCellReuseIdentifier: cellId)
        }
     
-    
-    // MARK: CoreData Functions
-    // Insert
-      func save(name: String) {
-        let _ = CoreDataManager.sharedManager.insertAffirmation(name: name)
-        print("I. Choosen Affi Saved")
-        }
-    
-    //Fetch All Affirmations
-    /*init fetchedResultsController and set self as delegate, also you need to implement delegate methods*/
-    func fetchAllAffirmations(){
-        /*This class is delegate of fetchedResultsController protocol methods*/
-        
-        CoreDataManager.sharedManager.fetchedResultsController.delegate = self as? NSFetchedResultsControllerDelegate
-      do{
-        print("2. NSFetchResultController will start fetching :)")
-        /*initiate performFetch() call on fetchedResultsController*/
-        try CoreDataManager.sharedManager.fetchedResultsController.performFetch()
-        print("3. NSFetchResultController did end fetching :)")
-
-      }catch{
-        print(error)
-      }
-      
-    }
-    
-//    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-//        
-//        print("B. NSFetchResultController didChange NSFetchedResultsChangeType \(type.rawValue):)")
-//
-//        
-//        switch (type) {
-//        case .insert:
-//          if let indexPath = newIndexPath {
-//            tableView.insertRows(at: [indexPath], with: .fade)
-//          }
-//          break;
-//        case .delete:
-//          if let indexPath = indexPath {
-//            tableView.deleteRows(at: [indexPath], with: .fade)
-//          }
-//          break;
-//        case .update:
-//          if let indexPath = indexPath, let cell = tableView.cellForRow(at: indexPath) {
-//            configureCell(cell, at: indexPath)
-//          }
-//          break;
-//          
-//        case .move:
-//          if let indexPath = indexPath {
-//            tableView.deleteRows(at: [indexPath], with: .fade)
-//          }
-//          
-//          if let newIndexPath = newIndexPath {
-//            tableView.insertRows(at: [newIndexPath], with: .fade)
-//          }
-//          break;
-//          
-//        @unknown default:
-//            fatalError()
-//        }
-//    }
-//      
-//      /*The last delegate call*/
-//      func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-//        /*finally balance beginUpdates with endupdates*/
-//        tableView.endUpdates()
-//      }
+   
     
     // MARK: - TableView Sachen
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

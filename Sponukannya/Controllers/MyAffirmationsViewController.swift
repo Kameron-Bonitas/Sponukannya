@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import MGSwipeTableCell
+import UserNotifications
 
 
 
@@ -20,8 +21,10 @@ class MyAffirmationsViewController: UIViewController,UITableViewDelegate,UITable
          var plusButton = UIButton()
          let tableView = UITableView()
     
-         private let cellIdentifier = "MyTableViewCell"
-         var myAffis : [MyAffirmationItem] = []
+    private let cellIdentifier = "MyTableViewCell"
+        var myAffis : [MyAffirmationItem] = []
+    
+//let eventStore = EKEventStore()
 
     //MARK:- Navigation. Making Navigation Bar Prozzoroyu UND Fetching all Affis
     override func viewWillAppear(_ animated: Bool) {
@@ -32,8 +35,6 @@ class MyAffirmationsViewController: UIViewController,UITableViewDelegate,UITable
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
       navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.isTranslucent = true
-        //Fetching all Affis
-        fetchAllAffirmations()
         }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -44,7 +45,7 @@ class MyAffirmationsViewController: UIViewController,UITableViewDelegate,UITable
         super.viewDidLoad()
         setupLayout()
         setupView()
-        
+         zaraza()
         //  Vyrishennya zatemnenogo backgroundImage
         view.backgroundColor = .white
         }
@@ -53,11 +54,23 @@ class MyAffirmationsViewController: UIViewController,UITableViewDelegate,UITable
         // addAffiBatton
         @objc func addAffiPopUpButtonPressed(_ sender: UIButton) {
             let addAffiVC = AddAffirmationViewController()
-    //        addAffiVC.modalPresentationStyle = .overCurrentContext
-//            addAffiVC.zaraza = zaraza
-    //        self.present(addAffiVC, animated: true, completion: nil)
+            //Peredacha "zaraza"
+           addAffiVC.zaraza = zaraza
             self.navigationController?.pushViewController(addAffiVC, animated: true)
-        print("Affa!")
+            print("Affa!")
+            }
+    
+    // MARK: CORE DATA SACHEN
+    //  MARK: - Fetching z perezavantazhennyam stola
+    //   Coreeeeeeeeeeeeeeeeeeeeeeeeee
+    func zaraza ()-> (){
+        if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext {
+        if let coreDataMyAffirmationItems = try? context.fetch(MyAffirmationItem.fetchRequest()) as? [MyAffirmationItem] {
+            myAffis = coreDataMyAffirmationItems
+        tableView.reloadData()
+            print("Fetching")
+                }
+            }
         }
     
     //  MARK: Setup Layout
@@ -77,7 +90,7 @@ class MyAffirmationsViewController: UIViewController,UITableViewDelegate,UITable
         
         //plusButton
         plusButton.addTarget(self, action: #selector(addAffiPopUpButtonPressed(_:)), for: .touchUpInside)
-         plusButton.setImage(UIImage(named: "bitmap.png"), for: .normal)
+        plusButton.setImage(UIImage(named: "bitmap.png"), for: .normal)
          view.addSubview(plusButton)
         
          plusButton.translatesAutoresizingMaskIntoConstraints = false
@@ -111,93 +124,11 @@ class MyAffirmationsViewController: UIViewController,UITableViewDelegate,UITable
            tableView.register(MyTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
            }
     
-    // MARK: CoreData Functions
-       // Insert
-         func save(name: String) {
-           let _ = CoreDataManager.sharedManager.insertAffirmation(name: name)
-           print("I. Choosen Affi Saved")
-           }
-        // Delete
-        func delete(name : MyAffirmationItem){
-            CoreDataManager.sharedManager.delete(affirmation: name)
-    }
-       
-       //Fetch All Affirmations
-       /*init fetchedResultsController and set self as delegate, also you need to implement delegate methods*/
-       func fetchAllAffirmations(){
-           /*This class is delegate of fetchedResultsController protocol methods*/
-           
-           CoreDataManager.sharedManager.fetchedResultsController.delegate = self as? NSFetchedResultsControllerDelegate
-         do{
-           print("2. NSFetchResultController will start fetching :)")
-           /*initiate performFetch() call on fetchedResultsController*/
-           try CoreDataManager.sharedManager.fetchedResultsController.performFetch()
-           print("3. NSFetchResultController did end fetching :)")
-
-         }catch{
-           print(error)
-         }
-         
-       }
-       
-//       func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-//           
-//           print("B. NSFetchResultController didChange NSFetchedResultsChangeType \(type.rawValue):)")
-//
-//           
-//           switch (type) {
-//           case .insert:
-//             if let indexPath = newIndexPath {
-//               tableView.insertRows(at: [indexPath], with: .fade)
-//             }
-//             break;
-//           case .delete:
-//             if let indexPath = indexPath {
-//               tableView.deleteRows(at: [indexPath], with: .fade)
-//             }
-//             break;
-//           case .update:
-//            if let indexPath = indexPath,let cell = tableView.cellForRow(at: indexPath)  {
-//                var ncell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! MyTableViewCell
-//                configureCell(ncell, at: indexPath)
-//                
-//             }
-//             break;
-//             
-//           case .move:
-//             if let indexPath = indexPath {
-//               tableView.deleteRows(at: [indexPath], with: .fade)
-//             }
-//             
-//             if let newIndexPath = newIndexPath {
-//               tableView.insertRows(at: [newIndexPath], with: .fade)
-//             }
-//             break;
-//             
-//           @unknown default:
-//               fatalError()
-//           }
-//       }
-//         
-//         /*The last delegate call*/
-//         func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-//           /*finally balance beginUpdates with endupdates*/
-//           tableView.endUpdates()
-//         }
-//       
-//    
-//    
+    
+    
     // MARK: - TableView Sachen
       func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//           return myAffis.count
-        /*fetchResultController's .section method returns array of NSFetchedResultsSectionInfo objects. As we have not provided any section info, sections */
-        guard let sections = CoreDataManager.sharedManager.fetchedResultsController.sections else {
-          return 0
-        }
-        
-        /*get number of rows count for each section*/
-        let sectionInfo = sections[section]
-        return sectionInfo.numberOfObjects
+          return myAffis.count
         }
 
       func configureTableView(){
@@ -209,8 +140,9 @@ class MyAffirmationsViewController: UIViewController,UITableViewDelegate,UITable
                 //Prozzorist' of cell
                 cell.backgroundColor = .clear
                 cell.numberLabel.text = "\(indexPath.row+1)"
-            
-        configureCell(cell, at: indexPath)
+            let myAffi = myAffis[indexPath.row]
+                cell.noteLabel.text = myAffi.name
+       
                 cell.selectionStyle = .none
                 cell.layer.cornerRadius = 10
             //  cell.backgroundColor = UIColor.gray
@@ -222,25 +154,42 @@ class MyAffirmationsViewController: UIViewController,UITableViewDelegate,UITable
         cell.leftButtons =
         [MGSwipeButton(title: "", icon: UIImage(named:"bitmap" ), backgroundColor: .green){
                                [weak self] sender in
-        
+           let myAffi = self?.myAffis[indexPath.row].name
+            NotificationReminder.body = myAffi ?? ""
+            self?.getNotificationSettingStatus()
+print("funcAddReminder at indexPath")
                                return true
                                },
+         
         MGSwipeButton(title: "Edit", backgroundColor: .blue){
                            [weak self] sender in
-                          
-                           return true
-                              }]
+            
+let popaVC = PopUpViewController ()
+   popaVC.modalPresentationStyle = .overCurrentContext
+popaVC.transferedAffi = self!.myAffis[indexPath.row]
+popaVC.zaraza = self?.zaraza
+popaVC.editingAffi = true
+popaVC.textNewAffirmation.text = self!.myAffis[indexPath.row].name
+print(self?.myAffis[indexPath.row].name)
+                                
+          
+self?.present(popaVC, animated: true, completion: nil)
+print("Upa!")
+                   
+return true
+                    }]
                   cell.leftSwipeSettings.transition = .rotate3D
 
-        //configure right button
+       //configure right button
         cell.rightButtons =
         [MGSwipeButton(title: "Delete", backgroundColor: .red, padding: 50) {
                     [weak self] sender in
-            let myAffi = CoreDataManager.sharedManager.fetchedResultsController.object(at: indexPath)
-            self?.delete(name:myAffi)
-           self?.tableView.reloadData()
-//            self?.fetchAllAffirmations()
-            print("Delete myAffi")
+            let myAffi = self?.myAffis[indexPath.row]
+            if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext {
+                context.delete(myAffi!)
+           (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
+                        self?.zaraza()
+                }
                     return true
                                }]
         cell.rightSwipeSettings.transition = .rotate3D
@@ -249,12 +198,13 @@ class MyAffirmationsViewController: UIViewController,UITableViewDelegate,UITable
         return cell
     }
     
-    func configureCell(_ cell: MyTableViewCell, at indexPath: IndexPath) {
-      /*get managed object*/
-      let myAffi = CoreDataManager.sharedManager.fetchedResultsController.object(at: indexPath)
-        // Configure Cell
-      cell.noteLabel.text = myAffi.name
-    }
+   
+//    func addReminder(at indexpath: IndexPath) {
+//        NotificationReminder.body = myAffis[indexpath.row].name ??
+//
+//           getNotificationSettingStatus()
+//       }
+    
     
 
     //MARK:- Reusable Function Background
@@ -281,77 +231,91 @@ class MyAffirmationsViewController: UIViewController,UITableViewDelegate,UITable
         titleLabel.font = UIFontMetrics.default.scaledFont(for: customFont)
         titleLabel.adjustsFontForContentSizeCategory = true
             }
+    
+    
+// MARK: ALERTS
+    
+    func goToSettingsAllert (alertTitle: String, alertMessage: String, alertActionTitle: String, alertCancelActionTitle: String) {
+        
+        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
+        
+        let settingsAction = UIAlertAction(title: alertActionTitle, style: .default) {(action) in
+            guard let settingsURL = URL(string: UIApplication.openSettingsURLString) else {
+                return
+            }
+            if UIApplication.shared.canOpenURL(settingsURL) {
+                UIApplication.shared.open(settingsURL, completionHandler: { (success) in
+                    print("Settings opened: \(success)")
+                })
+            }
+        }
+        alert.addAction(settingsAction)
+        
+        let cancelAction = UIAlertAction(title: alertCancelActionTitle, style: .cancel, handler: nil)
+        alert.addAction(cancelAction)
+        
+        DispatchQueue.main.async { [weak self] in
+            self?.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+  
+//MARK: - NOTIFICATION CENTER MATHODS (REMINDERS)
+
+func getNotificationSettingStatus () {
+    
+    UNUserNotificationCenter.current().getNotificationSettings {[weak self] (settings) in
+        guard let `self` = self else {return}
+        
+        switch settings.authorizationStatus {
+        case .authorized:
+            DispatchQueue.main.async {
+                // UI work here
+                self.goToPopupAndSetReminder()
+                
+                print("F getNotificationSettingStatus")
+            }
+        case .denied, .notDetermined, .provisional:
+            self.goToSettingsAllert(alertTitle: SettingsAlertNotifications.title, alertMessage: SettingsAlertNotifications.message, alertActionTitle: SettingsAlertNotifications.settingActionTitle, alertCancelActionTitle: SettingsAlertNotifications.cancelActionTitle)
+        @unknown default:
+            print("unknown case of authorisationStatus")
+        }
+    }
+   
+}
+
+func goToPopupAndSetReminder () {
+    let dpVC = DatePickerPopupViewController()
+    dpVC.dateForCalendar = false
+    dpVC.modalPresentationStyle = .overCurrentContext
+    dpVC.setReminder = setReminder
+    self.present(dpVC, animated: true, completion: nil)
+    
+    print("F goToPopupAndSetReminder ")
+}
+
+func setReminder (_ components: DateComponents) ->(){
+    
+    let content = UNMutableNotificationContent()
+    content.title = NotificationReminder.title
+    content.body = NotificationReminder.body
+    content.sound = UNNotificationSound.default
+//    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+   let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
+    let request = UNNotificationRequest(identifier: content.body, content: content, trigger: trigger)
+   
+print(" NOTIFIC \(NotificationReminder.title)")
+print(NotificationReminder.body)
+
+UNUserNotificationCenter.current().add(request) { (error) in
+print("Identifier! \(request.identifier)")
+        
+        if let error = error {
+            print(" We had an error: \(error)")
+            
+        }
+    }
+}
         
 }
 
-extension MyAffirmationsViewController  : NSFetchedResultsControllerDelegate{
-  
-  func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-    /*This delegate method will be called first.As the name of this method "controllerWillChangeContent" suggets write some logic for table view to initiate insert row or delete row or update row process. After beginUpdates method the next call will be for :
-     
-     - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(nullable NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(nullable NSIndexPath *)newIndexPath
-     
-     */
-    print("A. NSFetchResultController controllerWillChangeContent :)")
-
-    tableView.beginUpdates()
-  }
-  
-  /*This delegate method will be called second. This method will give information about what operation exactly started taking place a insert, a update, a delete or a move. The enum NSFetchedResultsChangeType will provide the change types.
-   
-   
-   public enum NSFetchedResultsChangeType : UInt {
-   
-   case insert
-   
-   case delete
-   
-   case move
-   
-   case update
-   }
-   
-   */
-  func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-    
-    print("B. NSFetchResultController didChange NSFetchedResultsChangeType \(type.rawValue):)")
-
-    
-    switch (type) {
-    case .insert:
-      if let indexPath = newIndexPath {
-        tableView.insertRows(at: [indexPath], with: .fade)
-      }
-      break;
-    case .delete:
-      if let indexPath = indexPath {
-        tableView.deleteRows(at: [indexPath], with: .fade)
-      }
-      break;
-    case .update:
-      if let indexPath = indexPath, let cell = tableView.cellForRow(at: indexPath) {
-        configureCell(cell as! MyTableViewCell, at: indexPath)
-      }
-      break;
-      
-    case .move:
-      if let indexPath = indexPath {
-        tableView.deleteRows(at: [indexPath], with: .fade)
-      }
-      
-      if let newIndexPath = newIndexPath {
-        tableView.insertRows(at: [newIndexPath], with: .fade)
-      }
-      break;
-      
-    @unknown default:
-        fatalError()
-    }
-}
-  
-  /*The last delegate call*/
-  func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-    /*finally balance beginUpdates with endupdates*/
-    tableView.endUpdates()
-  }
-}
