@@ -19,7 +19,7 @@ class DatePickerPopupViewController: UIViewController {
         private let buttonHeight: CGFloat = 45
     private let titleLabelBackgroundColor = UIColor.gray
     //        UIColor.init(red: 240/255, green: 214/255, blue: 226/255, alpha: 1)
-        private let alertViewGrayColor = UIColor (named: "buttonsBorder")
+        private let alertViewGrayColor = UIColor (named: "buttonsBorderColor")
             
     //        UIColor(red: 224.0/255.0, green: 224.0/255.0, blue: 224.0/255.0, alpha: 1)
         

@@ -62,9 +62,10 @@ class ListAffirmationsViewController: UIViewController, UITableViewDelegate, UIT
        private func setupLayout() {
        setupBackground(imageView: backgroundImage, imageNamed: "background.png", to: self.view)
         //titleLabel
-        titleLabel.text = "Choose Affirmations"
+        titleLabel.text = "CHOOSE AFFIRMATIONS"
         titleLabel.textAlignment = .center
-        titleLabel.font = UIFont(name: titleLabel.font.fontName, size: 40)
+        titleLabel.font = UIFont(name: titleLabel.font.fontName, size: 36)
+        titleLabel.textColor = UIColor(named: "bigLableTextColor")
         self.view.addSubview(titleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -72,36 +73,40 @@ class ListAffirmationsViewController: UIViewController, UITableViewDelegate, UIT
         titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant:0.0)
                   ])
         //cancelButton
-        cancelButton.backgroundColor = .systemBlue
-        cancelButton.setTitle("Cancel", for: .normal)
+//        cancelButton.backgroundColor = .systemBlue
+        cancelButton.setTitle(NSLocalizedString("Cancel", comment: "Cancel"), for: .normal)
         cancelButton.titleLabel?.font = UIFont(name: "Lato-Light", size: 30)
-        cancelButton.tintColor = .white
+        cancelButton.backgroundColor = UIColor(named: "bigButtonColor")
+        cancelButton.setTitleColor(UIColor (named: "textColor"), for: .normal)
+//        cancelButton.tintColor = .white
         cancelButton.layer.cornerRadius = 5
         cancelButton.clipsToBounds = true
         cancelButton.addTarget(self, action: #selector(cancelButtonPressed(_:)), for: .touchUpInside)
         self.view.addSubview(cancelButton)
         cancelButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-        cancelButton.heightAnchor.constraint(equalToConstant: 50),
-        cancelButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant:-50),
-        cancelButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-        cancelButton.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -15)
+        cancelButton.heightAnchor.constraint(equalToConstant: 62),
+        cancelButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant:-47),
+        cancelButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 21),
+        cancelButton.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -5)
            ])
         //addlButton
-        addButton.backgroundColor = .systemBlue
-        addButton.setTitle("Add", for: .normal)
+//        addButton.backgroundColor = .systemBlue
+        addButton.setTitle(NSLocalizedString("Add", comment: "Add"), for: .normal)
         addButton.titleLabel?.font = UIFont(name: "Lato-Light", size: 30)
-        addButton.tintColor = .white
+        addButton.backgroundColor = UIColor(named: "bigButtonColor")
+        addButton.setTitleColor(UIColor (named: "textColor"), for: .normal)
+//        addButton.tintColor = .white
         addButton.layer.cornerRadius = 5
         addButton.clipsToBounds = true
         addButton.addTarget(self, action: #selector(addButtonPressed(_:)), for: .touchUpInside)
         self.view.addSubview(addButton)
         addButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-        addButton.heightAnchor.constraint(equalToConstant: 50),
+        addButton.heightAnchor.constraint(equalToConstant: 62),
         addButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant:-50),
-        addButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-        addButton.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: 15)
+        addButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -21),
+        addButton.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: 5)
            ])
         // table
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "MyTableViewCell")
@@ -160,6 +165,11 @@ class ListAffirmationsViewController: UIViewController, UITableViewDelegate, UIT
             cell.noteLabel.text = content
             cell.layer.cornerRadius = 10
             cell.clipsToBounds = true
+        //  Selection colour of cell is custom
+         cell.selectionStyle = .gray
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor (named: "selectedListCellColor")
+        cell.selectedBackgroundView = backgroundView
             return cell
          }
 

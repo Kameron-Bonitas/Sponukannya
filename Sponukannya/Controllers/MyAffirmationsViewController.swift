@@ -78,9 +78,10 @@ class MyAffirmationsViewController: UIViewController,UITableViewDelegate,UITable
         setupBackground(imageView: backgroundImage, imageNamed: "background.png", to: self.view)
     
         //titleLabel
-        titleLabel.text = "My Affirmations"
+        titleLabel.text = "MY AFFIRMATIONS"
         titleLabel.textAlignment = .center
-        titleLabel.font = UIFont(name: titleLabel.font.fontName, size: 40)
+        titleLabel.font = UIFont(name: titleLabel.font.fontName, size: 36)
+        titleLabel.textColor = UIColor(named: "bigLableTextColor")
         self.view.addSubview(titleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -90,7 +91,7 @@ class MyAffirmationsViewController: UIViewController,UITableViewDelegate,UITable
         
         //plusButton
         plusButton.addTarget(self, action: #selector(addAffiPopUpButtonPressed(_:)), for: .touchUpInside)
-        plusButton.setImage(UIImage(named: "bitmap.png"), for: .normal)
+        plusButton.setImage(UIImage(named: "plus"), for: .normal)
          view.addSubview(plusButton)
         
          plusButton.translatesAutoresizingMaskIntoConstraints = false
@@ -105,7 +106,7 @@ class MyAffirmationsViewController: UIViewController,UITableViewDelegate,UITable
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-        tableView.topAnchor.constraint(equalTo: plusButton.bottomAnchor, constant: 34),
+        tableView.topAnchor.constraint(equalTo: plusButton.bottomAnchor, constant: 10),
         tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
      tableView.leadingAnchor.constraint(equalTo:self.view.safeAreaLayoutGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor)
@@ -117,6 +118,7 @@ class MyAffirmationsViewController: UIViewController,UITableViewDelegate,UITable
            //tableView
            tableView.delegate = self
            tableView.dataSource = self
+           tableView.allowsMultipleSelection = true
            tableView.backgroundColor = UIColor.clear
            tableView.separatorColor = .clear
            tableView.separatorStyle = .singleLine
@@ -143,7 +145,11 @@ class MyAffirmationsViewController: UIViewController,UITableViewDelegate,UITable
             let myAffi = myAffis[indexPath.row]
                 cell.noteLabel.text = myAffi.name
        
-                cell.selectionStyle = .none
+                cell.selectionStyle = .gray
+        //  Selection colour of cell is custom
+                   let backgroundView = UIView()
+                   backgroundView.backgroundColor = UIColor (named: "switchON")
+                   cell.selectedBackgroundView = backgroundView
                 cell.layer.cornerRadius = 10
             //  cell.backgroundColor = UIColor.gray
                 cell.clipsToBounds = true
@@ -152,7 +158,7 @@ class MyAffirmationsViewController: UIViewController,UITableViewDelegate,UITable
 //  SWIPE CONFIGURATION
         //configure left buttons
         cell.leftButtons =
-        [MGSwipeButton(title: "", icon: UIImage(named:"bitmap" ), backgroundColor: .green){
+        [MGSwipeButton(title: "", icon: UIImage(named:"reminder" ), backgroundColor: UIColor(named: "reminderColor")){
                                [weak self] sender in
            let myAffi = self?.myAffis[indexPath.row].name
             NotificationReminder.body = myAffi ?? ""
@@ -161,7 +167,7 @@ print("funcAddReminder at indexPath")
                                return true
                                },
          
-        MGSwipeButton(title: "Edit", backgroundColor: .blue){
+        MGSwipeButton(title: "", icon: UIImage(named:"edit"), backgroundColor: UIColor(named: "editColor")){
                            [weak self] sender in
             
 let popaVC = PopUpViewController ()
@@ -182,7 +188,7 @@ return true
 
        //configure right button
         cell.rightButtons =
-        [MGSwipeButton(title: "Delete", backgroundColor: .red, padding: 50) {
+        [MGSwipeButton(title: "", icon: UIImage(named:"trash"), backgroundColor: UIColor(named: "trashColor"), padding: 50) {
                     [weak self] sender in
             let myAffi = self?.myAffis[indexPath.row]
             if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext {
@@ -301,7 +307,8 @@ func setReminder (_ components: DateComponents) ->(){
     content.body = NotificationReminder.body
     content.sound = UNNotificationSound.default
 //    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-   let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
+    
+    let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
     let request = UNNotificationRequest(identifier: content.body, content: content, trigger: trigger)
    
 print(" NOTIFIC \(NotificationReminder.title)")

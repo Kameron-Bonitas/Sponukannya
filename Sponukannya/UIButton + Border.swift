@@ -17,7 +17,8 @@ extension UIButton {
     
     public func addBorder(side: UIButtonBorderSide, color: UIColor, width: CGFloat) {
         let border = CALayer()
-        border.backgroundColor = color.cgColor
+//        border.backgroundColor = color.cgColor
+        border.backgroundColor = UIColor(named: "buttonsBorderColor")?.cgColor
         
         switch side {
         case .Top:

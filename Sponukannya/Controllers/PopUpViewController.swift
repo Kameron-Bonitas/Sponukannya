@@ -22,7 +22,8 @@ class PopUpViewController: UIViewController {
         let cancelButton = UIButton()
         let placeholder = "Type your affirmation here..."
 
-        let alertViewGrayColor = UIColor(red: 224.0/255.0, green: 224.0/255.0, blue: 224.0/255.0, alpha: 1)
+    private let alertViewGrayColor = UIColor (named: "buttonsBorderColor")
+//        let alertViewGrayColor = UIColor(red: 224.0/255.0, green: 224.0/255.0, blue: 224.0/255.0, alpha: 1)
         let textViwBorderWidth: CGFloat = 0.5
         let textViwBorderColor = UIColor.init(red: 200/255, green: 199/255, blue: 204/255, alpha: 1)
         let textViwFontSize: CGFloat = 18
@@ -40,8 +41,8 @@ class PopUpViewController: UIViewController {
     let backgroundColorView: UIView = UIView()
     let mainView: UIView = {
         let view = UIView()
-//        view.backgroundColor = UIColor (named: "popaBackground")
-        view.backgroundColor = UIColor.gray
+        view.backgroundColor = UIColor (named: "cellBackgroundColor")
+//        view.backgroundColor = UIColor.gray
        view.layer.cornerRadius = 10
         return view
     }()
@@ -175,17 +176,20 @@ class PopUpViewController: UIViewController {
         view.addSubview(mainView)
         //textView
         textNewAffirmation.backgroundColor = .clear
-        textNewAffirmation.font = UIFont.systemFont(ofSize: textViwFontSize, weight: .light)
+        textNewAffirmation.font = UIFont(name: "Lato-Light", size: 20)
+        textNewAffirmation.textColor = UIColor(named: "textColor")
         textNewAffirmation.returnKeyType = .done
         //save button
         okButton.setTitle(NSLocalizedString("OK", comment: "OK"), for: .normal)
         okButton.backgroundColor = UIColor.clear
-        okButton.setTitleColor(UIColor.black, for: .normal)
+        okButton.titleLabel?.font = UIFont(name: "Lato-Regular", size: 24)
+        okButton.setTitleColor(UIColor(named: "popaButtonColor"), for: .normal)
         okButton.addTarget(self, action: #selector(oKButtonAction), for: .touchUpInside)
         //cancel button
         cancelButton.setTitle(NSLocalizedString("Cancel", comment: "Cancel"), for: .normal)
-        cancelButton.setTitleColor(UIColor.black, for: .normal)
+        cancelButton.setTitleColor(UIColor(named: "popaButtonColor"), for: .normal)
         cancelButton.backgroundColor = UIColor.clear
+        cancelButton.titleLabel?.font = UIFont(name: "Lato-Regular", size: 24)
                 cancelButton.addTarget(self, action: #selector(cancelButtonAction), for: .touchUpInside)
             
         [textNewAffirmation, buttonStackView,].forEach { mainView.addSubview($0) }
@@ -193,10 +197,10 @@ class PopUpViewController: UIViewController {
     //MARK: Layout Subviews
         override func viewDidLayoutSubviews() {
             super.viewDidLayoutSubviews()
-            cancelButton.addBorder(side: .Top, color: alertViewGrayColor, width: 1)
-            cancelButton.addBorder(side: .Right, color: alertViewGrayColor, width: 0.5)
-            okButton.addBorder(side: .Top, color: alertViewGrayColor, width: 1)
-            okButton.addBorder(side: .Left, color: alertViewGrayColor, width: 0.5)
+            cancelButton.addBorder(side: .Top, color: alertViewGrayColor!, width: 1)
+            cancelButton.addBorder(side: .Right, color: alertViewGrayColor!, width: 0.5)
+            okButton.addBorder(side: .Top, color: alertViewGrayColor!, width: 1)
+            okButton.addBorder(side: .Left, color: alertViewGrayColor!, width: 0.5)
             }
     
     //MARK: Placeholder func
@@ -204,7 +208,7 @@ class PopUpViewController: UIViewController {
         if editingAffi == false {
         textNewAffirmation.delegate = self as? UITextViewDelegate
          textNewAffirmation.text = placeholder
-         textNewAffirmation.textColor = UIColor.lightGray
+         textNewAffirmation.textColor = UIColor(named: "placeholderColor")
          //Kursor na pochatku placeholder'a
          textNewAffirmation.selectedTextRange = textNewAffirmation.textRange(from:textNewAffirmation.beginningOfDocument, to: textNewAffirmation.beginningOfDocument)
         textNewAffirmation.becomeFirstResponder()
@@ -222,12 +226,13 @@ extension PopUpViewController: UITextViewDelegate {
         let updatedText = currentText.replacingCharacters(in: range, with:text)
         if updatedText.isEmpty {
             textView.text = placeholder
-            textView.textColor = UIColor.lightGray
+            textView.textColor = UIColor(named: "textColor")
             textView.selectedTextRange = textView.textRange(from: textNewAffirmation.beginningOfDocument, to: textNewAffirmation.beginningOfDocument)
             return false
-        }else if textView.textColor == UIColor.lightGray && !text.isEmpty {
+        }else if textView.textColor == UIColor(named: "placeholderColor") && !text.isEmpty {
             textView.text = nil
-            textView.textColor = UIColor.black
+            textView.textColor = UIColor(named: "textColor")
+            textView.font = UIFont(name: "Lato-Light", size: 20)
        
         }
         return true

@@ -34,14 +34,14 @@ var numberLabel = UILabel()
             contentView.isOpaque = false
             contentView.backgroundColor = UIColor.clear
             // cellView
-            cellView.backgroundColor = UIColor (named: "cellBackground")
+            cellView.backgroundColor = UIColor (named: "cellBackgroundColor")
             cellView.layer.cornerRadius = 10
             contentView.addSubview(cellView)
             // noteLabel
             noteLabel.textAlignment = .left
             noteLabel.font = UIFont(name: "IndieFlower", size: 18)
             noteLabel.adjustsFontForContentSizeCategory = true
-            noteLabel.textColor = .black
+            noteLabel.textColor = UIColor (named: "textColor")
             noteLabel.backgroundColor = UIColor.clear
             noteLabel.numberOfLines = 0
             cellView.addSubview(noteLabel)
@@ -50,7 +50,7 @@ var numberLabel = UILabel()
             numberLabel.textAlignment = .center
             numberLabel.font = UIFont(name: "IndieFlower", size: 24)
             numberLabel.adjustsFontForContentSizeCategory = true
-            numberLabel.textColor = .black
+            numberLabel.textColor = UIColor (named: "textColor")
             numberLabel.backgroundColor = UIColor.clear
             noteLabel.addSubview(numberLabel)
            }
@@ -90,7 +90,19 @@ var numberLabel = UILabel()
                    """)
                 }
                 }
-    
+//    MARK: Selection
+    override func setSelected(_ selected: Bool, animated: Bool) {
+           super.setSelected(selected, animated: animated)
+//    //        //  Labels Taxt Selected color
+//            noteLabel.textColor = selected ? UIColor.red : UIColor.black
+//            numberLabel.textColor = selected ? UIColor.red : UIColor.black
+//    //        //  Labels Background Selected color
+            cellView.backgroundColor = selected ? UIColor(named: "selectedCellColor"): UIColor (named: "cellBackgroundColor")
+//    //        //  Image View Selected color
+//    //        backgroundCellView.backgroundColor = selected ? UIColor.green : UIColor.clear
+//
+        }
+//
     
 //    MARK: My Label
     // Custom class MyLabel. Making text marging (width of numberLabel) for noteLabel's text.
