@@ -17,6 +17,7 @@ class PopUpViewController: UIViewController {
     var transferedAffi: MyAffirmationItem?
     var editingAffi = false
         
+        let backgroundImage = UIImageView()
         let textNewAffirmation = UITextView()
         let okButton = UIButton()
         let cancelButton = UIButton()
@@ -101,7 +102,7 @@ class PopUpViewController: UIViewController {
             }else if textNewAffirmation.text == placeholder && textNewAffirmation.text != nil{
                 UIView.animate(withDuration: 2, animations: { [weak self] in
                     guard let `self` = self else { return }
-                    self.textNewAffirmation.backgroundColor = UIColor.init(red: 240/255, green: 214/255, blue: 226/255, alpha: 1)
+                    self.textNewAffirmation.backgroundColor = UIColor.init(named: "switchONColor")
                    let  message = NSLocalizedString("You haven't created your new affirmation yet.", comment: "You haven't created your new affirmation yet."); self.presentAlertConfirmation(with: message)
                     self.view.layoutIfNeeded()
                     })
@@ -168,9 +169,10 @@ class PopUpViewController: UIViewController {
     //MARK: Setup Views func
     private func setupViews () {
         //backgroundColorView
-        backgroundColorView.backgroundColor = UIColor.black.withAlphaComponent(0.34)
-                backgroundColorView.isOpaque = false
-                backgroundColorView.alpha = 0.0
+        setupBackground(imageView: backgroundImage, imageNamed: "background.png", to: self.view)
+//        backgroundColorView.backgroundColor = UIColor.black.withAlphaComponent(0.34)
+//                backgroundColorView.isOpaque = false
+//                backgroundColorView.alpha = 0.0
                 view.addSubview(backgroundColorView)
         //mainview
         view.addSubview(mainView)
@@ -213,6 +215,22 @@ class PopUpViewController: UIViewController {
          textNewAffirmation.selectedTextRange = textNewAffirmation.textRange(from:textNewAffirmation.beginningOfDocument, to: textNewAffirmation.beginningOfDocument)
         textNewAffirmation.becomeFirstResponder()
         }
+        }
+    
+    //MARK:- Reusable Function
+    func setupBackground(imageView: UIImageView, imageNamed imageName: String, to view: UIView) {
+        imageView.image = UIImage(named: imageName)
+        imageView.contentMode = .scaleAspectFill
+        view.addSubview(imageView)
+        
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            imageView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            imageView.bottomAnchor.constraint(equalTo:self.view.bottomAnchor),
+            imageView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
+            imageView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
+        ])
         }
     }
 

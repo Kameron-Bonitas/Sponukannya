@@ -163,6 +163,7 @@ class ListAffirmationsViewController: UIViewController, UITableViewDelegate, UIT
             cell.backgroundColor = .clear
             let content = sampleAffis[indexPath.row]
             cell.noteLabel.text = content
+        cell.numberLabel.text = "❊"
             cell.layer.cornerRadius = 10
             cell.clipsToBounds = true
         //  Selection colour of cell is custom

@@ -12,18 +12,22 @@ class DatePickerPopupViewController: UIViewController {
 
 
         //MARK: - Constants
-        private let titleLabelTextOptions = ["calendar":"Add to calendar", "reminder":"Add to reminder"]
-        private let mainViewHeight: CGFloat = 217
+        private let titleLabelTextOptions = ["calendar":"Add to calendar", "reminder":"Add a reminder"]
+        private let mainViewHeight: CGFloat = 235
         private let mainViewWidth: CGFloat = 300
         private let titleLabelHeight: CGFloat = 40
         private let buttonHeight: CGFloat = 45
-    private let titleLabelBackgroundColor = UIColor.gray
+         private let switchHight: CGFloat = 45
+//    private let titleLabelBackgroundColor = UIColor.gray
     //        UIColor.init(red: 240/255, green: 214/255, blue: 226/255, alpha: 1)
         private let alertViewGrayColor = UIColor (named: "buttonsBorderColor")
             
     //        UIColor(red: 224.0/255.0, green: 224.0/255.0, blue: 224.0/255.0, alpha: 1)
         
         //MARK: - VARIABLES
+    var perdachaPovtoru: Bool = false
+    var povtorTime:((Bool) -> Bool)?
+  
         var dateForCalendar = false
 //        var createReminder: ((_ components: DateComponents) -> ())?
     var setReminder: ((_ components: DateComponents) -> ())?
@@ -32,17 +36,20 @@ class DatePickerPopupViewController: UIViewController {
         
         
         //MARK: - views
+         let backgroundImage = UIImageView()
         let titleLabel = UILabel()
         let datePicker = UIDatePicker()
         let okButton = UIButton()
         let cancelButton = UIButton()
+        let switchOnOff = UISwitch(frame:CGRect(x: 150, y: 150, width: 0, height: 0))
+        let switchLabel = MyLabel()
         
         let backgroundColorView: UIView = UIView()
         
         let mainView: UIView = {
             let view = UIView()
             if #available(iOS 13.0, *) {
-                view.backgroundColor = UIColor.gray
+                view.backgroundColor = UIColor (named: "cellBackgroundColor")
             } else {
                 // Fallback on earlier versions
             }
@@ -86,47 +93,63 @@ class DatePickerPopupViewController: UIViewController {
             cancelButton.addBorder(side: .Right, color: alertViewGrayColor!, width: 0.5)
             okButton.addBorder(side: .Top, color: alertViewGrayColor!, width: 1)
             okButton.addBorder(side: .Left, color: alertViewGrayColor!, width: 0.5)
+            switchLabel.addBorder(side: .Top, color: alertViewGrayColor!, width: 1)
         }
         
         
         private func setupViews () {
             
             //backgroundColorView
-            backgroundColorView.backgroundColor = UIColor.black.withAlphaComponent(0.34)
-            backgroundColorView.isOpaque = false
-            backgroundColorView.alpha = 0.0
+             setupBackground(imageView: backgroundImage, imageNamed: "background.png", to: self.view)
+//            backgroundColorView.backgroundColor = UIColor.black.withAlphaComponent(0.34)
+//            backgroundColorView.isOpaque = false
+//            backgroundColorView.alpha = 0.0
             view.addSubview(backgroundColorView)
             
             //mainview
             view.addSubview(mainView)
-            
             //titleLabel
-            
-            titleLabel.backgroundColor = titleLabelBackgroundColor
+            titleLabel.backgroundColor = UIColor (named: "cellBackgroundColor")
             titleLabel.textAlignment = .center
+            titleLabel.textColor = UIColor(named: "popaButtonColor")
+            titleLabel.font = UIFont(name: "Lato-Regular", size: 25)
             if dateForCalendar == true{
                 titleLabel.text = NSLocalizedString(titleLabelTextOptions["calendar"]!, comment: "calendar")
-            }else{
+                }else{
                 titleLabel.text = NSLocalizedString(titleLabelTextOptions["reminder"]!, comment: "reminder")
-            }
+                }
             mainView.addSubview(titleLabel)
-            
             //datePicker
             mainView.addSubview(datePicker)
-            
             //save button
             okButton.setTitle (NSLocalizedString ("OK", comment: "OK"), for: .normal)
             okButton.backgroundColor = UIColor.clear
-            okButton.setTitleColor(UIColor (named: "popUpButtonFont"), for: .normal)
+            okButton.titleLabel?.font = UIFont(name: "Lato-Regular", size: 24)
+            okButton.setTitleColor(UIColor(named: "popaButtonColor"), for: .normal)
+//            okButton.setTitleColor(UIColor (named: "popUpButtonFont"), for: .normal)
             okButton.addTarget(self, action: #selector(oKButtonAction), for: .touchUpInside)
-            
-            
             //cancel button
             cancelButton.setTitle (NSLocalizedString("Cancel", comment: "Cancel"), for: .normal)
-                cancelButton.setTitleColor(UIColor(named: "popUpButtonFont"), for: .normal)
+            cancelButton.setTitleColor(UIColor(named: "popaButtonColor"), for: .normal)
+            cancelButton.titleLabel?.font = UIFont(name: "Lato-Regular", size: 24)
+//                cancelButton.setTitleColor(UIColor(named: "popUpButtonFont"), for: .normal)
                 cancelButton.backgroundColor = UIColor.clear
                 cancelButton.addTarget(self, action: #selector(cancelButtonAction), for: .touchUpInside)
                 mainView.addSubview(buttonStackView)
+            //switchLabel
+            switchLabel.text = "Repeat every day"
+            switchLabel.font = UIFont(name: "Lato-Light",size: 20)
+            switchLabel.textColor = UIColor(named: "textColor")
+            switchLabel.textAlignment = .left
+            self.mainView.addSubview(switchLabel)
+            //switch
+            switchOnOff.addTarget(self, action: #selector(DatePickerPopupViewController.switchStateDidChange(_:)), for: .valueChanged)
+            switchOnOff.setOn(false, animated: false)
+            switchOnOff.onTintColor = UIColor (named: "switchONColor")
+            switchOnOff.tintColor = .red
+            switchOnOff.thumbTintColor = UIColor (named: "switchThumbColor")
+            self.mainView.addSubview(switchOnOff)
+            
             }
             
         private func setupLayouts () {
@@ -165,7 +188,7 @@ class DatePickerPopupViewController: UIViewController {
             
             NSLayoutConstraint.activate([
                  datePicker.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
-                 datePicker.bottomAnchor.constraint(equalTo: buttonStackView.topAnchor),
+                 datePicker.bottomAnchor.constraint(equalTo:switchLabel.topAnchor),
                  datePicker.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                  datePicker.trailingAnchor.constraint(equalTo: view.trailingAnchor)
                 ])
@@ -180,55 +203,101 @@ class DatePickerPopupViewController: UIViewController {
                 buttonStackView.bottomAnchor.constraint(equalTo: mainView.bottomAnchor)
                 ])
             
-
-            
+            // switchLabel
+            switchLabel.translatesAutoresizingMaskIntoConstraints = false
+                            NSLayoutConstraint.activate([
+                switchLabel.heightAnchor.constraint(equalToConstant: switchHight),
+                switchLabel.leadingAnchor.constraint(equalTo: mainView.leadingAnchor),
+                switchLabel.trailingAnchor.constraint(equalTo: mainView.trailingAnchor),
+                switchLabel.bottomAnchor.constraint(equalTo: buttonStackView.topAnchor)
+                ])
+            // switch
+            switchOnOff.translatesAutoresizingMaskIntoConstraints = false
+                            NSLayoutConstraint.activate([
+//                switchOnOff.centerYAnchor.constraint(equalTo: mainView.centerYAnchor, constant: 63),
+//                switchOnOff.centerXAnchor.constraint(equalTo: mainView.centerXAnchor, constant: 100)
+                                switchOnOff.centerYAnchor.constraint(equalTo: switchLabel.centerYAnchor),
+                                 switchOnOff.trailingAnchor.constraint(equalTo: switchLabel.trailingAnchor, constant: -20)
+                ])
+            }
+    
+    //MARK:- Reusable Function
+    func setupBackground(imageView: UIImageView, imageNamed imageName: String, to view: UIView) {
+        imageView.image = UIImage(named: imageName)
+        imageView.contentMode = .scaleAspectFill
+        view.addSubview(imageView)
+        
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            imageView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            imageView.bottomAnchor.constraint(equalTo:self.view.bottomAnchor),
+            imageView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
+            imageView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
+        ])
         }
+    
         
         //MARK: - ACTIONS
         @objc func oKButtonAction(_ sender: UIButton) {
-            if dateForCalendar == true {
-                saveEventToCalendar!(datePicker.date)
-                
-                let  message = NSLocalizedString("Your event has been successfully added to calendar.", comment: "Your event has been successfully added to calendar."); presentAlertConfirmation(with: message)
-            }else{
+//            if dateForCalendar == true {
+//                saveEventToCalendar!(datePicker.date)
+//                let  message = NSLocalizedString("Your event has been successfully added to calendar.", comment: "Your event has been successfully added to calendar."); presentAlertConfirmation(with: message)
+//                }else{
                 let components = datePicker.calendar.dateComponents([.day, .month, .year, .hour, .minute], from: datePicker.date)
                 setReminder!(components)
-               
-      print(datePicker.date)
-                
+print(datePicker.date)
                 let  message = NSLocalizedString( "The reminder has been successfully created.", comment: "The reminder has been successfully created.")
                 presentAlertConfirmation(with: message)
+//                }
+            
+            let figant = povtorTime?(perdachaPovtoru)
+print("figant \(String(describing: figant))")
+            
+            
+print("dpVC F oKButtonAction")
+            
             }
-            
-             print("dpVC F oKButtonAction")
-            
-        }
         
         @objc func cancelButtonAction () {
-            
             UIView.animate(withDuration: 0.3, animations: { [weak self] in
                 guard let `self` = self else { return }
                 self.backgroundColorView.alpha = 0.0
-            }) { [weak self]  (isComplete) in
+                }) { [weak self]  (isComplete) in
                 guard let `self` = self else { return }
                 self.dismiss(animated: true, completion: nil)
+                }
             }
-            
-        }
         
+        @objc func switchStateDidChange(_ sender:UISwitch){
+                if (sender.isOn == true){
+                    perdachaPovtoru = true
+print("UISwitch state is now ON")
+                }else{
+print("UISwitch state is now Off")
+                }
+            }
+    
         func presentAlertConfirmation (with alertMessage: String) {
-            
             let alert = UIAlertController(title: nil, message: alertMessage, preferredStyle: .alert)
             self.present(alert, animated: true, completion: nil)
-            
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 alert.dismiss(animated: true, completion: {[weak self] in
-                   
-                        self!.dismiss(animated: true, completion: nil)
-                   
-                    
-                })
+                   self!.dismiss(animated: true, completion: nil)
+                   })
+                }
             }
-        }
+    
+    
+    
+    
+    // Custom class MyLabel. Making text marging shob vidstup buv zliva
+       class MyLabel: UILabel{
+           override func drawText(in rect: CGRect) {
+               super.drawText(in: rect.inset(by: UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)))
+           }
+       }
+    
+    
     }
 

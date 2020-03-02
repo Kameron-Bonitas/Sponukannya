@@ -26,14 +26,7 @@ enum NotificationReminder {
    }
    
 
-enum ImageInListController {
-    static let background = #imageLiteral(resourceName: "background-image")
-    static let strikeOutForSwipeCell = #imageLiteral(resourceName: "strikeout-icon")
-    static let reminderForSwipeCell = UIImage(named: "reminder-icon")
-    static let addEventToCalendarForSwipeCell = #imageLiteral(resourceName: "calendar-icon")
-    static let deleteForSwipeCell = #imageLiteral(resourceName: "trash-icon")
-    static let changeTitleForSwipeCell = UIImage (named: "editTitle-icon")
-}
+
 
 enum Color {
     static let swipeCellBackgroundColorForDefault = UIColor (named: "swipeCellBackgroundColorForDefault")

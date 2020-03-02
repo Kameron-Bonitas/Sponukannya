@@ -94,7 +94,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
     func applicationWillEnterForeground(_ application: UIApplication) {
     NotificationCenter.default.post(name: NSNotification.Name("ReloadNotification"), object: nil)
         }
-    
-    
-}
+  
+//  MARK: Dlya vymknennya nagaduvan' v nagaduvanni
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+               didReceive response: UNNotificationResponse,
+               withCompletionHandler completionHandler: @escaping () -> Void) {
+    // Os' tut my nafig i beremo identifier, kotryj - content.body
+            let id = response.notification.request.identifier
+            print("Received notification with ID = \(id)")
+            switch response.actionIdentifier {
+                case "Do Not Repeat":
+                    center.removeDeliveredNotifications(withIdentifiers: [id])
+                print(id)
+                default:
+                    break
+            }
+                completionHandler()
+        }
+        
+        
+    }
 

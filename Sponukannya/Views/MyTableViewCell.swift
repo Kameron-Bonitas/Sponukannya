@@ -46,7 +46,7 @@ var numberLabel = UILabel()
             noteLabel.numberOfLines = 0
             cellView.addSubview(noteLabel)
             // numberLabel
-            numberLabel.text = "❊"
+//            numberLabel.text = "❊"
             numberLabel.textAlignment = .center
             numberLabel.font = UIFont(name: "IndieFlower", size: 24)
             numberLabel.adjustsFontForContentSizeCategory = true

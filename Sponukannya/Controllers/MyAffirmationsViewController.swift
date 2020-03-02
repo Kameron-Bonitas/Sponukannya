@@ -24,7 +24,7 @@ class MyAffirmationsViewController: UIViewController,UITableViewDelegate,UITable
     private let cellIdentifier = "MyTableViewCell"
         var myAffis : [MyAffirmationItem] = []
     
-//let eventStore = EKEventStore()
+var povtorTimeAffi = Bool ()
 
     //MARK:- Navigation. Making Navigation Bar Prozzoroyu UND Fetching all Affis
     override func viewWillAppear(_ animated: Bool) {
@@ -46,6 +46,7 @@ class MyAffirmationsViewController: UIViewController,UITableViewDelegate,UITable
         setupLayout()
         setupView()
          zaraza()
+        setCategories()
         //  Vyrishennya zatemnenogo backgroundImage
         view.backgroundColor = .white
         }
@@ -62,7 +63,6 @@ class MyAffirmationsViewController: UIViewController,UITableViewDelegate,UITable
     
     // MARK: CORE DATA SACHEN
     //  MARK: - Fetching z perezavantazhennyam stola
-    //   Coreeeeeeeeeeeeeeeeeeeeeeeeee
     func zaraza ()-> (){
         if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext {
         if let coreDataMyAffirmationItems = try? context.fetch(MyAffirmationItem.fetchRequest()) as? [MyAffirmationItem] {
@@ -158,7 +158,8 @@ class MyAffirmationsViewController: UIViewController,UITableViewDelegate,UITable
 //  SWIPE CONFIGURATION
         //configure left buttons
         cell.leftButtons =
-        [MGSwipeButton(title: "", icon: UIImage(named:"reminder" ), backgroundColor: UIColor(named: "reminderColor")){
+//        [MGSwipeButton(title: "", icon: UIImage(named:"reminder" ), backgroundColor: UIColor(named: "reminderColor")){
+            [MGSwipeButton(title: "", icon: UIImage(named:"reminder" ), backgroundColor: UIColor.clear){
                                [weak self] sender in
            let myAffi = self?.myAffis[indexPath.row].name
             NotificationReminder.body = myAffi ?? ""
@@ -167,7 +168,7 @@ print("funcAddReminder at indexPath")
                                return true
                                },
          
-        MGSwipeButton(title: "", icon: UIImage(named:"edit"), backgroundColor: UIColor(named: "editColor")){
+             MGSwipeButton(title: "", icon: UIImage(named:"edit"), backgroundColor: UIColor.clear){
                            [weak self] sender in
             
 let popaVC = PopUpViewController ()
@@ -188,7 +189,7 @@ return true
 
        //configure right button
         cell.rightButtons =
-        [MGSwipeButton(title: "", icon: UIImage(named:"trash"), backgroundColor: UIColor(named: "trashColor"), padding: 50) {
+            [MGSwipeButton(title: "", icon: UIImage(named:"trash"), backgroundColor: UIColor.clear, padding: 50) {
                     [weak self] sender in
             let myAffi = self?.myAffis[indexPath.row]
             if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext {
@@ -296,9 +297,14 @@ func goToPopupAndSetReminder () {
     dpVC.modalPresentationStyle = .overCurrentContext
     dpVC.setReminder = setReminder
     self.present(dpVC, animated: true, completion: nil)
-    
-    print("F goToPopupAndSetReminder ")
-}
+    dpVC.povtorTime = { povtor in
+print("value = \(povtor)")
+        self.povtorTimeAffi = povtor
+            return povtor
+        }
+print(" v goToPopa \(povtorTimeAffi)")
+print("F goToPopupAndSetReminder ")
+    }
 
 func setReminder (_ components: DateComponents) ->(){
     
@@ -306,23 +312,38 @@ func setReminder (_ components: DateComponents) ->(){
     content.title = NotificationReminder.title
     content.body = NotificationReminder.body
     content.sound = UNNotificationSound.default
+    content.badge = 1
+    content.categoryIdentifier = "alarm.category"
+print(" vsetRemider 1 \(povtorTimeAffi)")
 //    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
     
-    let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
+    let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: povtorTimeAffi)
     let request = UNNotificationRequest(identifier: content.body, content: content, trigger: trigger)
    
 print(" NOTIFIC \(NotificationReminder.title)")
 print(NotificationReminder.body)
 
-UNUserNotificationCenter.current().add(request) { (error) in
+    UNUserNotificationCenter.current().add(request) { (error) in
+
 print("Identifier! \(request.identifier)")
+print(self.povtorTimeAffi)
+print("TRUE v setRinder \(self.povtorTimeAffi)")
         
         if let error = error {
             print(" We had an error: \(error)")
             
+            }
         }
     }
-}
-        
+       
+    //MARK: - Functions // Notification Action. Defining Actions. "Do Not Repeat"
+    func setCategories(){
+        let doNotRepeatAction = UNNotificationAction(identifier: "Do Not Repeat", title: "Do Not Repeat", options: [])
+         
+        let alarmCategory = UNNotificationCategory(identifier: "alarm.category",actions: [doNotRepeatAction],intentIdentifiers: [], options: [])
+        UNUserNotificationCenter.current().setNotificationCategories([alarmCategory])
+    }
+    
+    
 }
 
