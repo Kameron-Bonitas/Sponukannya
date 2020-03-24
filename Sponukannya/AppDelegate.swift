@@ -11,7 +11,7 @@ import CoreData
 import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDelegate  {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate  {
 
 
 
@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
     
         // MARK: Asking for user authorisation
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
-            print("granted: (\(granted)")
+//            print("granted: (\(granted)")
         }
         
         UNUserNotificationCenter.current().delegate = self 
@@ -101,11 +101,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
                withCompletionHandler completionHandler: @escaping () -> Void) {
     // Os' tut my nafig i beremo identifier, kotryj - content.body
             let id = response.notification.request.identifier
-            print("Received notification with ID = \(id)")
+//            print("Received notification with ID = \(id)")
             switch response.actionIdentifier {
                 case "Do Not Repeat":
                     center.removeDeliveredNotifications(withIdentifiers: [id])
-                print(id)
+//                print(id)
                 default:
                     break
             }

@@ -28,16 +28,14 @@ class AddAffirmationViewController: UIViewController {
     @objc func cancelButtonAction() {
     // Povertannya do golovnogo (myAffi)
             let myAffiVC = MyAffirmationsViewController()
-    //            self.show(myAffiVC, sender: self)
             self.navigationController?.pushViewController(myAffiVC, animated: true)
         print("Do myAffi!'")
         }
     
     @objc func chooseAffiButtonAction() {
             let listVC = ListAffirmationsViewController()
-    //    self.show(tretijVC, sender: self)
             self.navigationController?.pushViewController(listVC, animated: true)
-         print("Ups!'")
+//         print("Ups!'")
         }
     
     @objc  func ownAffiButtonAction(){
@@ -47,7 +45,7 @@ class AddAffirmationViewController: UIViewController {
          popaVC.dismissAddAffi = dismissAddAffi
          popaVC.editingAffi = false
         self.present(popaVC, animated: true, completion: nil)
-        print("Dupa!")
+//        print("Dupa!")
     }
     
     //MARK:    SetupView
@@ -150,15 +148,14 @@ class AddAffirmationViewController: UIViewController {
                 }
     
     func reloadTable() -> () {
-        
-     zaraza!()
-        print("Relodnula Table")
+        zaraza!()
+//        print("Relodnula Table")
     }
     
     func dismissAddAffi () ->() {
            let myAffiVC = MyAffirmationsViewController()
            self.navigationController?.pushViewController(myAffiVC, animated: true)
-                    print("Do myAffi!'")
+//                    print("Do myAffi!'")
            }
     
 }

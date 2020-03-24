@@ -58,7 +58,7 @@ var povtorTimeAffi = Bool ()
             //Peredacha "zaraza"
            addAffiVC.zaraza = zaraza
             self.navigationController?.pushViewController(addAffiVC, animated: true)
-            print("Affa!")
+//            print("Affa!")
             }
     
     // MARK: CORE DATA SACHEN
@@ -68,7 +68,7 @@ var povtorTimeAffi = Bool ()
         if let coreDataMyAffirmationItems = try? context.fetch(MyAffirmationItem.fetchRequest()) as? [MyAffirmationItem] {
             myAffis = coreDataMyAffirmationItems
         tableView.reloadData()
-            print("Fetching")
+//            print("Fetching")
                 }
             }
         }
@@ -101,8 +101,6 @@ var povtorTimeAffi = Bool ()
             plusButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant:0.0)
         ])
         // TableView
-        // Chomus': <view.addSubview(tableView)> has to be here.Not after <NSLayoutConstraint.activate>
-        // because we have constaints conflict. And not after:  <tableView.register(MyTableViewCell.self, forCellReuseIdentifier: cellIdentifier)>, because tableView then is behind the <backgroundImage>!!;))
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -144,51 +142,45 @@ var povtorTimeAffi = Bool ()
                 cell.numberLabel.text = "\(indexPath.row+1)"
             let myAffi = myAffis[indexPath.row]
                 cell.noteLabel.text = myAffi.name
-       
                 cell.selectionStyle = .gray
-        //  Selection colour of cell is custom
+            //  Selection colour of cell is custom
                    let backgroundView = UIView()
                    backgroundView.backgroundColor = UIColor (named: "switchON")
                    cell.selectedBackgroundView = backgroundView
                 cell.layer.cornerRadius = 10
-            //  cell.backgroundColor = UIColor.gray
                 cell.clipsToBounds = true
-          //    cell.swipeBackgroundColor = UIColor.gray
         
-//  SWIPE CONFIGURATION
+        //  SWIPE CONFIGURATION
         //configure left buttons
         cell.leftButtons =
-//        [MGSwipeButton(title: "", icon: UIImage(named:"reminder" ), backgroundColor: UIColor(named: "reminderColor")){
             [MGSwipeButton(title: "", icon: UIImage(named:"reminder" ), backgroundColor: UIColor.clear){
                                [weak self] sender in
            let myAffi = self?.myAffis[indexPath.row].name
             NotificationReminder.body = myAffi ?? ""
             self?.getNotificationSettingStatus()
-print("funcAddReminder at indexPath")
+//print("funcAddReminder at indexPath")
                                return true
                                },
          
              MGSwipeButton(title: "", icon: UIImage(named:"edit"), backgroundColor: UIColor.clear){
                            [weak self] sender in
             
-let popaVC = PopUpViewController ()
-   popaVC.modalPresentationStyle = .overCurrentContext
-popaVC.transferedAffi = self!.myAffis[indexPath.row]
-popaVC.zaraza = self?.zaraza
-popaVC.editingAffi = true
-popaVC.textNewAffirmation.text = self!.myAffis[indexPath.row].name
-print(self?.myAffis[indexPath.row].name)
+                let popaVC = PopUpViewController ()
+                popaVC.modalPresentationStyle = .overCurrentContext
+                popaVC.transferedAffi = self!.myAffis[indexPath.row]
+                popaVC.zaraza = self?.zaraza
+                popaVC.editingAffi = true
+                popaVC.textNewAffirmation.text = self!.myAffis[indexPath.row].name
+//print(self?.myAffis[indexPath.row].name)
                                 
-          
-self?.present(popaVC, animated: true, completion: nil)
-print("Upa!")
-                   
-return true
+                self?.present(popaVC, animated: true, completion: nil)
+//print("Upa!")
+                   return true
                     }]
                   cell.leftSwipeSettings.transition = .rotate3D
 
-       //configure right button
-        cell.rightButtons =
+        //configure right button
+            cell.rightButtons =
             [MGSwipeButton(title: "", icon: UIImage(named:"trash"), backgroundColor: UIColor.clear, padding: 50) {
                     [weak self] sender in
             let myAffi = self?.myAffis[indexPath.row]
@@ -204,14 +196,6 @@ return true
                 
         return cell
     }
-    
-   
-//    func addReminder(at indexpath: IndexPath) {
-//        NotificationReminder.body = myAffis[indexpath.row].name ??
-//
-//           getNotificationSettingStatus()
-//       }
-    
     
 
     //MARK:- Reusable Function Background
@@ -239,8 +223,7 @@ return true
         titleLabel.adjustsFontForContentSizeCategory = true
             }
     
-    
-// MARK: ALERTS
+    // MARK: ALERTS
     
     func goToSettingsAllert (alertTitle: String, alertMessage: String, alertActionTitle: String, alertCancelActionTitle: String) {
         
@@ -291,47 +274,43 @@ func getNotificationSettingStatus () {
    
 }
 
-func goToPopupAndSetReminder () {
-    let dpVC = DatePickerPopupViewController()
-    dpVC.dateForCalendar = false
-    dpVC.modalPresentationStyle = .overCurrentContext
-    dpVC.setReminder = setReminder
-    self.present(dpVC, animated: true, completion: nil)
-    dpVC.povtorTime = { povtor in
-print("value = \(povtor)")
+    func goToPopupAndSetReminder () {
+        let dpVC = DatePickerPopupViewController()
+        dpVC.dateForCalendar = false
+        dpVC.modalPresentationStyle = .overCurrentContext
+        dpVC.setReminder = setReminder
+        self.present(dpVC, animated: true, completion: nil)
+        dpVC.povtorTime = { povtor in
+//print("value = \(povtor)")
         self.povtorTimeAffi = povtor
             return povtor
+            }
+//print(" v goToPopa \(povtorTimeAffi)")
+//print("F goToPopupAndSetReminder ")
         }
-print(" v goToPopa \(povtorTimeAffi)")
-print("F goToPopupAndSetReminder ")
-    }
 
-func setReminder (_ components: DateComponents) ->(){
-    
-    let content = UNMutableNotificationContent()
-    content.title = NotificationReminder.title
-    content.body = NotificationReminder.body
-    content.sound = UNNotificationSound.default
-    content.badge = 1
-    content.categoryIdentifier = "alarm.category"
-print(" vsetRemider 1 \(povtorTimeAffi)")
-//    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-    
-    let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: povtorTimeAffi)
-    let request = UNNotificationRequest(identifier: content.body, content: content, trigger: trigger)
+    func setReminder (_ components: DateComponents) ->(){
+        let content = UNMutableNotificationContent()
+        content.title = NotificationReminder.title
+        content.body = NotificationReminder.body
+        content.sound = UNNotificationSound.default
+        content.badge = 1
+        content.categoryIdentifier = "alarm.category"
+//print(" vsetRemider 1 \(povtorTimeAffi)")
+        let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: povtorTimeAffi)
+        let request = UNNotificationRequest(identifier: content.body, content: content, trigger: trigger)
    
-print(" NOTIFIC \(NotificationReminder.title)")
-print(NotificationReminder.body)
+//print(" NOTIFIC \(NotificationReminder.title)")
+//print(NotificationReminder.body)
 
-    UNUserNotificationCenter.current().add(request) { (error) in
+        UNUserNotificationCenter.current().add(request) { (error) in
 
-print("Identifier! \(request.identifier)")
-print(self.povtorTimeAffi)
-print("TRUE v setRinder \(self.povtorTimeAffi)")
+//print("Identifier! \(request.identifier)")
+//print(self.povtorTimeAffi)
+//print("TRUE v setRinder \(self.povtorTimeAffi)")
         
-        if let error = error {
-            print(" We had an error: \(error)")
-            
+            if let error = error {
+print(" We had an error: \(error)")
             }
         }
     }

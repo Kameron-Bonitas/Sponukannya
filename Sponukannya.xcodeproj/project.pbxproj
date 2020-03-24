@@ -11,6 +11,7 @@
 		B52F686423FD9710002524C4 /* DatePickerPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52F686323FD9710002524C4 /* DatePickerPopupViewController.swift */; };
 		B52F686623FDA7CB002524C4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52F686523FDA7CB002524C4 /* Constants.swift */; };
 		B54B1FEB2409880700DC2447 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B54B1FEA2409880700DC2447 /* Lato-Regular.ttf */; };
+		B5A0CE092428EB1800B89927 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5A0CE082428EB1800B89927 /* Localizable.strings */; };
 		B5DA3E2223F1478D00DC8959 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DA3E2123F1478D00DC8959 /* AppDelegate.swift */; };
 		B5DA3E2423F1478D00DC8959 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DA3E2323F1478D00DC8959 /* SceneDelegate.swift */; };
 		B5DA3E2723F1478D00DC8959 /* Sponukannya.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B5DA3E2523F1478D00DC8959 /* Sponukannya.xcdatamodeld */; };
@@ -55,6 +56,8 @@
 		B52F686323FD9710002524C4 /* DatePickerPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerPopupViewController.swift; sourceTree = "<group>"; };
 		B52F686523FDA7CB002524C4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B54B1FEA2409880700DC2447 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
+		B5A0CE072428EA6300B89927 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		B5A0CE082428EB1800B89927 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		B5DA3E1E23F1478D00DC8959 /* Sponukannya.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sponukannya.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5DA3E2123F1478D00DC8959 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5DA3E2323F1478D00DC8959 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -119,6 +122,7 @@
 		B5DA3E1523F1478D00DC8959 = {
 			isa = PBXGroup;
 			children = (
+				B5A0CE082428EB1800B89927 /* Localizable.strings */,
 				B5DA3E2023F1478D00DC8959 /* Sponukannya */,
 				B5DA3E3A23F1478E00DC8959 /* SponukannyaTests */,
 				B5DA3E4523F1478E00DC8959 /* SponukannyaUITests */,
@@ -311,6 +315,7 @@
 			knownRegions = (
 				en,
 				Base,
+				uk,
 			);
 			mainGroup = B5DA3E1523F1478D00DC8959;
 			productRefGroup = B5DA3E1F23F1478D00DC8959 /* Products */;
@@ -332,6 +337,7 @@
 				B5DA3E6023F173CA00DC8959 /* Lato-Light.ttf in Resources */,
 				B54B1FEB2409880700DC2447 /* Lato-Regular.ttf in Resources */,
 				B5DA3E3123F1478E00DC8959 /* LaunchScreen.storyboard in Resources */,
+				B5A0CE092428EB1800B89927 /* Localizable.strings in Resources */,
 				B5DA3E2E23F1478E00DC8959 /* Preview Assets.xcassets in Resources */,
 				B5DA3E5F23F173C400DC8959 /* IndieFlower-Regular.ttf in Resources */,
 				B5DA3E2B23F1478E00DC8959 /* Assets.xcassets in Resources */,
@@ -453,6 +459,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				B5DA3E3023F1478E00DC8959 /* Base */,
+				B5A0CE072428EA6300B89927 /* uk */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -464,6 +471,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -524,6 +532,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

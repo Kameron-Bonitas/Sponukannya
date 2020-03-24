@@ -18,19 +18,14 @@ class DatePickerPopupViewController: UIViewController {
         private let titleLabelHeight: CGFloat = 40
         private let buttonHeight: CGFloat = 45
          private let switchHight: CGFloat = 45
-//    private let titleLabelBackgroundColor = UIColor.gray
-    //        UIColor.init(red: 240/255, green: 214/255, blue: 226/255, alpha: 1)
         private let alertViewGrayColor = UIColor (named: "buttonsBorderColor")
             
-    //        UIColor(red: 224.0/255.0, green: 224.0/255.0, blue: 224.0/255.0, alpha: 1)
-        
+   
         //MARK: - VARIABLES
     var perdachaPovtoru: Bool = false
     var povtorTime:((Bool) -> Bool)?
-  
         var dateForCalendar = false
-//        var createReminder: ((_ components: DateComponents) -> ())?
-    var setReminder: ((_ components: DateComponents) -> ())?
+        var setReminder: ((_ components: DateComponents) -> ())?
         var saveEventToCalendar: ((_ date: Date) ->())?
 
         
@@ -132,7 +127,6 @@ class DatePickerPopupViewController: UIViewController {
             cancelButton.setTitle (NSLocalizedString("Cancel", comment: "Cancel"), for: .normal)
             cancelButton.setTitleColor(UIColor(named: "popaButtonColor"), for: .normal)
             cancelButton.titleLabel?.font = UIFont(name: "Lato-Regular", size: 24)
-//                cancelButton.setTitleColor(UIColor(named: "popUpButtonFont"), for: .normal)
                 cancelButton.backgroundColor = UIColor.clear
                 cancelButton.addTarget(self, action: #selector(cancelButtonAction), for: .touchUpInside)
                 mainView.addSubview(buttonStackView)
@@ -214,8 +208,6 @@ class DatePickerPopupViewController: UIViewController {
             // switch
             switchOnOff.translatesAutoresizingMaskIntoConstraints = false
                             NSLayoutConstraint.activate([
-//                switchOnOff.centerYAnchor.constraint(equalTo: mainView.centerYAnchor, constant: 63),
-//                switchOnOff.centerXAnchor.constraint(equalTo: mainView.centerXAnchor, constant: 100)
                                 switchOnOff.centerYAnchor.constraint(equalTo: switchLabel.centerYAnchor),
                                  switchOnOff.trailingAnchor.constraint(equalTo: switchLabel.trailingAnchor, constant: -20)
                 ])
@@ -240,23 +232,15 @@ class DatePickerPopupViewController: UIViewController {
         
         //MARK: - ACTIONS
         @objc func oKButtonAction(_ sender: UIButton) {
-//            if dateForCalendar == true {
-//                saveEventToCalendar!(datePicker.date)
-//                let  message = NSLocalizedString("Your event has been successfully added to calendar.", comment: "Your event has been successfully added to calendar."); presentAlertConfirmation(with: message)
-//                }else{
                 let components = datePicker.calendar.dateComponents([.day, .month, .year, .hour, .minute], from: datePicker.date)
                 setReminder!(components)
-print(datePicker.date)
+//print(datePicker.date)
                 let  message = NSLocalizedString( "The reminder has been successfully created.", comment: "The reminder has been successfully created.")
                 presentAlertConfirmation(with: message)
-//                }
             
             let figant = povtorTime?(perdachaPovtoru)
-print("figant \(String(describing: figant))")
-            
-            
-print("dpVC F oKButtonAction")
-            
+//print("figant \(String(describing: figant))")
+//print("dpVC F oKButtonAction")
             }
         
         @objc func cancelButtonAction () {
@@ -272,9 +256,9 @@ print("dpVC F oKButtonAction")
         @objc func switchStateDidChange(_ sender:UISwitch){
                 if (sender.isOn == true){
                     perdachaPovtoru = true
-print("UISwitch state is now ON")
+//print("UISwitch state is now ON")
                 }else{
-print("UISwitch state is now Off")
+//print("UISwitch state is now Off")
                 }
             }
     
