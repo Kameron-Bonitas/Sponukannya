@@ -21,8 +21,8 @@ class PopUpViewController: UIViewController {
         let textNewAffirmation = UITextView()
         let okButton = UIButton()
         let cancelButton = UIButton()
-        let placeholder = "Type your affirmation here..."
-
+        let placeholder = NSLocalizedString("Type your affirmation here...", comment: "Type your affirmation here...")
+    
     private let alertViewGrayColor = UIColor (named: "buttonsBorderColor")
 //        let alertViewGrayColor = UIColor(red: 224.0/255.0, green: 224.0/255.0, blue: 224.0/255.0, alpha: 1)
         let textViwBorderWidth: CGFloat = 0.5
@@ -53,10 +53,18 @@ class PopUpViewController: UIViewController {
             super.viewDidLoad()
             setupViews()
             setupLayouts()
-            placeHolder ()
+//            placeHolder ()
             textNewAffirmation.becomeFirstResponder()
             print(textNewAffirmation)
             }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+//                    setupViews()
+//                    setupLayouts()
+//         placeHolder ()
+    }
+    
     
     override func viewDidAppear(_ animated: Bool) {
            super.viewDidAppear(animated)
@@ -64,9 +72,22 @@ class PopUpViewController: UIViewController {
             UIView.animate(withDuration: 1) {
             self.backgroundColorView.alpha = 1.0
                    }
-           }
-    
-    
+        viewDidLayoutSubviews()
+//        setupViews()
+//        setupLayouts()
+       }
+
+    //MARK: Layout Subviews
+        override func viewDidLayoutSubviews() {
+            super.viewDidLayoutSubviews()
+           
+            placeHolder ()
+            
+            cancelButton.addBorder(side: .Top, color: alertViewGrayColor ?? UIColor.black, width: 1)
+            cancelButton.addBorder(side: .Right, color: alertViewGrayColor!, width: 0.5)
+            okButton.addBorder(side: .Top, color: alertViewGrayColor!, width: 1)
+            okButton.addBorder(side: .Left, color: alertViewGrayColor!, width: 0.5)
+            }
     
     //MARK: - Button Actions
     // OK Button
@@ -180,7 +201,8 @@ class PopUpViewController: UIViewController {
         textNewAffirmation.backgroundColor = .clear
         textNewAffirmation.font = UIFont(name: "Lato-Light", size: 20)
         textNewAffirmation.textColor = UIColor(named: "textColor")
-        textNewAffirmation.returnKeyType = .done
+            //Return ta done na tastaturi
+        textNewAffirmation.returnKeyType = .default
         //save button
         okButton.setTitle(NSLocalizedString("OK", comment: "OK"), for: .normal)
         okButton.backgroundColor = UIColor.clear
@@ -196,19 +218,12 @@ class PopUpViewController: UIViewController {
             
         [textNewAffirmation, buttonStackView,].forEach { mainView.addSubview($0) }
                 }
-    //MARK: Layout Subviews
-        override func viewDidLayoutSubviews() {
-            super.viewDidLayoutSubviews()
-            cancelButton.addBorder(side: .Top, color: alertViewGrayColor!, width: 1)
-            cancelButton.addBorder(side: .Right, color: alertViewGrayColor!, width: 0.5)
-            okButton.addBorder(side: .Top, color: alertViewGrayColor!, width: 1)
-            okButton.addBorder(side: .Left, color: alertViewGrayColor!, width: 0.5)
-            }
+
     
     //MARK: Placeholder func
     func placeHolder () {
         if editingAffi == false {
-        textNewAffirmation.delegate = self as? UITextViewDelegate
+        textNewAffirmation.delegate = self as UITextViewDelegate
          textNewAffirmation.text = placeholder
          textNewAffirmation.textColor = UIColor(named: "placeholderColor")
          //Kursor na pochatku placeholder'a
@@ -271,9 +286,11 @@ extension PopUpViewController: UITextViewDelegate {
                self.present(alert, animated: true, completion: nil)
                
                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                   alert.dismiss(animated: true, completion: {[weak self] in
+                   alert.dismiss(animated: true, completion:
+                    {
+                       [weak self] in
                        // Dismiss ves'popaVC
-                       //self!.dismiss(animated: true, completion: nil)
+                       self!.dismiss(animated: true, completion: nil)
                       })
                 }
            }

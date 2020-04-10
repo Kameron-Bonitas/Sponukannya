@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import MGSwipeTableCell
 import UserNotifications
+import StoreKit
 
 
 
@@ -21,10 +22,11 @@ class MyAffirmationsViewController: UIViewController,UITableViewDelegate,UITable
          var plusButton = UIButton()
          let tableView = UITableView()
     
-    private let cellIdentifier = "MyTableViewCell"
+        private let cellIdentifier = "MyTableViewCell"
         var myAffis : [MyAffirmationItem] = []
-    
-var povtorTimeAffi = Bool ()
+        var povtorTimeAffi = Bool ()
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate // Prompt Screen
+       
 
     //MARK:- Navigation. Making Navigation Bar Prozzoroyu UND Fetching all Affis
     override func viewWillAppear(_ animated: Bool) {
@@ -47,9 +49,18 @@ var povtorTimeAffi = Bool ()
         setupView()
          zaraza()
         setCategories()
-        //  Vyrishennya zatemnenogo backgroundImage
-        view.backgroundColor = .white
+        configureTableView()
+        view.backgroundColor = .white //  Vyrishennya zatemnenogo backgroundImage
+        countAppLaunchesSwitchOnThem()          // Prompt Screen
         }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if(!appDelegate.hasAlreadyLaunched){
+            appDelegate.sethasAlreadyLaunched() //set hasAlreadyLaunched to false
+            promptScreen()   //display prompt screen
+           }
+//promptScreen()
+    }
 
     //  MARK: - Button ACTIONS
         // addAffiBatton
@@ -78,9 +89,9 @@ var povtorTimeAffi = Bool ()
         setupBackground(imageView: backgroundImage, imageNamed: "background.png", to: self.view)
     
         //titleLabel
-        titleLabel.text = "MY AFFIRMATIONS"
+        titleLabel.text = NSLocalizedString( "My Affirmations", comment: "My Affirmations")
         titleLabel.textAlignment = .center
-        titleLabel.font = UIFont(name: titleLabel.font.fontName, size: 36)
+        titleLabel.font = UIFont(name: titleLabel.font.fontName, size: 40)
         titleLabel.textColor = UIColor(named: "bigLableTextColor")
         self.view.addSubview(titleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -120,7 +131,7 @@ var povtorTimeAffi = Bool ()
            tableView.backgroundColor = UIColor.clear
            tableView.separatorColor = .clear
            tableView.separatorStyle = .singleLine
-           tableView.separatorInset = .zero
+            tableView.separatorInset = .zero
            tableView.register(MyTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
            }
     
@@ -132,24 +143,27 @@ var povtorTimeAffi = Bool ()
         }
 
       func configureTableView(){
-           tableView.estimatedRowHeight = UITableView.automaticDimension
+        
+//        tableView.estimatedRowHeight = 400.0
+//        tableView.rowHeight = UITableView.automaticDimension
+        
+//           tableView.estimatedRowHeight = UITableView.automaticDimension
            }
 
       func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            var cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! MyTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! MyTableViewCell
                 //Prozzorist' of cell
                 cell.backgroundColor = .clear
                 cell.numberLabel.text = "\(indexPath.row+1)"
             let myAffi = myAffis[indexPath.row]
                 cell.noteLabel.text = myAffi.name
-                cell.selectionStyle = .gray
+        cell.selectionStyle = .none
             //  Selection colour of cell is custom
-                   let backgroundView = UIView()
-                   backgroundView.backgroundColor = UIColor (named: "switchON")
-                   cell.selectedBackgroundView = backgroundView
+                   
                 cell.layer.cornerRadius = 10
                 cell.clipsToBounds = true
         
+
         //  SWIPE CONFIGURATION
         //configure left buttons
         cell.leftButtons =
@@ -196,6 +210,7 @@ var povtorTimeAffi = Bool ()
                 
         return cell
     }
+    
     
 
     //MARK:- Reusable Function Background
@@ -306,7 +321,7 @@ func getNotificationSettingStatus () {
         UNUserNotificationCenter.current().add(request) { (error) in
 
 //print("Identifier! \(request.identifier)")
-//print(self.povtorTimeAffi)
+print(self.povtorTimeAffi)
 //print("TRUE v setRinder \(self.povtorTimeAffi)")
         
             if let error = error {
@@ -323,6 +338,39 @@ print(" We had an error: \(error)")
         UNUserNotificationCenter.current().setNotificationCategories([alarmCategory])
     }
     
-    
+    //MARK: - DIFFERENT METHODS
+    func countAppLaunchesSwitchOnThem () {
+        let currentCount = appLaunchCount()
+        switch currentCount {
+            case 10, 50, 100:
+                  promtForReview()
+                  zaraza()
+                  tableView.reloadData()
+            default:
+                  zaraza()
+                  tableView.reloadData()
+              }
+    }
+          
+    func appLaunchCount() -> Int {
+         var currentCount = UserDefaults.standard.integer(forKey: "launchCount")
+            currentCount += 1
+         UserDefaults.standard.set(currentCount, forKey: "launchCount")
+print(("Count: \(currentCount)"))
+            return currentCount
+    }
+          
+    func promtForReview() {
+              if #available(iOS 10.3, *) {
+                  SKStoreReviewController.requestReview()
+              }
+    }
+       
+    func promptScreen(){
+         let prVC = PromptScreenViewController()
+                self.navigationController?.pushViewController(prVC, animated: true)
+print("pR!")
+    }
+          
 }
 

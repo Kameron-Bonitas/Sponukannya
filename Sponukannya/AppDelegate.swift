@@ -13,17 +13,29 @@ import UserNotifications
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate  {
 
-
+     var hasAlreadyLaunched :Bool!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-    
-        // MARK: Asking for user authorisation
+//printFonts()
+        //  Asking for user authorisation
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
-//            print("granted: (\(granted)")
+//print("granted: (\(granted)")
         }
-        
-        UNUserNotificationCenter.current().delegate = self 
+        UNUserNotificationCenter.current().delegate = self
+        // Prompt Screen
+        hasAlreadyLaunched = UserDefaults.standard.bool(forKey: "hasAlreadyLaunched")
+        //check first launched
+        if (hasAlreadyLaunched)
+        {
+           hasAlreadyLaunched = true
+        }else{
+            UserDefaults.standard.set(true, forKey: "hasAlreadyLaunched")
+        }
         return true
+    }
+    
+    func sethasAlreadyLaunched(){
+        hasAlreadyLaunched = true
     }
 
     // MARK: UISceneSession Lifecycle
@@ -86,7 +98,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
 
-// MARK: To make notification visible when it is in the foreground
+//  To make notification visible when it is in the foreground
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler([.alert, .sound])
     }
@@ -95,7 +107,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     NotificationCenter.default.post(name: NSNotification.Name("ReloadNotification"), object: nil)
         }
   
-//  MARK: Dlya vymknennya nagaduvan' v nagaduvanni
+//   Dlya vymknennya nagaduvan' v nagaduvanni
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                didReceive response: UNNotificationResponse,
                withCompletionHandler completionHandler: @escaping () -> Void) {
@@ -112,6 +124,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 completionHandler()
         }
         
+    func printFonts(){
+        for family: String in UIFont.familyNames
+        {
+            print("\(family)")
+            for names: String in UIFont.fontNames(forFamilyName: family)
+            {
+                print("== \(names)")
+            }
+        }
+    }
+    
         
     }
 

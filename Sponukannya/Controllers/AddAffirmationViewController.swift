@@ -138,13 +138,7 @@ class AddAffirmationViewController: UIViewController {
             imageView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
             imageView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
                 ])
-        //MARK: Castom Font Instance
-            guard let customFont = UIFont(name: "Lato-Light", size:UIFont.labelFontSize) else {
-                fatalError("""
-                            Failed to load the "Lato-Light" font.
-                            Make sure the font file is included in the project and the font name is spelled correctly.
-                            """)
-                }
+
                 }
     
     func reloadTable() -> () {

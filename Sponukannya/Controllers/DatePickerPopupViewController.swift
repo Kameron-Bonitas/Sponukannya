@@ -12,8 +12,8 @@ class DatePickerPopupViewController: UIViewController {
 
 
         //MARK: - Constants
-        private let titleLabelTextOptions = ["calendar":"Add to calendar", "reminder":"Add a reminder"]
-        private let mainViewHeight: CGFloat = 235
+//        private let titleLabelTextOptions = ["calendar":"Add to calendar", "reminder":NSLocalizedString("Add a reminder", comment: "Add a reminder")]
+        private let mainViewHeight: CGFloat = 300
         private let mainViewWidth: CGFloat = 300
         private let titleLabelHeight: CGFloat = 40
         private let buttonHeight: CGFloat = 45
@@ -79,6 +79,10 @@ class DatePickerPopupViewController: UIViewController {
  // MARK: Zatemnennya osnovnogo ekranu
             UIView.animate(withDuration: 1) {
                 self.backgroundColorView.alpha = 1.0
+             
+
+                
+self.viewDidLayoutSubviews()
             }
         }
         
@@ -107,32 +111,33 @@ class DatePickerPopupViewController: UIViewController {
             titleLabel.backgroundColor = UIColor (named: "cellBackgroundColor")
             titleLabel.textAlignment = .center
             titleLabel.textColor = UIColor(named: "popaButtonColor")
-            titleLabel.font = UIFont(name: "Lato-Regular", size: 25)
-            if dateForCalendar == true{
-                titleLabel.text = NSLocalizedString(titleLabelTextOptions["calendar"]!, comment: "calendar")
-                }else{
-                titleLabel.text = NSLocalizedString(titleLabelTextOptions["reminder"]!, comment: "reminder")
-                }
+            titleLabel.font = UIFont(name: NSLocalizedString("Lato-Regular", comment: "Lato-Regular"), size: 25)
+//            if dateForCalendar == true{
+//                titleLabel.text = NSLocalizedString(titleLabelTextOptions["calendar"]!, comment: "calendar")
+//                }else{
+                titleLabel.text = NSLocalizedString("Add a reminder", comment: "Add a reminder")
+//                }
+            titleLabel.backgroundColor = .clear
             mainView.addSubview(titleLabel)
             //datePicker
             mainView.addSubview(datePicker)
             //save button
             okButton.setTitle (NSLocalizedString ("OK", comment: "OK"), for: .normal)
             okButton.backgroundColor = UIColor.clear
-            okButton.titleLabel?.font = UIFont(name: "Lato-Regular", size: 24)
+            okButton.titleLabel?.font = UIFont(name:NSLocalizedString("Lato-Regular", comment: "Lato-Regular"), size: 24)
             okButton.setTitleColor(UIColor(named: "popaButtonColor"), for: .normal)
 //            okButton.setTitleColor(UIColor (named: "popUpButtonFont"), for: .normal)
             okButton.addTarget(self, action: #selector(oKButtonAction), for: .touchUpInside)
             //cancel button
             cancelButton.setTitle (NSLocalizedString("Cancel", comment: "Cancel"), for: .normal)
             cancelButton.setTitleColor(UIColor(named: "popaButtonColor"), for: .normal)
-            cancelButton.titleLabel?.font = UIFont(name: "Lato-Regular", size: 24)
+            cancelButton.titleLabel?.font = UIFont(name: NSLocalizedString("Lato-Regular", comment: "Lato-Regular"), size: 24)
                 cancelButton.backgroundColor = UIColor.clear
                 cancelButton.addTarget(self, action: #selector(cancelButtonAction), for: .touchUpInside)
                 mainView.addSubview(buttonStackView)
             //switchLabel
-            switchLabel.text = "Repeat every day"
-            switchLabel.font = UIFont(name: "Lato-Light",size: 20)
+            switchLabel.text = NSLocalizedString("Repeat every day", comment: "Repeat every day")
+            switchLabel.font = UIFont(name: NSLocalizedString("Lato-Light", comment: "Lato-Light"),size: 20)
             switchLabel.textColor = UIColor(named: "textColor")
             switchLabel.textAlignment = .left
             self.mainView.addSubview(switchLabel)
@@ -239,7 +244,7 @@ class DatePickerPopupViewController: UIViewController {
                 presentAlertConfirmation(with: message)
             
             let figant = povtorTime?(perdachaPovtoru)
-//print("figant \(String(describing: figant))")
+print("figant \(String(describing: figant))")
 //print("dpVC F oKButtonAction")
             }
         

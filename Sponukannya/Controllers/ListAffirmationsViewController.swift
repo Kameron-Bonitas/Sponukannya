@@ -18,10 +18,22 @@ class ListAffirmationsViewController: UIViewController, UITableViewDelegate, UIT
     let tableView = UITableView()
     let cellId = "MyTableViewCell"
     
+    let backgroundColorView: UIView = UIView()
+    
     var selectedAffis = [String]()
     
     // Pryklady Affirmations (hardcoded)
-    private var sampleAffis = ["This is a short text.", "This is another text, and it is a little bit longer.", "Wow, this text is really very very long! I hope it can be read completely! Luckily, we are using automatic row height!", "Важлива інформація!Марш Захисників України вже завтра, тому пропонуємо ознайомитись з фінальним інструктажем!1. Збір починається о 10:00 в парку Тараса Шевченка, навпроти Червоного корпусу університету.Слава Україні!","It looks like there is now cirilic version for diese blöde Lato Macciato Fonts", "Dysplaying AFFIRMATIONS in ukraine language is impossible!!!!!!!!!"]
+    private var sampleAffis = ["This is a short text.",
+                               
+                               "This is another text, and it is a little bit longer.",
+                               
+                               "Wow, this text is really very very long! I hope it can be read completely! Luckily, we are using automatic row height!",
+                               
+                               "Важлива інформація!Марш Захисників України вже завтра, тому пропонуємо ознайомитись з фінальним інструктажем!1. Збір починається о 10:00 в парку Тараса Шевченка, навпроти Червоного корпусу університету.Слава Україні!",
+                               
+                               "It looks like there is now cirilic version for diese blöde Lato Macciato Fonts!",
+                               
+                               "Dysplaying AFFIRMATIONS in ukraine language is impossible!!!!!!!!!"]
     
     
     
@@ -29,6 +41,7 @@ class ListAffirmationsViewController: UIViewController, UITableViewDelegate, UIT
         super.viewDidLoad()
         setupLayout()
         setupView ()
+        configureTableView()
         view.backgroundColor = .white
         }
     
@@ -41,6 +54,7 @@ class ListAffirmationsViewController: UIViewController, UITableViewDelegate, UIT
     }
     // Add Button
     @objc func addButtonPressed(_ sender: UIButton) {
+         if selectedAffis.count > 0 {
     // Rishennya pro poslidovne zberigannya vybranyh selektnutyh z selectedAffis
     // for in loop
     for affiToAdd in selectedAffis {
@@ -54,6 +68,16 @@ class ListAffirmationsViewController: UIViewController, UITableViewDelegate, UIT
     // Povertannya do golovnogo (myAffi)
     let myAffiVC = MyAffirmationsViewController()
     self.navigationController?.pushViewController(myAffiVC, animated: true)
+         } else {
+            UIView.animate(withDuration: 1) {
+                       self.backgroundColorView.alpha = 1.0
+                              }
+            UIView.animate(withDuration: 2, animations: { [weak self] in
+                guard let `self` = self else { return }
+               let  message = NSLocalizedString("You haven't choosen your affirmations yet.", comment: "You haven't choosen your affirmations yet."); self.presentAlertConfirmation(with: message)
+                self.view.layoutIfNeeded()
+            })
+        }
     
     }
     
@@ -62,9 +86,9 @@ class ListAffirmationsViewController: UIViewController, UITableViewDelegate, UIT
        private func setupLayout() {
        setupBackground(imageView: backgroundImage, imageNamed: "background.png", to: self.view)
         //titleLabel
-        titleLabel.text = "CHOOSE AFFIRMATIONS"
+        titleLabel.text = NSLocalizedString("Choose Affirmations", comment: "Choose Affirmations")
         titleLabel.textAlignment = .center
-        titleLabel.font = UIFont(name: titleLabel.font.fontName, size: 36)
+        titleLabel.font = UIFont(name: titleLabel.font.fontName, size: 40)
         titleLabel.textColor = UIColor(named: "bigLableTextColor")
         self.view.addSubview(titleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -143,6 +167,7 @@ class ListAffirmationsViewController: UIViewController, UITableViewDelegate, UIT
     //Zberigayemo v selectedAffis vybranyj sampleAffi
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedAffis.append(sampleAffis[indexPath.row])
+ 
         }
     
     // Removing from selectedAffis, koly user deselektnuv cell
@@ -163,7 +188,7 @@ class ListAffirmationsViewController: UIViewController, UITableViewDelegate, UIT
             cell.backgroundColor = .clear
             let content = sampleAffis[indexPath.row]
             cell.noteLabel.text = content
-        cell.numberLabel.text = "❊"
+        cell.numberLabel.text = "❍"
             cell.layer.cornerRadius = 10
             cell.clipsToBounds = true
         //  Selection colour of cell is custom
@@ -199,5 +224,16 @@ class ListAffirmationsViewController: UIViewController, UITableViewDelegate, UIT
            titleLabel.adjustsFontForContentSizeCategory = true
            }
     
+    //MARK: Poperedzhennya z povidomlennyam
+        // Dlya Add button, koly ne Vybrano.
+    func presentAlertConfirmation (with alertMessage: String) {
+               let alert = UIAlertController(title: nil, message: alertMessage, preferredStyle: .alert)
+               self.present(alert, animated: true, completion: nil)
+               
+               DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                   alert.dismiss(animated: true, completion: {[weak self] in
+                      })
+                }
+           }
     
 }

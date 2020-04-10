@@ -6,6 +6,7 @@
 	<string>This access is required to set up reminders.</string>
 	<key>UIAppFonts</key>
 	<array>
+		<string>OpenSansCondensed-LightItalic.ttf</string>
 		<string>Lato-Regular.ttf</string>
 		<string>Lato-Light.ttf</string>
 		<string>IndieFlower-Regular.ttf</string>

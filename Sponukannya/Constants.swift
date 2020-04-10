@@ -10,11 +10,11 @@ import Foundation
 import UIKit
 
 
-enum ListConctollerCellMesurements {
-    
-     static let cellHeight: CGFloat = 70
-     static let minimumSwipeCellWidth: CGFloat = 70.0
-   }
+//enum ListConctollerCellMesurements {
+//    
+//     static let cellHeight: CGFloat = 70
+//     static let minimumSwipeCellWidth: CGFloat = 70.0
+//   }
 
 enum TimeIntervals {
  static let timeIntervalForEndDate: Double = 3600

@@ -11,7 +11,9 @@
 		B52F686423FD9710002524C4 /* DatePickerPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52F686323FD9710002524C4 /* DatePickerPopupViewController.swift */; };
 		B52F686623FDA7CB002524C4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52F686523FDA7CB002524C4 /* Constants.swift */; };
 		B54B1FEB2409880700DC2447 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B54B1FEA2409880700DC2447 /* Lato-Regular.ttf */; };
-		B5A0CE092428EB1800B89927 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5A0CE082428EB1800B89927 /* Localizable.strings */; };
+		B56C0085243C8BF9000F96F0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B56C0087243C8BF9000F96F0 /* Localizable.strings */; };
+		B56C009B243CA4A6000F96F0 /* OpenSansCondensed-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B56C009D243CA4A6000F96F0 /* OpenSansCondensed-LightItalic.ttf */; };
+		B5A0CE0D24324CA600B89927 /* PromptScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A0CE0C24324CA500B89927 /* PromptScreenViewController.swift */; };
 		B5DA3E2223F1478D00DC8959 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DA3E2123F1478D00DC8959 /* AppDelegate.swift */; };
 		B5DA3E2423F1478D00DC8959 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DA3E2323F1478D00DC8959 /* SceneDelegate.swift */; };
 		B5DA3E2723F1478D00DC8959 /* Sponukannya.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B5DA3E2523F1478D00DC8959 /* Sponukannya.xcdatamodeld */; };
@@ -56,8 +58,13 @@
 		B52F686323FD9710002524C4 /* DatePickerPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerPopupViewController.swift; sourceTree = "<group>"; };
 		B52F686523FDA7CB002524C4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B54B1FEA2409880700DC2447 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
-		B5A0CE072428EA6300B89927 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		B5A0CE082428EB1800B89927 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		B56C0082243C8A28000F96F0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B56C0086243C8BF9000F96F0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B56C0088243C8C4A000F96F0 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		B56C0089243C8C4A000F96F0 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B56C009C243CA4A6000F96F0 /* uk */ = {isa = PBXFileReference; lastKnownFileType = file; name = uk; path = "uk.lproj/OpenSansCondensed-LightItalic.ttf"; sourceTree = "<group>"; };
+		B56C009E243CA4AC000F96F0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = "en.lproj/OpenSansCondensed-LightItalic.ttf"; sourceTree = "<group>"; };
+		B5A0CE0C24324CA500B89927 /* PromptScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptScreenViewController.swift; sourceTree = "<group>"; };
 		B5DA3E1E23F1478D00DC8959 /* Sponukannya.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sponukannya.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5DA3E2123F1478D00DC8959 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5DA3E2323F1478D00DC8959 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -65,7 +72,6 @@
 		B5DA3E2823F1478D00DC8959 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B5DA3E2A23F1478E00DC8959 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B5DA3E2D23F1478E00DC8959 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		B5DA3E3023F1478E00DC8959 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B5DA3E3223F1478E00DC8959 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5DA3E3723F1478E00DC8959 /* SponukannyaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SponukannyaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5DA3E3B23F1478E00DC8959 /* SponukannyaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SponukannyaTests.swift; sourceTree = "<group>"; };
@@ -122,7 +128,7 @@
 		B5DA3E1523F1478D00DC8959 = {
 			isa = PBXGroup;
 			children = (
-				B5A0CE082428EB1800B89927 /* Localizable.strings */,
+				B56C0087243C8BF9000F96F0 /* Localizable.strings */,
 				B5DA3E2023F1478D00DC8959 /* Sponukannya */,
 				B5DA3E3A23F1478E00DC8959 /* SponukannyaTests */,
 				B5DA3E4523F1478E00DC8959 /* SponukannyaUITests */,
@@ -197,6 +203,7 @@
 				B5DA3E6323F1B5BE00DC8959 /* ListAffirmationsViewController.swift */,
 				B5DA3E6523F1D72000DC8959 /* PopUpViewController.swift */,
 				B52F686323FD9710002524C4 /* DatePickerPopupViewController.swift */,
+				B5A0CE0C24324CA500B89927 /* PromptScreenViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -215,6 +222,7 @@
 				B54B1FEA2409880700DC2447 /* Lato-Regular.ttf */,
 				B5DA3E5D23F1739800DC8959 /* IndieFlower-Regular.ttf */,
 				B5DA3E5E23F1739800DC8959 /* Lato-Light.ttf */,
+				B56C009D243CA4A6000F96F0 /* OpenSansCondensed-LightItalic.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -337,9 +345,10 @@
 				B5DA3E6023F173CA00DC8959 /* Lato-Light.ttf in Resources */,
 				B54B1FEB2409880700DC2447 /* Lato-Regular.ttf in Resources */,
 				B5DA3E3123F1478E00DC8959 /* LaunchScreen.storyboard in Resources */,
-				B5A0CE092428EB1800B89927 /* Localizable.strings in Resources */,
+				B56C0085243C8BF9000F96F0 /* Localizable.strings in Resources */,
 				B5DA3E2E23F1478E00DC8959 /* Preview Assets.xcassets in Resources */,
 				B5DA3E5F23F173C400DC8959 /* IndieFlower-Regular.ttf in Resources */,
+				B56C009B243CA4A6000F96F0 /* OpenSansCondensed-LightItalic.ttf in Resources */,
 				B5DA3E2B23F1478E00DC8959 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -417,6 +426,7 @@
 				B52F686623FDA7CB002524C4 /* Constants.swift in Sources */,
 				B5DA3E2723F1478D00DC8959 /* Sponukannya.xcdatamodeld in Sources */,
 				B5DA3E6823F1DA1600DC8959 /* UIButton + Border.swift in Sources */,
+				B5A0CE0D24324CA600B89927 /* PromptScreenViewController.swift in Sources */,
 				B5DA3E6623F1D72000DC8959 /* PopUpViewController.swift in Sources */,
 				B5DA3E5B23F166D400DC8959 /* MyTableViewCell.swift in Sources */,
 				B5DA3E6A23F4036800DC8959 /* CoreDataManager.swift in Sources */,
@@ -455,11 +465,29 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		B56C0087243C8BF9000F96F0 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B56C0086243C8BF9000F96F0 /* en */,
+				B56C0089243C8C4A000F96F0 /* uk */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		B56C009D243CA4A6000F96F0 /* OpenSansCondensed-LightItalic.ttf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B56C009C243CA4A6000F96F0 /* uk */,
+				B56C009E243CA4AC000F96F0 /* en */,
+			);
+			name = "OpenSansCondensed-LightItalic.ttf";
+			sourceTree = "<group>";
+		};
 		B5DA3E2F23F1478E00DC8959 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				B5DA3E3023F1478E00DC8959 /* Base */,
-				B5A0CE072428EA6300B89927 /* uk */,
+				B56C0082243C8A28000F96F0 /* Base */,
+				B56C0088243C8C4A000F96F0 /* uk */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";

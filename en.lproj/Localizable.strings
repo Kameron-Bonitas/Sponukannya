@@ -1,0 +1,40 @@
+/* 
+  Localizable.strings
+  Sponukannya
+
+  Created by Ben on 07.04.2020.
+  Copyright © 2020 Ben. All rights reserved.
+*/
+
+
+"IndieFlower" = "IndieFlower";
+"Lato-Light" = "Lato-Light";
+"Lato-Regular"= "Lato-Regular";
+
+"My Affirmations" = "My Affirmations";
+"Add my own affirmation" = "Add my own affirmation";
+"Choose Affirmations" = "Choose Affirmations";
+"Choose affirmations" = "Choose affirmations";
+"Add" = "Add";
+
+"Go to settings" = "Go to settings";
+"Settings" = "Settings";
+"Cancel" = "Cancel";
+"OK" = "OK";
+
+"Repeat every day" = "Repeat every day";
+"You are Successful" = "You are Successful";
+
+"Add a reminder" = "Add a reminder";
+"A little reminder:" = "A little reminder:";
+"Type your affirmation here..." = "Type your affirmation here...";
+"You haven't created an affirmation yet." = "You haven't created an affirmation yet.";
+"The reminder has been successfully created." = "The reminder has been successfully created.";
+
+"We need your permission to send you notifications" = "We need your permission to send you notifications";
+"We need your permission" = "We need your permission";
+
+
+
+
+

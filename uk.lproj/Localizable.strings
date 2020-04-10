@@ -1,0 +1,37 @@
+/* 
+  Localizable.strings
+  Sponukannya
+
+  Created by Ben on 07.04.2020.
+  Copyright © 2020 Ben. All rights reserved.
+*/
+
+
+"Lato-Light" = "AppleSDGothicNeo-Light";
+"IndieFlower"= "GillSans-LightItalic";
+"Lato-Regular"= "Lato-Regular";
+
+"My Affirmations" = "Мої афірмації";
+"Add my own affirmation" = "Додати власну афірмацію";
+"Choose affirmations" = "Вибрати афірмації";
+"Choose Affirmations" = "Вибрати Афірмації";
+"You haven't choosen your affirmations yet." = "You haven't choosen your affirmations yet.";
+"Add" = "Додати";
+ 
+"Go to settings" = "Перевірте Параметри";
+"Settings" = "Параметри";
+"Cancel" = "Скасувати";
+"OK" = "Гаразд";
+
+"Repeat every day" = "Повторювати щодня";
+"You are Successful" = "Ви - Успішні";
+
+"Add a reminder" = "Додати до Нагадувань";
+"A little reminder:" = "Маленьке нагадування:";
+"Type your affirmation here..." = "Надрукуйте вашу афірмацію тут...";
+"You haven't created an affirmation yet." = "Ви ще не створили афірмацію.";
+"The reminder has been successfully created." = "Нагадування успішно створено.";
+
+"We need your permission to send you notifications" = "Нам потрібен Ваш дозвіл щоб надсилати вам нагадування";
+"We need your permission" = "Нам потрібен Ваш дозвіл";
+
