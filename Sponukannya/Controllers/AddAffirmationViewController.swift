@@ -16,7 +16,7 @@ class AddAffirmationViewController: UIViewController {
         let cancelButton = UIButton()
         let backgroundColorView: UIView = UIView()
 
-     var zaraza:(()->())?
+     var fetchingCoreZaraza:(()->())?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,15 +27,37 @@ class AddAffirmationViewController: UIViewController {
     //  MARK: - Button ACTIONS
     @objc func cancelButtonAction() {
     // Povertannya do golovnogo (myAffi)
-            let myAffiVC = MyAffirmationsViewController()
-            self.navigationController?.pushViewController(myAffiVC, animated: true)
-        print("Do myAffi!'")
+// let myAffiVC = MyAffirmationsViewController()
+        
+        let transition:CATransition = CATransition()
+        transition.duration = 0.5
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.type = CATransitionType.push
+        transition.subtype = CATransitionSubtype.fromTop
+        self.navigationController!.view.layer.add(transition, forKey: kCATransition)
+        
+        
+            self.navigationController?.popToRootViewController( animated: true)
+//       let addAffi = AddAffirmationViewController()
+//        self.dismiss(animated: true, completion: nil)
+print("go to myAffirmationsVC!'")
         }
     
     @objc func chooseAffiButtonAction() {
             let listVC = ListAffirmationsViewController()
+         listVC.dismissAddAffi = dismissAddAffi
+//        self.present(listVC, animated: true, completion: nil)
+        
+        let transition:CATransition = CATransition()
+        transition.duration = 0.5
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.type = CATransitionType.push
+        transition.subtype = CATransitionSubtype.fromTop
+        self.navigationController!.view.layer.add(transition, forKey: kCATransition)
+        
+        
             self.navigationController?.pushViewController(listVC, animated: true)
-//         print("Ups!'")
+print("go to ListAffirmationsVC ")
         }
     
     @objc  func ownAffiButtonAction(){
@@ -45,7 +67,7 @@ class AddAffirmationViewController: UIViewController {
          popaVC.dismissAddAffi = dismissAddAffi
          popaVC.editingAffi = false
         self.present(popaVC, animated: true, completion: nil)
-//        print("Dupa!")
+print("go to PopUpVC (Dupa)!")
     }
     
     //MARK:    SetupView
@@ -139,17 +161,19 @@ class AddAffirmationViewController: UIViewController {
             imageView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
                 ])
 
+
                 }
     
     func reloadTable() -> () {
-        zaraza!()
+        fetchingCoreZaraza!()
 //        print("Relodnula Table")
     }
     
     func dismissAddAffi () ->() {
            let myAffiVC = MyAffirmationsViewController()
-           self.navigationController?.pushViewController(myAffiVC, animated: true)
-//                    print("Do myAffi!'")
+//           self.navigationController?.pushViewController(myAffiVC, animated: true)
+         self.navigationController?.popToRootViewController( animated: true)
+//                   print("Do myAffi!'")
            }
     
 }

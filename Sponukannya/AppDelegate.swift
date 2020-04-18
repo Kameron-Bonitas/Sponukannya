@@ -124,16 +124,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 completionHandler()
         }
         
-    func printFonts(){
-        for family: String in UIFont.familyNames
-        {
-            print("\(family)")
-            for names: String in UIFont.fontNames(forFamilyName: family)
-            {
-                print("== \(names)")
-            }
-        }
-    }
+//    func printFonts(){
+//        for family: String in UIFont.familyNames
+//        {
+////print("\(family)")
+//            for names: String in UIFont.fontNames(forFamilyName: family)
+//            {
+////print("== \(names)")
+//            }
+//        }
+//    }
     
         
     }
