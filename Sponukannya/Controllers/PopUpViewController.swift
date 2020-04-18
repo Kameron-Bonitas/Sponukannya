@@ -13,7 +13,7 @@ class PopUpViewController: UIViewController {
     //MARK: Constants
         var reloadTable:(()->())?
         var dismissAddAffi:(()->())?
-    var zaraza:(()->())?
+    var fetchingCoreZaraza:(()->())?
     var transferedAffi: MyAffirmationItem?
     var editingAffi = false
         
@@ -55,7 +55,7 @@ class PopUpViewController: UIViewController {
             setupLayouts()
 //            placeHolder ()
             textNewAffirmation.becomeFirstResponder()
-            print(textNewAffirmation)
+//print(textNewAffirmation)
             }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -107,7 +107,8 @@ class PopUpViewController: UIViewController {
                                     (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
                                     }
                                  }
-                           zaraza?()
+                           fetchingCoreZaraza?()
+             reloadTable?()
                            dismissAddAffi?()
                         }
            
@@ -118,6 +119,7 @@ class PopUpViewController: UIViewController {
                 guard let `self` = self else { return }
                 self.dismiss(animated: true, completion: nil)
                 self.textNewAffirmation.resignFirstResponder()
+                self.navigationController?.popToRootViewController(animated: true)
                 }
             
             }else if textNewAffirmation.text == placeholder && textNewAffirmation.text != nil{
