@@ -23,7 +23,13 @@ class MyAffirmationsViewController: UIViewController,UITableViewDelegate,UITable
          let tableView = UITableView()
     
         private let cellIdentifier = "MyTableViewCell"
-        var myAffis : [MyAffirmationItem] = []
+    var myAffis : [MyAffirmationItem] = [] {
+        didSet{
+print("Called after setting the new value")
+      
+            tableView.reloadData()
+        }
+    }
         var povtorTimeAffi = Bool ()
         let appDelegate = UIApplication.shared.delegate as! AppDelegate // Prompt Screen
        
@@ -43,15 +49,20 @@ class MyAffirmationsViewController: UIViewController,UITableViewDelegate,UITable
                super.viewWillDisappear(animated)
                }
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLayout()
         setupView()
-         zaraza()
+
+         fetchingCoreZaraza()
         setCategories()
         configureTableView()
         view.backgroundColor = .white //  Vyrishennya zatemnenogo backgroundImage
         countAppLaunchesSwitchOnThem()          // Prompt Screen
+        
+        
         }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -59,7 +70,8 @@ class MyAffirmationsViewController: UIViewController,UITableViewDelegate,UITable
             appDelegate.sethasAlreadyLaunched() //set hasAlreadyLaunched to false
             promptScreen()   //display prompt screen
            }
-//promptScreen()
+
+//    promptScreen()
     }
 
     //  MARK: - Button ACTIONS
@@ -67,14 +79,27 @@ class MyAffirmationsViewController: UIViewController,UITableViewDelegate,UITable
         @objc func addAffiPopUpButtonPressed(_ sender: UIButton) {
             let addAffiVC = AddAffirmationViewController()
             //Peredacha "zaraza"
-           addAffiVC.zaraza = zaraza
+           addAffiVC.fetchingCoreZaraza = fetchingCoreZaraza
+            
+            let transition:CATransition = CATransition()
+            transition.duration = 0.5
+            transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+            transition.type = CATransitionType.push
+            transition.subtype = CATransitionSubtype.fromTop
+            self.navigationController!.view.layer.add(transition, forKey: kCATransition)
+            
             self.navigationController?.pushViewController(addAffiVC, animated: true)
-//            print("Affa!")
+//            self.dismiss(animated: true, completion: nil)
+//            addAffiVC.modalPresentationStyle = .fullScreen
+//            self.present(addAffiVC, animated: true, completion: nil)
+            
+//    self.navigationController?.pushViewController(addAffiVC, animated: true)
+print("go to AddAffirmationVC!")
             }
     
     // MARK: CORE DATA SACHEN
     //  MARK: - Fetching z perezavantazhennyam stola
-    func zaraza ()-> (){
+    func fetchingCoreZaraza ()-> (){
         if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext {
         if let coreDataMyAffirmationItems = try? context.fetch(MyAffirmationItem.fetchRequest()) as? [MyAffirmationItem] {
             myAffis = coreDataMyAffirmationItems
@@ -182,7 +207,7 @@ class MyAffirmationsViewController: UIViewController,UITableViewDelegate,UITable
                 let popaVC = PopUpViewController ()
                 popaVC.modalPresentationStyle = .overCurrentContext
                 popaVC.transferedAffi = self!.myAffis[indexPath.row]
-                popaVC.zaraza = self?.zaraza
+                popaVC.fetchingCoreZaraza = self?.fetchingCoreZaraza
                 popaVC.editingAffi = true
                 popaVC.textNewAffirmation.text = self!.myAffis[indexPath.row].name
 //print(self?.myAffis[indexPath.row].name)
@@ -201,7 +226,7 @@ class MyAffirmationsViewController: UIViewController,UITableViewDelegate,UITable
             if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext {
                 context.delete(myAffi!)
            (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
-                        self?.zaraza()
+                        self?.fetchingCoreZaraza()
                 }
                     return true
                                }]
@@ -278,7 +303,7 @@ func getNotificationSettingStatus () {
                 // UI work here
                 self.goToPopupAndSetReminder()
                 
-                print("F getNotificationSettingStatus")
+//                print("F getNotificationSettingStatus")
             }
         case .denied, .notDetermined, .provisional:
             self.goToSettingsAllert(alertTitle: SettingsAlertNotifications.title, alertMessage: SettingsAlertNotifications.message, alertActionTitle: SettingsAlertNotifications.settingActionTitle, alertCancelActionTitle: SettingsAlertNotifications.cancelActionTitle)
@@ -344,10 +369,10 @@ print(" We had an error: \(error)")
         switch currentCount {
             case 10, 50, 100:
                   promtForReview()
-                  zaraza()
+                  fetchingCoreZaraza()
                   tableView.reloadData()
             default:
-                  zaraza()
+                  fetchingCoreZaraza()
                   tableView.reloadData()
               }
     }
@@ -356,7 +381,7 @@ print(" We had an error: \(error)")
          var currentCount = UserDefaults.standard.integer(forKey: "launchCount")
             currentCount += 1
          UserDefaults.standard.set(currentCount, forKey: "launchCount")
-print(("Count: \(currentCount)"))
+//print(("Count: \(currentCount)"))
             return currentCount
     }
           
@@ -369,7 +394,7 @@ print(("Count: \(currentCount)"))
     func promptScreen(){
          let prVC = PromptScreenViewController()
                 self.navigationController?.pushViewController(prVC, animated: true)
-print("pR!")
+//print("pR!")
     }
           
 }
