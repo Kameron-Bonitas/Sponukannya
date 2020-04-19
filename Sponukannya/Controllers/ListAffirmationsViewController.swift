@@ -11,7 +11,7 @@ import CoreData
 
 class ListAffirmationsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
    
-    var dismissAddAffi:(()->())?
+//    var dismissAddAffi:(()->())?
     
     
     let titleLabel = UILabel()
@@ -40,6 +40,11 @@ class ListAffirmationsViewController: UIViewController, UITableViewDelegate, UIT
     
     
     
+    //    delete this code after all debugging is done, this line of code checks if the controller was deallocated from memory
+    deinit {
+        print("ListAffirmationsController was removed from memory")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLayout()
@@ -51,27 +56,12 @@ class ListAffirmationsViewController: UIViewController, UITableViewDelegate, UIT
     //MARK: - Button ACTIONS
     // Cancel Batton
     @objc func cancelButtonPressed(_ sender: UIButton) {
-    // Povertannya do AddAffirmation (addAffi)
-// let myAffiVC = MyAffirmationsViewController()
-//    self.navigationController?.popToRootViewController( animated: true)
-//        self.navigationController?.popToViewController(UIViewController, animated: true) -> [AddAffirmationViewController]?
-//        self.navigationController?.popToViewController(UIViewController, animated: true)
-     let addAffi = AddAffirmationViewController ()
-        
-        let transition:CATransition = CATransition()
-        transition.duration = 0.5
-        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-        transition.type = CATransitionType.push
-        transition.subtype = CATransitionSubtype.fromTop
-        self.navigationController!.view.layer.add(transition, forKey: kCATransition)
-        
-        
-        self.navigationController?.pushViewController(addAffi, animated: true )
-//        self.navigationController?.popToViewController(addAffi, animated: true)
-//        self.present(myAffiVC, animated: true, completion: nil)
-//        self.dismiss(animated: true, completion: nil)
-        
+makeVerticalTransitionFromBottom()
+        self.navigationController?.popViewController(animated: true)
+     
     }
+    
+    
     // Add Button
     @objc func addButtonPressed(_ sender: UIButton) {
          if selectedAffis.count > 0 {
@@ -83,25 +73,14 @@ class ListAffirmationsViewController: UIViewController, UITableViewDelegate, UIT
             newMyAffirmation.name = affiToAdd
             (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
             }
-        self.tableView.reloadData()
+//        self.tableView.reloadData()
         }
     // Povertannya do golovnogo (myAffi)
-let myAffiVC = MyAffirmationsViewController()
-      
-            let transition:CATransition = CATransition()
-            transition.duration = 0.5
-            transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-            transition.type = CATransitionType.push
-            transition.subtype = CATransitionSubtype.fromTop
-            self.navigationController!.view.layer.add(transition, forKey: kCATransition)
-            
+   
+makeVerticalTransitionFromBottom()
             
     self.navigationController?.popToRootViewController( animated: true)
-//            self.navigationController?.pushViewController(myAffiVC, animated: true)
-            
-//          self.dismiss(animated: true, completion: nil)
-//            self.present(myAffiVC, animated: true, completion: nil)
-//            dismissAddAffi! ()
+
          } else {
             UIView.animate(withDuration: 1) {
                        self.backgroundColorView.alpha = 1.0
@@ -115,7 +94,6 @@ let myAffiVC = MyAffirmationsViewController()
     
     }
     
-            
     // MARK: Setup Layot
        private func setupLayout() {
        setupBackground(imageView: backgroundImage, imageNamed: "background.png", to: self.view)

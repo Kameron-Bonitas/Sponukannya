@@ -17,37 +17,42 @@ import StoreKit
 class MyAffirmationsViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     //MARK: - Properties
-         let backgroundImage = UIImageView()
-         let titleLabel = UILabel()
-         var plusButton = UIButton()
-         let tableView = UITableView()
+    let backgroundImage = UIImageView()
+    let titleLabel = UILabel()
+    var plusButton = UIButton()
+    let tableView = UITableView()
     
-        private let cellIdentifier = "MyTableViewCell"
+    private let cellIdentifier = "MyTableViewCell"
+    
+    //    array that stocks affirmations that come from core data
     var myAffis : [MyAffirmationItem] = [] {
         didSet{
-print("Called after setting the new value")
-      
-            tableView.reloadData()
+            print("Called after setting the new value \(myAffis.count)")
+            
+            //            tableView.reloadData()
         }
     }
-        var povtorTimeAffi = Bool ()
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate // Prompt Screen
-       
-
+    var repeatIsSet = Bool ()
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate // Prompt Screen
+    
+    
     //MARK:- Navigation. Making Navigation Bar Prozzoroyu UND Fetching all Affis
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        fetchingCoreZaraza()
+        
         // Hide the Navigation Bar
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         // Make the navigation bar background clear
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-      navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.isTranslucent = true
-        }
+    }
     
     override func viewWillDisappear(_ animated: Bool) {
-               super.viewWillDisappear(animated)
-               }
+        super.viewWillDisappear(animated)
+    }
     
     
     
@@ -55,64 +60,53 @@ print("Called after setting the new value")
         super.viewDidLoad()
         setupLayout()
         setupView()
-
-         fetchingCoreZaraza()
+        
+        
         setCategories()
         configureTableView()
         view.backgroundColor = .white //  Vyrishennya zatemnenogo backgroundImage
         countAppLaunchesSwitchOnThem()          // Prompt Screen
         
         
-        }
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         if(!appDelegate.hasAlreadyLaunched){
             appDelegate.sethasAlreadyLaunched() //set hasAlreadyLaunched to false
             promptScreen()   //display prompt screen
-           }
-
-//    promptScreen()
+        }
+        
+        //    promptScreen()
     }
-
+    
     //  MARK: - Button ACTIONS
-        // addAffiBatton
-        @objc func addAffiPopUpButtonPressed(_ sender: UIButton) {
-            let addAffiVC = AddAffirmationViewController()
-            //Peredacha "zaraza"
-           addAffiVC.fetchingCoreZaraza = fetchingCoreZaraza
-            
-            let transition:CATransition = CATransition()
-            transition.duration = 0.5
-            transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-            transition.type = CATransitionType.push
-            transition.subtype = CATransitionSubtype.fromTop
-            self.navigationController!.view.layer.add(transition, forKey: kCATransition)
-            
-            self.navigationController?.pushViewController(addAffiVC, animated: true)
-//            self.dismiss(animated: true, completion: nil)
-//            addAffiVC.modalPresentationStyle = .fullScreen
-//            self.present(addAffiVC, animated: true, completion: nil)
-            
-//    self.navigationController?.pushViewController(addAffiVC, animated: true)
-print("go to AddAffirmationVC!")
-            }
+    // addAffiBatton
+    @objc func addAffiPopUpButtonPressed(_ sender: UIButton) {
+        let addAffiVC = AddAffirmationViewController()
+        
+        makeVerticalTransitionFromTop()
+        
+        self.navigationController?.pushViewController(addAffiVC, animated: true)
+        
+        print("go to AddAffirmationVC!")
+    }
     
     // MARK: CORE DATA SACHEN
     //  MARK: - Fetching z perezavantazhennyam stola
     func fetchingCoreZaraza ()-> (){
         if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext {
-        if let coreDataMyAffirmationItems = try? context.fetch(MyAffirmationItem.fetchRequest()) as? [MyAffirmationItem] {
-            myAffis = coreDataMyAffirmationItems
-        tableView.reloadData()
-//            print("Fetching")
-                }
+            if let coreDataMyAffirmationItems = try? context.fetch(MyAffirmationItem.fetchRequest()) as? [MyAffirmationItem] {
+                myAffis = coreDataMyAffirmationItems
+                tableView.reloadData()
+                //            print("Fetching")
             }
         }
+    }
     
     //  MARK: Setup Layout
-        private func setupLayout() {
+    private func setupLayout() {
         setupBackground(imageView: backgroundImage, imageNamed: "background.png", to: self.view)
-    
+        
         //titleLabel
         titleLabel.text = NSLocalizedString( "My Affirmations", comment: "My Affirmations")
         titleLabel.textAlignment = .center
@@ -128,11 +122,11 @@ print("go to AddAffirmationVC!")
         //plusButton
         plusButton.addTarget(self, action: #selector(addAffiPopUpButtonPressed(_:)), for: .touchUpInside)
         plusButton.setImage(UIImage(named: "plus"), for: .normal)
-         view.addSubview(plusButton)
+        view.addSubview(plusButton)
         
-         plusButton.translatesAutoresizingMaskIntoConstraints = false
-       
-         NSLayoutConstraint.activate([
+        plusButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
             plusButton.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 13),
             plusButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant:0.0)
         ])
@@ -140,128 +134,128 @@ print("go to AddAffirmationVC!")
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-        tableView.topAnchor.constraint(equalTo: plusButton.bottomAnchor, constant: 10),
-        tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
-     tableView.leadingAnchor.constraint(equalTo:self.view.safeAreaLayoutGuide.leadingAnchor),
+            tableView.topAnchor.constraint(equalTo: plusButton.bottomAnchor, constant: 10),
+            tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            tableView.leadingAnchor.constraint(equalTo:self.view.safeAreaLayoutGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor)
-            ])
-        }
+        ])
+    }
     
     //    MARK:Setup View
-        private func setupView () {
-           //tableView
-           tableView.delegate = self
-           tableView.dataSource = self
-           tableView.allowsMultipleSelection = true
-           tableView.backgroundColor = UIColor.clear
-           tableView.separatorColor = .clear
-           tableView.separatorStyle = .singleLine
-            tableView.separatorInset = .zero
-           tableView.register(MyTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
-           }
+    private func setupView () {
+        //tableView
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.allowsMultipleSelection = true
+        tableView.backgroundColor = UIColor.clear
+        tableView.separatorColor = .clear
+        tableView.separatorStyle = .singleLine
+        tableView.separatorInset = .zero
+        tableView.register(MyTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
+    }
     
     
     
     // MARK: - TableView Sachen
-      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-          return myAffis.count
-        }
-
-      func configureTableView(){
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return myAffis.count
+    }
+    
+    func configureTableView(){
         
-//        tableView.estimatedRowHeight = 400.0
-//        tableView.rowHeight = UITableView.automaticDimension
+        //        tableView.estimatedRowHeight = 400.0
+        //        tableView.rowHeight = UITableView.automaticDimension
         
-//           tableView.estimatedRowHeight = UITableView.automaticDimension
-           }
-
-      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! MyTableViewCell
-                //Prozzorist' of cell
-                cell.backgroundColor = .clear
-                cell.numberLabel.text = "\(indexPath.row+1)"
-            let myAffi = myAffis[indexPath.row]
-                cell.noteLabel.text = myAffi.name
+        //           tableView.estimatedRowHeight = UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! MyTableViewCell
+        //Prozzorist' of cell
+        cell.backgroundColor = .clear
+        cell.numberLabel.text = "\(indexPath.row+1)"
+        let myAffi = myAffis[indexPath.row]
+        cell.noteLabel.text = myAffi.name
         cell.selectionStyle = .none
-            //  Selection colour of cell is custom
-                   
-                cell.layer.cornerRadius = 10
-                cell.clipsToBounds = true
+        //  Selection colour of cell is custom
         
-
+        cell.layer.cornerRadius = 10
+        cell.clipsToBounds = true
+        
+        
         //  SWIPE CONFIGURATION
         //configure left buttons
         cell.leftButtons =
             [MGSwipeButton(title: "", icon: UIImage(named:"reminder" ), backgroundColor: UIColor.clear){
-                               [weak self] sender in
-           let myAffi = self?.myAffis[indexPath.row].name
-            NotificationReminder.body = myAffi ?? ""
-            self?.getNotificationSettingStatus()
-//print("funcAddReminder at indexPath")
-                               return true
-                               },
-         
+                [weak self] sender in
+                let myAffi = self?.myAffis[indexPath.row].name
+                NotificationReminder.body = myAffi ?? ""
+                self?.getNotificationSettingStatus()
+                //print("funcAddReminder at indexPath")
+                return true
+                },
+             
              MGSwipeButton(title: "", icon: UIImage(named:"edit"), backgroundColor: UIColor.clear){
-                           [weak self] sender in
-            
+                [weak self] sender in
+                
                 let popaVC = PopUpViewController ()
                 popaVC.modalPresentationStyle = .overCurrentContext
                 popaVC.transferedAffi = self!.myAffis[indexPath.row]
-                popaVC.fetchingCoreZaraza = self?.fetchingCoreZaraza
+                //                popaVC.fetchingCoreZaraza = self?.fetchingCoreZaraza
                 popaVC.editingAffi = true
                 popaVC.textNewAffirmation.text = self!.myAffis[indexPath.row].name
-//print(self?.myAffis[indexPath.row].name)
-                                
+                //print(self?.myAffis[indexPath.row].name)
+                
                 self?.present(popaVC, animated: true, completion: nil)
-//print("Upa!")
-                   return true
-                    }]
-                  cell.leftSwipeSettings.transition = .rotate3D
-
+                //print("Upa!")
+                return true
+                }]
+        cell.leftSwipeSettings.transition = .rotate3D
+        
         //configure right button
-            cell.rightButtons =
+        cell.rightButtons =
             [MGSwipeButton(title: "", icon: UIImage(named:"trash"), backgroundColor: UIColor.clear, padding: 50) {
-                    [weak self] sender in
-            let myAffi = self?.myAffis[indexPath.row]
-            if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext {
-                context.delete(myAffi!)
-           (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
-                        self?.fetchingCoreZaraza()
+                [weak self] sender in
+                let myAffi = self?.myAffis[indexPath.row]
+                if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext {
+                    context.delete(myAffi!)
+                    (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
+                    self?.fetchingCoreZaraza()
                 }
-                    return true
-                               }]
+                return true
+                }]
         cell.rightSwipeSettings.transition = .rotate3D
         cell.rightExpansion.buttonIndex = 0
-                
+        
         return cell
     }
     
     
-
+    
     //MARK:- Reusable Function Background
-        func setupBackground(imageView: UIImageView, imageNamed imageName: String, to view: UIView) {
-            imageView.image = UIImage(named: imageName)
-            imageView.contentMode = .scaleAspectFill
-            view.addSubview(imageView)
-            
-            imageView.translatesAutoresizingMaskIntoConstraints = false
-            NSLayoutConstraint.activate([
-        imageView.topAnchor.constraint(equalTo: self.view.topAnchor),
-        imageView.bottomAnchor.constraint(equalTo:self.view.bottomAnchor),
-        imageView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
-        imageView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
-            ])
-    //MARK: Castom Font Instance
+    func setupBackground(imageView: UIImageView, imageNamed imageName: String, to view: UIView) {
+        imageView.image = UIImage(named: imageName)
+        imageView.contentMode = .scaleAspectFill
+        view.addSubview(imageView)
+        
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            imageView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            imageView.bottomAnchor.constraint(equalTo:self.view.bottomAnchor),
+            imageView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
+            imageView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
+        ])
+        //MARK: Castom Font Instance
         guard let customFont = UIFont(name: "Lato-Light", size:UIFont.labelFontSize) else {
             fatalError("""
                         Failed to load the "Lato-Light" font.
                         Make sure the font file is included in the project and the font name is spelled correctly.
                         """)
-                }
-//        Sho tse nah*j???? NASTYA
+        }
+        //        Sho tse nah*j???? NASTYA
         titleLabel.font = UIFontMetrics.default.scaledFont(for: customFont)
         titleLabel.adjustsFontForContentSizeCategory = true
-            }
+    }
     
     // MARK: ALERTS
     
@@ -289,46 +283,48 @@ print("go to AddAffirmationVC!")
         }
     }
     
-  
-//MARK: - NOTIFICATION CENTER MATHODS (REMINDERS)
-
-func getNotificationSettingStatus () {
     
-    UNUserNotificationCenter.current().getNotificationSettings {[weak self] (settings) in
-        guard let `self` = self else {return}
+    //MARK: - NOTIFICATION CENTER MATHODS (REMINDERS)
+    
+    func getNotificationSettingStatus () {
         
-        switch settings.authorizationStatus {
-        case .authorized:
-            DispatchQueue.main.async {
-                // UI work here
-                self.goToPopupAndSetReminder()
-                
-//                print("F getNotificationSettingStatus")
+        UNUserNotificationCenter.current().getNotificationSettings {[weak self] (settings) in
+            guard let `self` = self else {return}
+            
+            switch settings.authorizationStatus {
+            case .authorized:
+                DispatchQueue.main.async {
+                    // UI work here
+                    self.goToPopupAndSetReminder()
+                    
+                    //                print("F getNotificationSettingStatus")
+                }
+            case .denied, .notDetermined, .provisional:
+                self.goToSettingsAllert(alertTitle: SettingsAlertNotifications.title, alertMessage: SettingsAlertNotifications.message, alertActionTitle: SettingsAlertNotifications.settingActionTitle, alertCancelActionTitle: SettingsAlertNotifications.cancelActionTitle)
+            @unknown default:
+                print("unknown case of authorisationStatus")
             }
-        case .denied, .notDetermined, .provisional:
-            self.goToSettingsAllert(alertTitle: SettingsAlertNotifications.title, alertMessage: SettingsAlertNotifications.message, alertActionTitle: SettingsAlertNotifications.settingActionTitle, alertCancelActionTitle: SettingsAlertNotifications.cancelActionTitle)
-        @unknown default:
-            print("unknown case of authorisationStatus")
         }
+        
     }
-   
-}
-
+    
     func goToPopupAndSetReminder () {
         let dpVC = DatePickerPopupViewController()
         dpVC.dateForCalendar = false
         dpVC.modalPresentationStyle = .overCurrentContext
         dpVC.setReminder = setReminder
-        self.present(dpVC, animated: true, completion: nil)
-        dpVC.povtorTime = { povtor in
-//print("value = \(povtor)")
-        self.povtorTimeAffi = povtor
-            return povtor
-            }
-//print(" v goToPopa \(povtorTimeAffi)")
-//print("F goToPopupAndSetReminder ")
+        makeVerticalTransitionFromTop()
+        self.navigationController?.pushViewController(dpVC, animated: true)
+        
+        //with this code we assing a closure to a variable in datePicker that has the type of closure, it then transfers the value we get from the switch into the local value repeatIsSet which we use later to send notifications
+        dpVC.transferRepeatIsSet = { [weak self] in
+            guard let `self` = self else {return}
+            //the $0 refers to the param which we get in datePicker when we pass the local repeatIsSet (the one in datePicker)
+            self.repeatIsSet = $0
         }
-
+        
+    }
+    
     func setReminder (_ components: DateComponents) ->(){
         let content = UNMutableNotificationContent()
         content.title = NotificationReminder.title
@@ -336,29 +332,22 @@ func getNotificationSettingStatus () {
         content.sound = UNNotificationSound.default
         content.badge = 1
         content.categoryIdentifier = "alarm.category"
-//print(" vsetRemider 1 \(povtorTimeAffi)")
-        let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: povtorTimeAffi)
-        let request = UNNotificationRequest(identifier: content.body, content: content, trigger: trigger)
-   
-//print(" NOTIFIC \(NotificationReminder.title)")
-//print(NotificationReminder.body)
-
-        UNUserNotificationCenter.current().add(request) { (error) in
-
-//print("Identifier! \(request.identifier)")
-print(self.povtorTimeAffi)
-//print("TRUE v setRinder \(self.povtorTimeAffi)")
         
+        let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: repeatIsSet)
+        let request = UNNotificationRequest(identifier: content.body, content: content, trigger: trigger)
+        
+        UNUserNotificationCenter.current().add(request) { (error) in
+            print("repeatIsSet = \(self.repeatIsSet)")
             if let error = error {
-print(" We had an error: \(error)")
+                print(" We had an error: \(error)")
             }
         }
     }
-       
+    
     //MARK: - Functions // Notification Action. Defining Actions. "Do Not Repeat"
     func setCategories(){
         let doNotRepeatAction = UNNotificationAction(identifier: "Do Not Repeat", title: "Do Not Repeat", options: [])
-         
+        
         let alarmCategory = UNNotificationCategory(identifier: "alarm.category",actions: [doNotRepeatAction],intentIdentifiers: [], options: [])
         UNUserNotificationCenter.current().setNotificationCategories([alarmCategory])
     }
@@ -367,35 +356,34 @@ print(" We had an error: \(error)")
     func countAppLaunchesSwitchOnThem () {
         let currentCount = appLaunchCount()
         switch currentCount {
-            case 10, 50, 100:
-                  promtForReview()
-                  fetchingCoreZaraza()
-                  tableView.reloadData()
-            default:
-                  fetchingCoreZaraza()
-                  tableView.reloadData()
-              }
+        case 10, 50, 100:
+            promtForReview()
+            fetchingCoreZaraza()
+            tableView.reloadData()
+        default:
+            fetchingCoreZaraza()
+            tableView.reloadData()
+        }
     }
-          
+    
     func appLaunchCount() -> Int {
-         var currentCount = UserDefaults.standard.integer(forKey: "launchCount")
-            currentCount += 1
-         UserDefaults.standard.set(currentCount, forKey: "launchCount")
-//print(("Count: \(currentCount)"))
-            return currentCount
+        var currentCount = UserDefaults.standard.integer(forKey: "launchCount")
+        currentCount += 1
+        UserDefaults.standard.set(currentCount, forKey: "launchCount")
+        return currentCount
     }
-          
+    
     func promtForReview() {
-              if #available(iOS 10.3, *) {
-                  SKStoreReviewController.requestReview()
-              }
+        if #available(iOS 10.3, *) {
+            SKStoreReviewController.requestReview()
+        }
     }
-       
+    
     func promptScreen(){
-         let prVC = PromptScreenViewController()
-                self.navigationController?.pushViewController(prVC, animated: true)
-//print("pR!")
+        let prVC = PromptScreenViewController()
+        makeVerticalTransitionFromTop()
+        self.navigationController?.pushViewController(prVC, animated: true)
     }
-          
+    
 }
 

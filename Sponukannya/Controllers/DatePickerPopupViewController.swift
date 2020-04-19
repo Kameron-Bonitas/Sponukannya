@@ -22,8 +22,8 @@ class DatePickerPopupViewController: UIViewController {
             
    
         //MARK: - VARIABLES
-    var perdachaPovtoru: Bool = false
-    var povtorTime:((Bool) -> Bool)?
+    var repeatIsSet: Bool = false
+    var transferRepeatIsSet:((Bool) -> ())?
         var dateForCalendar = false
         var setReminder: ((_ components: DateComponents) -> ())?
         var saveEventToCalendar: ((_ date: Date) ->())?
@@ -64,7 +64,11 @@ class DatePickerPopupViewController: UIViewController {
             return stackView
         }()
         
-       
+       //    delete this code after all debugging is done, this line of code checks if the controller was deallocated from memory
+       deinit {
+           print("DatePicker was removed from memory")
+       }
+    
         //MARK: - LIFE CYCLE
         override func viewDidLoad() {
             super.viewDidLoad()
@@ -239,46 +243,35 @@ self.viewDidLayoutSubviews()
         @objc func oKButtonAction(_ sender: UIButton) {
                 let components = datePicker.calendar.dateComponents([.day, .month, .year, .hour, .minute], from: datePicker.date)
                 setReminder!(components)
-//print(datePicker.date)
+            transferRepeatIsSet?(repeatIsSet)
                 let  message = NSLocalizedString( "The reminder has been successfully created.", comment: "The reminder has been successfully created.")
                 presentAlertConfirmation(with: message)
-            
-            let figant = povtorTime?(perdachaPovtoru)
-print("figant \(String(describing: figant))")
-//print("dpVC F oKButtonAction")
             }
         
         @objc func cancelButtonAction () {
-            UIView.animate(withDuration: 0.3, animations: { [weak self] in
-                guard let `self` = self else { return }
-                self.backgroundColorView.alpha = 0.0
-                }) { [weak self]  (isComplete) in
-                guard let `self` = self else { return }
-                self.dismiss(animated: true, completion: nil)
-                }
+            makeVerticalTransitionFromBottom()
+            self.navigationController?.popToRootViewController(animated: true)
             }
         
         @objc func switchStateDidChange(_ sender:UISwitch){
                 if (sender.isOn == true){
-                    perdachaPovtoru = true
-//print("UISwitch state is now ON")
-                }else{
-//print("UISwitch state is now Off")
+                    repeatIsSet = true
                 }
+            
+
             }
     
         func presentAlertConfirmation (with alertMessage: String) {
             let alert = UIAlertController(title: nil, message: alertMessage, preferredStyle: .alert)
             self.present(alert, animated: true, completion: nil)
+            
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 alert.dismiss(animated: true, completion: {[weak self] in
-                   self!.dismiss(animated: true, completion: nil)
+                    self?.makeVerticalTransitionFromBottom()
+                    self?.navigationController?.popToRootViewController(animated: true)
                    })
                 }
             }
-    
-    
-    
     
     // Custom class MyLabel. Making text marging shob vidstup buv zliva
        class MyLabel: UILabel{
@@ -286,7 +279,5 @@ print("figant \(String(describing: figant))")
                super.drawText(in: rect.inset(by: UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)))
            }
        }
-    
-    
     }
 
