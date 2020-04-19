@@ -16,12 +16,18 @@ class AddAffirmationViewController: UIViewController {
         let cancelButton = UIButton()
         let backgroundColorView: UIView = UIView()
 
-     var fetchingCoreZaraza:(()->())?
+//     var fetchingCoreZaraza:(()->())?
+    
+//    delete this code after all debugging is done, this line of code checks if the controller was deallocated from memory
+    deinit {
+        print("AddAffirmationController was removed from memory")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         setupLayout()
+
     }
     
     //  MARK: - Button ACTIONS
@@ -29,45 +35,28 @@ class AddAffirmationViewController: UIViewController {
     // Povertannya do golovnogo (myAffi)
 // let myAffiVC = MyAffirmationsViewController()
         
-        let transition:CATransition = CATransition()
-        transition.duration = 0.5
-        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-        transition.type = CATransitionType.push
-        transition.subtype = CATransitionSubtype.fromTop
-        self.navigationController!.view.layer.add(transition, forKey: kCATransition)
+makeVerticalTransitionFromBottom()
         
         
             self.navigationController?.popToRootViewController( animated: true)
-//       let addAffi = AddAffirmationViewController()
-//        self.dismiss(animated: true, completion: nil)
-print("go to myAffirmationsVC!'")
+
         }
     
     @objc func chooseAffiButtonAction() {
             let listVC = ListAffirmationsViewController()
-         listVC.dismissAddAffi = dismissAddAffi
-//        self.present(listVC, animated: true, completion: nil)
-        
-        let transition:CATransition = CATransition()
-        transition.duration = 0.5
-        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-        transition.type = CATransitionType.push
-        transition.subtype = CATransitionSubtype.fromTop
-        self.navigationController!.view.layer.add(transition, forKey: kCATransition)
-        
+       
+        makeVerticalTransitionFromTop()
         
             self.navigationController?.pushViewController(listVC, animated: true)
 print("go to ListAffirmationsVC ")
         }
     
+    
     @objc  func ownAffiButtonAction(){
      let popaVC = PopUpViewController ()
-         popaVC.modalPresentationStyle = .overCurrentContext
-         popaVC.reloadTable = reloadTable
-         popaVC.dismissAddAffi = dismissAddAffi
          popaVC.editingAffi = false
-        self.present(popaVC, animated: true, completion: nil)
-print("go to PopUpVC (Dupa)!")
+        makeVerticalTransitionFromTop()
+                    self.navigationController?.pushViewController(popaVC, animated: true)
     }
     
     //MARK:    SetupView
@@ -163,17 +152,17 @@ print("go to PopUpVC (Dupa)!")
 
 
                 }
+//
+//    func reloadTable() -> () {
+//        fetchingCoreZaraza!()
+////        print("Relodnula Table")
+//    }
     
-    func reloadTable() -> () {
-        fetchingCoreZaraza!()
-//        print("Relodnula Table")
-    }
-    
-    func dismissAddAffi () ->() {
-           let myAffiVC = MyAffirmationsViewController()
-//           self.navigationController?.pushViewController(myAffiVC, animated: true)
-         self.navigationController?.popToRootViewController( animated: true)
-//                   print("Do myAffi!'")
-           }
+//    func dismissAddAffi () ->() {
+//           let myAffiVC = MyAffirmationsViewController()
+////           self.navigationController?.pushViewController(myAffiVC, animated: true)
+//         self.navigationController?.popToRootViewController( animated: true)
+////                   print("Do myAffi!'")
+//           }
     
 }
