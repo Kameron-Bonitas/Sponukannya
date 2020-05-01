@@ -19,10 +19,8 @@ class PopUpViewController: UIViewController {
     let okButton = UIButton()
     let cancelButton = UIButton()
     let placeholder = NSLocalizedString("Type your affirmation here...", comment: "Type your affirmation here...")
-    
+    private let buttonHeight: CGFloat = 55
     private let alertViewGrayColor = UIColor (named: "buttonsBorderColor")
-    let textViwBorderWidth: CGFloat = 0.5
-    let textViwBorderColor = UIColor.init(red: 200/255, green: 199/255, blue: 204/255, alpha: 1)
     let textViwFontSize: CGFloat = 18
     
     lazy var buttonStackView: UIStackView  = {
@@ -66,8 +64,7 @@ class PopUpViewController: UIViewController {
         // MARK: Zatemnennya osnovnogo ekranu
         UIView.animate(withDuration: 1) {
             self.backgroundColorView.alpha = 1.0
-        }
-        viewDidLayoutSubviews()
+            }
     }
     
     //MARK: Layout Subviews
@@ -76,7 +73,7 @@ class PopUpViewController: UIViewController {
         
         placeHolder ()
         
-        cancelButton.addBorder(side: .Top, color: alertViewGrayColor ?? UIColor.black, width: 1)
+        cancelButton.addBorder(side: .Top, color: alertViewGrayColor!, width: 1)
         cancelButton.addBorder(side: .Right, color: alertViewGrayColor!, width: 0.5)
         okButton.addBorder(side: .Top, color: alertViewGrayColor!, width: 1)
         okButton.addBorder(side: .Left, color: alertViewGrayColor!, width: 0.5)
@@ -87,7 +84,6 @@ class PopUpViewController: UIViewController {
     @objc func oKButtonAction () {
         if textNewAffirmation.text != placeholder && textNewAffirmation.text != nil {
             if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext {
-                
                 if editingAffi{
                     if let affiToUpdate = transferedAffi {
                         affiToUpdate.name = textNewAffirmation.text
@@ -100,24 +96,12 @@ class PopUpViewController: UIViewController {
                         (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
                     }
                 }
-                //                           fetchingCoreZaraza?()
-                //             reloadTable?()
-                //                           dismissAddAffi?()
             }
-            
-            //            UIView.animate(withDuration: 0.3, animations: { [weak self] in
-            //                guard let `self` = self else { return }
-            //                self.backgroundColorView.alpha = 0.0
-            //            }) { [weak self]  (isComplete) in
-            //                guard let `self` = self else { return }
-            //                self.dismiss(animated: true, completion: nil)
+        
             self.textNewAffirmation.resignFirstResponder()
             makeVerticalTransitionFromBottom()
             self.navigationController?.popToRootViewController(animated: true)
-            //                }
-            
-        }else if textNewAffirmation.text == placeholder && textNewAffirmation.text != nil{
-            
+            }else if textNewAffirmation.text == placeholder && textNewAffirmation.text != nil{
             //            this animates the textfield background when the user presses ok without entering the affi
             UIView.animate(withDuration: 2, animations: { [weak self] in
                 guard let `self` = self else { return }
@@ -148,8 +132,8 @@ class PopUpViewController: UIViewController {
             self.textNewAffirmation.resignFirstResponder()
             self.makeVerticalTransitionFromBottom()
             self.navigationController?.popViewController(animated: true)
-        }
-    }
+         }
+     }
     
     
     //MARK: SetupLayouts
@@ -176,11 +160,12 @@ class PopUpViewController: UIViewController {
             textNewAffirmation.topAnchor.constraint(equalTo: mainView.topAnchor, constant: 10),
             textNewAffirmation.leadingAnchor.constraint(equalTo: mainView.leadingAnchor, constant: 16),
             textNewAffirmation.trailingAnchor.constraint(equalTo: mainView.trailingAnchor, constant: -16),
+            textNewAffirmation.bottomAnchor.constraint(equalTo: buttonStackView.topAnchor,constant: -10)
         ])
         //buttonStackView
         buttonStackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            buttonStackView.topAnchor.constraint(equalTo: textNewAffirmation.bottomAnchor, constant: 10),
+            buttonStackView.heightAnchor.constraint(equalToConstant: buttonHeight),
             buttonStackView.bottomAnchor.constraint(equalTo: mainView.bottomAnchor),
             buttonStackView.leadingAnchor.constraint(equalTo: mainView.leadingAnchor),
             buttonStackView.trailingAnchor.constraint(equalTo: mainView.trailingAnchor)
@@ -191,9 +176,6 @@ class PopUpViewController: UIViewController {
     private func setupViews () {
         //backgroundColorView
         setupBackground(imageView: backgroundImage, imageNamed: "background.png", to: self.view)
-        //        backgroundColorView.backgroundColor = UIColor.black.withAlphaComponent(0.34)
-        //                backgroundColorView.isOpaque = false
-        //                backgroundColorView.alpha = 0.0
         view.addSubview(backgroundColorView)
         //mainview
         view.addSubview(mainView)
@@ -204,23 +186,25 @@ class PopUpViewController: UIViewController {
         //Return ta done na tastaturi
         textNewAffirmation.returnKeyType = .default
         //save button
-        okButton.setTitle(NSLocalizedString("OK", comment: "OK"), for: .normal)
-        okButton.backgroundColor = UIColor.clear
-        okButton.titleLabel?.font = UIFont(name: "Lato-Regular", size: 24)
-        okButton.setTitleColor(UIColor(named: "popaButtonColor"), for: .normal)
+        let okButtonTitle = NSMutableAttributedString(string: "OK", attributes: [
+            NSAttributedString.Key.font: UIFont(name: "Lato-Regular", size: 24) ?? UIFont.systemFont(ofSize: 24),
+            NSAttributedString.Key.foregroundColor: UIColor(named: "popaButtonColor") ?? UIColor.gray
+                        ])
+                 okButton.setAttributedTitle(okButtonTitle, for: .normal)
         okButton.addTarget(self, action: #selector(oKButtonAction), for: .touchUpInside)
         //cancel button
-        cancelButton.setTitle(NSLocalizedString("Cancel", comment: "Cancel"), for: .normal)
-        cancelButton.setTitleColor(UIColor(named: "popaButtonColor"), for: .normal)
-        cancelButton.backgroundColor = UIColor.clear
-        cancelButton.titleLabel?.font = UIFont(name: "Lato-Regular", size: 24)
+        let cancelButtonTitle = NSMutableAttributedString(string: "Cancel", attributes: [
+            NSAttributedString.Key.font: UIFont(name: "Lato-Regular", size: 24) ?? UIFont.systemFont(ofSize: 24) ,
+             NSAttributedString.Key.foregroundColor: UIColor(named: "popaButtonColor") ?? UIColor.gray
+             ])
+                   cancelButton.setAttributedTitle(cancelButtonTitle, for: .normal)
         cancelButton.addTarget(self, action: #selector(cancelButtonAction), for: .touchUpInside)
         
         [textNewAffirmation, buttonStackView,].forEach { mainView.addSubview($0) }
     }
     
     
-    //MARK: Placeholder func
+//    //MARK: Placeholder func
     func placeHolder () {
         if editingAffi == false {
             textNewAffirmation.delegate = self as UITextViewDelegate

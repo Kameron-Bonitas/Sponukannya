@@ -15,6 +15,7 @@
 		B56C0085243C8BF9000F96F0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B56C0087243C8BF9000F96F0 /* Localizable.strings */; };
 		B56C009B243CA4A6000F96F0 /* OpenSansCondensed-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B56C009D243CA4A6000F96F0 /* OpenSansCondensed-LightItalic.ttf */; };
 		B5A0CE0D24324CA600B89927 /* PromptScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A0CE0C24324CA500B89927 /* PromptScreenViewController.swift */; };
+		B5D727BD245591E80097B65F /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D727BC245591E80097B65F /* ListTableViewCell.swift */; };
 		B5DA3E2223F1478D00DC8959 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DA3E2123F1478D00DC8959 /* AppDelegate.swift */; };
 		B5DA3E2423F1478D00DC8959 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DA3E2323F1478D00DC8959 /* SceneDelegate.swift */; };
 		B5DA3E2723F1478D00DC8959 /* Sponukannya.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B5DA3E2523F1478D00DC8959 /* Sponukannya.xcdatamodeld */; };
@@ -32,7 +33,6 @@
 		B5DA3E6423F1B5BE00DC8959 /* ListAffirmationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DA3E6323F1B5BE00DC8959 /* ListAffirmationsViewController.swift */; };
 		B5DA3E6623F1D72000DC8959 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DA3E6523F1D72000DC8959 /* PopUpViewController.swift */; };
 		B5DA3E6823F1DA1600DC8959 /* UIButton + Border.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DA3E6723F1DA1600DC8959 /* UIButton + Border.swift */; };
-		B5DA3E6A23F4036800DC8959 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DA3E6923F4036800DC8959 /* CoreDataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +67,7 @@
 		B56C009C243CA4A6000F96F0 /* uk */ = {isa = PBXFileReference; lastKnownFileType = file; name = uk; path = "uk.lproj/OpenSansCondensed-LightItalic.ttf"; sourceTree = "<group>"; };
 		B56C009E243CA4AC000F96F0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = "en.lproj/OpenSansCondensed-LightItalic.ttf"; sourceTree = "<group>"; };
 		B5A0CE0C24324CA500B89927 /* PromptScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptScreenViewController.swift; sourceTree = "<group>"; };
+		B5D727BC245591E80097B65F /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		B5DA3E1E23F1478D00DC8959 /* Sponukannya.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sponukannya.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5DA3E2123F1478D00DC8959 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5DA3E2323F1478D00DC8959 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -89,7 +90,6 @@
 		B5DA3E6323F1B5BE00DC8959 /* ListAffirmationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAffirmationsViewController.swift; sourceTree = "<group>"; };
 		B5DA3E6523F1D72000DC8959 /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		B5DA3E6723F1DA1600DC8959 /* UIButton + Border.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton + Border.swift"; sourceTree = "<group>"; };
-		B5DA3E6923F4036800DC8959 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,7 +173,6 @@
 				B5DA3E3223F1478E00DC8959 /* Info.plist */,
 				B5DA3E2523F1478D00DC8959 /* Sponukannya.xcdatamodeld */,
 				B5DA3E2C23F1478E00DC8959 /* Preview Content */,
-				B5DA3E6923F4036800DC8959 /* CoreDataManager.swift */,
 				B52F686523FDA7CB002524C4 /* Constants.swift */,
 				4CAFFD1C244B259E00A49E74 /* Extensions */,
 			);
@@ -223,6 +222,7 @@
 			isa = PBXGroup;
 			children = (
 				B5DA3E5A23F166D400DC8959 /* MyTableViewCell.swift */,
+				B5D727BC245591E80097B65F /* ListTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -428,6 +428,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CAFFD20244B2B5E00A49E74 /* ViewController.swift in Sources */,
+				B5D727BD245591E80097B65F /* ListTableViewCell.swift in Sources */,
 				B5DA3E2223F1478D00DC8959 /* AppDelegate.swift in Sources */,
 				B52F686423FD9710002524C4 /* DatePickerPopupViewController.swift in Sources */,
 				B5DA3E2423F1478D00DC8959 /* SceneDelegate.swift in Sources */,
@@ -441,7 +442,6 @@
 				B5A0CE0D24324CA600B89927 /* PromptScreenViewController.swift in Sources */,
 				B5DA3E6623F1D72000DC8959 /* PopUpViewController.swift in Sources */,
 				B5DA3E5B23F166D400DC8959 /* MyTableViewCell.swift in Sources */,
-				B5DA3E6A23F4036800DC8959 /* CoreDataManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

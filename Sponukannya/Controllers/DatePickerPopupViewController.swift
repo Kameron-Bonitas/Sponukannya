@@ -12,11 +12,10 @@ class DatePickerPopupViewController: UIViewController {
 
 
         //MARK: - Constants
-//        private let titleLabelTextOptions = ["calendar":"Add to calendar", "reminder":NSLocalizedString("Add a reminder", comment: "Add a reminder")]
         private let mainViewHeight: CGFloat = 300
         private let mainViewWidth: CGFloat = 300
-        private let titleLabelHeight: CGFloat = 40
-        private let buttonHeight: CGFloat = 45
+        private let titleLabelHeight: CGFloat = 55
+        private let buttonHeight: CGFloat = 55
          private let switchHight: CGFloat = 45
         private let alertViewGrayColor = UIColor (named: "buttonsBorderColor")
             
@@ -74,19 +73,13 @@ class DatePickerPopupViewController: UIViewController {
             super.viewDidLoad()
             setupViews()
             setupLayouts()
-
         }
-        
         
         override func viewDidAppear(_ animated: Bool) {
             super.viewDidAppear(animated)
  // MARK: Zatemnennya osnovnogo ekranu
             UIView.animate(withDuration: 1) {
                 self.backgroundColorView.alpha = 1.0
-             
-
-                
-self.viewDidLayoutSubviews()
             }
         }
         
@@ -96,7 +89,8 @@ self.viewDidLayoutSubviews()
             cancelButton.addBorder(side: .Right, color: alertViewGrayColor!, width: 0.5)
             okButton.addBorder(side: .Top, color: alertViewGrayColor!, width: 1)
             okButton.addBorder(side: .Left, color: alertViewGrayColor!, width: 0.5)
-            switchLabel.addBorder(side: .Top, color: alertViewGrayColor!, width: 1)
+//            switchLabel.addBorderSwitch(side: .Top, color: alertViewGrayColor!, width: 1)
+            titleLabel.addBorderSwitch(side: .Bottom, color: alertViewGrayColor!, width: 1)
         }
         
         
@@ -104,9 +98,6 @@ self.viewDidLayoutSubviews()
             
             //backgroundColorView
              setupBackground(imageView: backgroundImage, imageNamed: "background.png", to: self.view)
-//            backgroundColorView.backgroundColor = UIColor.black.withAlphaComponent(0.34)
-//            backgroundColorView.isOpaque = false
-//            backgroundColorView.alpha = 0.0
             view.addSubview(backgroundColorView)
             
             //mainview
@@ -116,32 +107,29 @@ self.viewDidLayoutSubviews()
             titleLabel.textAlignment = .center
             titleLabel.textColor = UIColor(named: "popaButtonColor")
             titleLabel.font = UIFont(name: NSLocalizedString("Lato-Regular", comment: "Lato-Regular"), size: 25)
-//            if dateForCalendar == true{
-//                titleLabel.text = NSLocalizedString(titleLabelTextOptions["calendar"]!, comment: "calendar")
-//                }else{
-                titleLabel.text = NSLocalizedString("Add a reminder", comment: "Add a reminder")
-//                }
+            titleLabel.text = NSLocalizedString("Add a reminder", comment: "Add a reminder")
             titleLabel.backgroundColor = .clear
             mainView.addSubview(titleLabel)
             //datePicker
             mainView.addSubview(datePicker)
             //save button
-            okButton.setTitle (NSLocalizedString ("OK", comment: "OK"), for: .normal)
-            okButton.backgroundColor = UIColor.clear
-            okButton.titleLabel?.font = UIFont(name:NSLocalizedString("Lato-Regular", comment: "Lato-Regular"), size: 24)
-            okButton.setTitleColor(UIColor(named: "popaButtonColor"), for: .normal)
-//            okButton.setTitleColor(UIColor (named: "popUpButtonFont"), for: .normal)
+          let okButtonTitle = NSMutableAttributedString(string: "OK", attributes: [
+                NSAttributedString.Key.font: UIFont(name: "Lato-Regular", size: 24) ?? UIFont.systemFont(ofSize: 24),
+                NSAttributedString.Key.foregroundColor: UIColor(named: "popaButtonColor") ?? UIColor.gray
+                            ])
+                     okButton.setAttributedTitle(okButtonTitle, for: .normal)
             okButton.addTarget(self, action: #selector(oKButtonAction), for: .touchUpInside)
             //cancel button
-            cancelButton.setTitle (NSLocalizedString("Cancel", comment: "Cancel"), for: .normal)
-            cancelButton.setTitleColor(UIColor(named: "popaButtonColor"), for: .normal)
-            cancelButton.titleLabel?.font = UIFont(name: NSLocalizedString("Lato-Regular", comment: "Lato-Regular"), size: 24)
-                cancelButton.backgroundColor = UIColor.clear
-                cancelButton.addTarget(self, action: #selector(cancelButtonAction), for: .touchUpInside)
+            let cancelButtonTitle = NSMutableAttributedString(string: "Cancel", attributes: [
+                NSAttributedString.Key.font: UIFont(name: "Lato-Regular", size: 24) ?? UIFont.systemFont(ofSize: 24) ,
+                 NSAttributedString.Key.foregroundColor: UIColor(named: "popaButtonColor") ?? UIColor.gray
+                 ])
+                       cancelButton.setAttributedTitle(cancelButtonTitle, for: .normal)
+            cancelButton.addTarget(self, action: #selector(cancelButtonAction), for: .touchUpInside)
                 mainView.addSubview(buttonStackView)
             //switchLabel
             switchLabel.text = NSLocalizedString("Repeat every day", comment: "Repeat every day")
-            switchLabel.font = UIFont(name: NSLocalizedString("Lato-Light", comment: "Lato-Light"),size: 20)
+           switchLabel.font = UIFont(name: NSLocalizedString("Lato-Light", comment: "Lato-Light"),size: 20)
             switchLabel.textColor = UIColor(named: "textColor")
             switchLabel.textAlignment = .left
             self.mainView.addSubview(switchLabel)

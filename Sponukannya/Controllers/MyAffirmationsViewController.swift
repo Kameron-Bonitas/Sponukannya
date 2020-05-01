@@ -25,13 +25,7 @@ class MyAffirmationsViewController: UIViewController,UITableViewDelegate,UITable
     private let cellIdentifier = "MyTableViewCell"
     
     //    array that stocks affirmations that come from core data
-    var myAffis : [MyAffirmationItem] = [] {
-        didSet{
-            print("Called after setting the new value \(myAffis.count)")
-            
-            //            tableView.reloadData()
-        }
-    }
+    var myAffis : [MyAffirmationItem] = []
     var repeatIsSet = Bool ()
     let appDelegate = UIApplication.shared.delegate as! AppDelegate // Prompt Screen
     
@@ -54,13 +48,10 @@ class MyAffirmationsViewController: UIViewController,UITableViewDelegate,UITable
         super.viewWillDisappear(animated)
     }
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLayout()
         setupView()
-        
         
         setCategories()
         configureTableView()
@@ -75,8 +66,7 @@ class MyAffirmationsViewController: UIViewController,UITableViewDelegate,UITable
             appDelegate.sethasAlreadyLaunched() //set hasAlreadyLaunched to false
             promptScreen()   //display prompt screen
         }
-        
-        //    promptScreen()
+//            promptScreen()
     }
     
     //  MARK: - Button ACTIONS
@@ -88,7 +78,6 @@ class MyAffirmationsViewController: UIViewController,UITableViewDelegate,UITable
         
         self.navigationController?.pushViewController(addAffiVC, animated: true)
         
-        print("go to AddAffirmationVC!")
     }
     
     // MARK: CORE DATA SACHEN
@@ -98,7 +87,6 @@ class MyAffirmationsViewController: UIViewController,UITableViewDelegate,UITable
             if let coreDataMyAffirmationItems = try? context.fetch(MyAffirmationItem.fetchRequest()) as? [MyAffirmationItem] {
                 myAffis = coreDataMyAffirmationItems
                 tableView.reloadData()
-                //            print("Fetching")
             }
         }
     }
@@ -146,7 +134,6 @@ class MyAffirmationsViewController: UIViewController,UITableViewDelegate,UITable
         //tableView
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.allowsMultipleSelection = true
         tableView.backgroundColor = UIColor.clear
         tableView.separatorColor = .clear
         tableView.separatorStyle = .singleLine
@@ -155,14 +142,13 @@ class MyAffirmationsViewController: UIViewController,UITableViewDelegate,UITable
     }
     
     
-    
     // MARK: - TableView Sachen
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return myAffis.count
     }
     
-    func configureTableView(){
-        
+func configureTableView(){
+//  ?????????????????????????????????????????????????????????????????????????
         //        tableView.estimatedRowHeight = 400.0
         //        tableView.rowHeight = UITableView.automaticDimension
         
@@ -177,8 +163,6 @@ class MyAffirmationsViewController: UIViewController,UITableViewDelegate,UITable
         let myAffi = myAffis[indexPath.row]
         cell.noteLabel.text = myAffi.name
         cell.selectionStyle = .none
-        //  Selection colour of cell is custom
-        
         cell.layer.cornerRadius = 10
         cell.clipsToBounds = true
         
@@ -191,23 +175,18 @@ class MyAffirmationsViewController: UIViewController,UITableViewDelegate,UITable
                 let myAffi = self?.myAffis[indexPath.row].name
                 NotificationReminder.body = myAffi ?? ""
                 self?.getNotificationSettingStatus()
-                //print("funcAddReminder at indexPath")
                 return true
                 },
              
              MGSwipeButton(title: "", icon: UIImage(named:"edit"), backgroundColor: UIColor.clear){
                 [weak self] sender in
-                
                 let popaVC = PopUpViewController ()
                 popaVC.modalPresentationStyle = .overCurrentContext
                 popaVC.transferedAffi = self!.myAffis[indexPath.row]
-                //                popaVC.fetchingCoreZaraza = self?.fetchingCoreZaraza
                 popaVC.editingAffi = true
                 popaVC.textNewAffirmation.text = self!.myAffis[indexPath.row].name
-                //print(self?.myAffis[indexPath.row].name)
-                
-                self?.present(popaVC, animated: true, completion: nil)
-                //print("Upa!")
+                self?.makeVerticalTransitionFromTop()
+                self?.navigationController?.pushViewController(popaVC, animated: true)
                 return true
                 }]
         cell.leftSwipeSettings.transition = .rotate3D
@@ -252,7 +231,7 @@ class MyAffirmationsViewController: UIViewController,UITableViewDelegate,UITable
                         Make sure the font file is included in the project and the font name is spelled correctly.
                         """)
         }
-        //        Sho tse nah*j???? NASTYA
+      
         titleLabel.font = UIFontMetrics.default.scaledFont(for: customFont)
         titleLabel.adjustsFontForContentSizeCategory = true
     }

@@ -11,32 +11,48 @@ import CoreData
 
 class ListAffirmationsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
    
-//    var dismissAddAffi:(()->())?
-    
-    
     let titleLabel = UILabel()
     let backgroundImage = UIImageView()
     let cancelButton = UIButton()
     let addButton = UIButton()
     let tableView = UITableView()
-    let cellId = "MyTableViewCell"
+    let cellId = "ListTableViewCell"
     
     let backgroundColorView: UIView = UIView()
     
     var selectedAffis = [String]()
     
     // Pryklady Affirmations (hardcoded)
-    private var sampleAffis = ["This is a short text.",
-                               
-                               "This is another text, and it is a little bit longer.",
-                               
-                               "Wow, this text is really very very long! I hope it can be read completely! Luckily, we are using automatic row height!",
-                               
-                               "Важлива інформація!Марш Захисників України вже завтра, тому пропонуємо ознайомитись з фінальним інструктажем!1. Збір починається о 10:00 в парку Тараса Шевченка, навпроти Червоного корпусу університету.Слава Україні!",
-                               
-                               "It looks like there is now cirilic version for diese blöde Lato Macciato Fonts!",
-                               
-                               "Dysplaying AFFIRMATIONS in ukraine language is impossible!!!!!!!!!"]
+    private var sampleAffis = ["Smile at yourself!",
+    "You are the best!",
+    "I am secure and safe in the world.",
+    "My capability and potential are endless.",
+    "I am a great person.",
+    "I believe in myself. I can succeed.",
+    "I can accomplish anything I set my mind to.",
+    "I love who I have become.",
+    "I am confident and brave. I live in the present, and I look forward to the future.",
+    "I feel great about myself and my life.",
+    "My life is abundant and full of joy.",
+    "I deserve to be happy and successful.",
+    "I can trust myself to handle anything.",
+    "I recognize the many good qualities I have.",
+    "I trust myself. I am excellent exactly as I am.",
+    "I accept myself and know that I am worthy of great things in life.",
+    "I have the knowledge and resources to achieve my dreams.",
+    "I am releasing all of my fears and worries. I am living my full potential.",
+    "I feel tremendous confidence that I can do anything.",
+    "I see problems as challenges that evolve me and make me grow.",
+    "I am willing to step out of my comfort zone.",
+    "I have the energy I need to accomplish my goals and to fulfill my desires.",
+    "New ideas come to me regularly.",
+    "I choose happiness no matter what the circumstances are.",
+    "I work for the good of others.",
+    "I am positive-minded and filled with self-esteem.",
+    "I think only positive things about people. I accept that everyone does their best.",
+    "I have something special to offer the world.",
+    "My future depends only on me!" 
+]
     
     
     
@@ -56,11 +72,9 @@ class ListAffirmationsViewController: UIViewController, UITableViewDelegate, UIT
     //MARK: - Button ACTIONS
     // Cancel Batton
     @objc func cancelButtonPressed(_ sender: UIButton) {
-makeVerticalTransitionFromBottom()
+        makeVerticalTransitionFromBottom()
         self.navigationController?.popViewController(animated: true)
-     
-    }
-    
+     }
     
     // Add Button
     @objc func addButtonPressed(_ sender: UIButton) {
@@ -73,14 +87,10 @@ makeVerticalTransitionFromBottom()
             newMyAffirmation.name = affiToAdd
             (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
             }
-//        self.tableView.reloadData()
         }
     // Povertannya do golovnogo (myAffi)
-   
-makeVerticalTransitionFromBottom()
-            
-    self.navigationController?.popToRootViewController( animated: true)
-
+        makeVerticalTransitionFromBottom()
+        self.navigationController?.popToRootViewController( animated: true)
          } else {
             UIView.animate(withDuration: 1) {
                        self.backgroundColorView.alpha = 1.0
@@ -91,7 +101,6 @@ makeVerticalTransitionFromBottom()
                 self.view.layoutIfNeeded()
             })
         }
-    
     }
     
     // MARK: Setup Layot
@@ -109,12 +118,10 @@ makeVerticalTransitionFromBottom()
         titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant:0.0)
                   ])
         //cancelButton
-//        cancelButton.backgroundColor = .systemBlue
         cancelButton.setTitle(NSLocalizedString("Cancel", comment: "Cancel"), for: .normal)
         cancelButton.titleLabel?.font = UIFont(name: "Lato-Light", size: 30)
         cancelButton.backgroundColor = UIColor(named: "bigButtonColor")
-        cancelButton.setTitleColor(UIColor (named: "textColor"), for: .normal)
-//        cancelButton.tintColor = .white
+        cancelButton.setTitleColor(UIColor (named: "bigButtonTextColor"), for: .normal)
         cancelButton.layer.cornerRadius = 5
         cancelButton.clipsToBounds = true
         cancelButton.addTarget(self, action: #selector(cancelButtonPressed(_:)), for: .touchUpInside)
@@ -127,12 +134,10 @@ makeVerticalTransitionFromBottom()
         cancelButton.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -5)
            ])
         //addlButton
-//        addButton.backgroundColor = .systemBlue
         addButton.setTitle(NSLocalizedString("Add", comment: "Add"), for: .normal)
         addButton.titleLabel?.font = UIFont(name: "Lato-Light", size: 30)
         addButton.backgroundColor = UIColor(named: "bigButtonColor")
-        addButton.setTitleColor(UIColor (named: "textColor"), for: .normal)
-//        addButton.tintColor = .white
+        addButton.setTitleColor(UIColor (named: "bigButtonTextColor"), for: .normal)
         addButton.layer.cornerRadius = 5
         addButton.clipsToBounds = true
         addButton.addTarget(self, action: #selector(addButtonPressed(_:)), for: .touchUpInside)
@@ -166,7 +171,7 @@ makeVerticalTransitionFromBottom()
        tableView.separatorColor = .clear
        tableView.separatorStyle = .singleLine
        tableView.separatorInset = .zero
-       tableView.register(MyTableViewCell.self, forCellReuseIdentifier: cellId)
+       tableView.register(ListTableViewCell.self, forCellReuseIdentifier: cellId)
        }
     
    
@@ -179,8 +184,7 @@ makeVerticalTransitionFromBottom()
     //Zberigayemo v selectedAffis vybranyj sampleAffi
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedAffis.append(sampleAffis[indexPath.row])
- 
-        }
+    }
     
     // Removing from selectedAffis, koly user deselektnuv cell
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
@@ -191,11 +195,10 @@ makeVerticalTransitionFromBottom()
     
     func configureTableView(){
             tableView.estimatedRowHeight = UITableView.automaticDimension
-//print("configureTableView")
-                }
+        }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-           let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! MyTableViewCell
+           let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ListTableViewCell
             //Prozzorist' of cell
             cell.backgroundColor = .clear
             let content = sampleAffis[indexPath.row]
@@ -204,7 +207,7 @@ makeVerticalTransitionFromBottom()
             cell.layer.cornerRadius = 10
             cell.clipsToBounds = true
         //  Selection colour of cell is custom
-         cell.selectionStyle = .gray
+         cell.selectionStyle = .none
         let backgroundView = UIView()
         backgroundView.backgroundColor = UIColor (named: "selectedListCellColor")
         cell.selectedBackgroundView = backgroundView
@@ -249,5 +252,4 @@ makeVerticalTransitionFromBottom()
                       })
                 }
            }
-    
-}
+    }

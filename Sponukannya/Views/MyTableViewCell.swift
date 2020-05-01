@@ -80,10 +80,10 @@ var numberLabel = UILabel()
             // noteLabel
             noteLabel.translatesAutoresizingMaskIntoConstraints = false
             NSLayoutConstraint.activate([
-                noteLabel.trailingAnchor.constraint(equalTo:cellView.trailingAnchor),
-                noteLabel.topAnchor.constraint(equalTo: cellView.topAnchor),
-                noteLabel.bottomAnchor.constraint(equalTo: cellView.bottomAnchor),
-                noteLabel.leadingAnchor.constraint(equalTo:numberLabel.trailingAnchor)
+                noteLabel.trailingAnchor.constraint(equalTo:cellView.trailingAnchor,constant: -10),
+                noteLabel.topAnchor.constraint(equalTo: cellView.topAnchor, constant: 10),
+                noteLabel.bottomAnchor.constraint(equalTo: cellView.bottomAnchor, constant: -10),
+                noteLabel.leadingAnchor.constraint(equalTo:numberLabel.trailingAnchor, constant: 10)
                  ])
             // numberLabel
                numberLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -93,26 +93,6 @@ var numberLabel = UILabel()
                  numberLabel.heightAnchor.constraint(equalTo: cellView.heightAnchor),
                  numberLabel.bottomAnchor.constraint (equalTo: cellView.bottomAnchor)
                  ])
-    
-            //Castom Font Instance
-//            guard UIFont(name: "IndieFlower", size: UIFont.labelFontSize) != nil else {
-//               fatalError("""
-//                   Failed to load the "IndieFlower" font.
-//                   Make sure the font file is included in the project and the font name is spelled correctly.
-//                   """)
-//                }
-        }
-//    MARK: Selection
-    override func setSelected(_ selected: Bool, animated: Bool) {
-           super.setSelected(selected, animated: animated)
-//    //        //  Labels Taxt Selected color
-//            noteLabel.textColor = selected ? UIColor.red : UIColor.black
-//            numberLabel.textColor = selected ? UIColor.red : UIColor.black
-//    //        //  Labels Background Selected color
-            cellView.backgroundColor = selected ? UIColor(named: "selectedCellColor"): UIColor (named: "cellBackgroundColor")
-//    //        //  Image View Selected color
-//    //        backgroundCellView.backgroundColor = selected ? UIColor.green : UIColor.clear
-//
         }
 
     
@@ -124,18 +104,6 @@ var numberLabel = UILabel()
 }
 
 
-//MARK: Fonts
-    
-    extension UIFont {
-        class func cellLB( size:CGFloat ) -> UIFont{
-            return  UIFont(name: Fonts.cellLabelFont, size: size)!
-        }
-    }
-
-    enum Fonts {
-             // Font
-             static let cellLabelFont = NSLocalizedString("IndieFlower", comment: "IndieFlower")
-             }
     
    
 

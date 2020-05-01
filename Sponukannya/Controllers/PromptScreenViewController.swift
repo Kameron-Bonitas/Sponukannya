@@ -127,7 +127,7 @@ class PromptScreenViewController: UIViewController {
         //Choose Label
         chooseLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            chooseLabel.heightAnchor.constraint(equalToConstant: 60),
+            chooseLabel.heightAnchor.constraint(equalToConstant: 80),
             chooseLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30),
             chooseLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -30),
             chooseLabel.bottomAnchor.constraint(equalTo: setLabel.topAnchor)
@@ -143,7 +143,7 @@ class PromptScreenViewController: UIViewController {
         //Repeat Label
         repeatLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            repeatLabel.heightAnchor.constraint(equalToConstant: 60),
+            repeatLabel.heightAnchor.constraint(equalToConstant: 80),
             repeatLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30),
             repeatLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -30),
             repeatLabel.bottomAnchor.constraint(equalTo: gotItButton.topAnchor, constant: -80)

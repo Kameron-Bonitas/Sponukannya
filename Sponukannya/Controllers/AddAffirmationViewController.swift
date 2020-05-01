@@ -16,7 +16,6 @@ class AddAffirmationViewController: UIViewController {
         let cancelButton = UIButton()
         let backgroundColorView: UIView = UIView()
 
-//     var fetchingCoreZaraza:(()->())?
     
 //    delete this code after all debugging is done, this line of code checks if the controller was deallocated from memory
     deinit {
@@ -27,37 +26,29 @@ class AddAffirmationViewController: UIViewController {
         super.viewDidLoad()
         setupView()
         setupLayout()
-
     }
     
     //  MARK: - Button ACTIONS
     @objc func cancelButtonAction() {
     // Povertannya do golovnogo (myAffi)
-// let myAffiVC = MyAffirmationsViewController()
-        
-makeVerticalTransitionFromBottom()
-        
-        
-            self.navigationController?.popToRootViewController( animated: true)
-
+        makeVerticalTransitionFromBottom()
+        self.navigationController?.popToRootViewController( animated: true)
         }
     
     @objc func chooseAffiButtonAction() {
-            let listVC = ListAffirmationsViewController()
-       
-        makeVerticalTransitionFromTop()
-        
-            self.navigationController?.pushViewController(listVC, animated: true)
-print("go to ListAffirmationsVC ")
+        let listVC = ListAffirmationsViewController()
+         makeVerticalTransitionFromTop()
+        self.navigationController?.pushViewController(listVC, animated: true)
         }
     
-    
+
     @objc  func ownAffiButtonAction(){
      let popaVC = PopUpViewController ()
          popaVC.editingAffi = false
         makeVerticalTransitionFromTop()
-                    self.navigationController?.pushViewController(popaVC, animated: true)
+        self.navigationController?.pushViewController(popaVC, animated: true)
     }
+    
     
     //MARK:    SetupView
     func setupView() {
@@ -71,8 +62,8 @@ print("go to ListAffirmationsVC ")
         
         //Own affirmation button
         ownAffiButton.setTitle(NSLocalizedString("Add my own affirmation", comment: "Add my own affirmation"), for: .normal)
-        ownAffiButton.setTitleColor(UIColor (named: "textColor"), for: .normal)
-        ownAffiButton.titleLabel?.font = UIFont(name: "Lato-Light", size: 30)
+        ownAffiButton.setTitleColor(UIColor (named: "bigButtonTextColor"), for: .normal)
+     ownAffiButton.titleLabel?.font = UIFont(name: "Lato-Light", size: 30)
         ownAffiButton.backgroundColor = UIColor(named: "bigButtonColor")
         ownAffiButton.layer.cornerRadius = 10.0
         ownAffiButton.addTarget(self, action: #selector(ownAffiButtonAction), for: .touchUpInside)
@@ -80,8 +71,8 @@ print("go to ListAffirmationsVC ")
         
         //Choose affirmations button
         chooseAffiButton.setTitle(NSLocalizedString("Choose affirmations", comment: "Choose affirmations"), for: .normal)
-        chooseAffiButton.setTitleColor(UIColor (named: "textColor"), for: .normal)
-        chooseAffiButton.titleLabel?.font = UIFont(name: "Lato-Light", size: 30)
+        chooseAffiButton.setTitleColor(UIColor (named: "bigButtonTextColor"), for: .normal)
+     chooseAffiButton.titleLabel?.font = UIFont(name: "Lato-Light", size: 30)
         chooseAffiButton.backgroundColor = UIColor(named: "bigButtonColor")
         chooseAffiButton.layer.cornerRadius = 10.0
         chooseAffiButton.addTarget(self, action: #selector(chooseAffiButtonAction), for: .touchUpInside)
@@ -89,8 +80,8 @@ print("go to ListAffirmationsVC ")
         
         //Cancel button
         cancelButton.setTitle(NSLocalizedString("Cancel", comment: "Cancel"), for: .normal)
-        cancelButton.setTitleColor(UIColor (named: "textColor"), for: .normal)
-        cancelButton.titleLabel?.font = UIFont(name: "Lato-Light", size: 30)
+        cancelButton.setTitleColor(UIColor (named: "bigButtonTextColor"), for: .normal)
+    cancelButton.titleLabel?.font = UIFont(name: "Lato-Light", size: 30)
         cancelButton.backgroundColor = UIColor(named: "bigButtonColor")
         cancelButton.layer.cornerRadius = 10.0
         cancelButton.addTarget(self, action: #selector(cancelButtonAction), for: .touchUpInside)
@@ -149,20 +140,6 @@ print("go to ListAffirmationsVC ")
             imageView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
             imageView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
                 ])
+        }
 
-
-                }
-//
-//    func reloadTable() -> () {
-//        fetchingCoreZaraza!()
-////        print("Relodnula Table")
-//    }
-    
-//    func dismissAddAffi () ->() {
-//           let myAffiVC = MyAffirmationsViewController()
-////           self.navigationController?.pushViewController(myAffiVC, animated: true)
-//         self.navigationController?.popToRootViewController( animated: true)
-////                   print("Do myAffi!'")
-//           }
-    
 }

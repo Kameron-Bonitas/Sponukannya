@@ -10,6 +10,7 @@ import UIKit
 
 extension UIViewController {
 
+//    adds beutiful transition when navigating between view controllers (forwards, from top)
     func makeVerticalTransitionFromTop(){
         let transition:CATransition = CATransition()
         transition.duration = 0.5
@@ -19,6 +20,7 @@ extension UIViewController {
         self.navigationController!.view.layer.add(transition, forKey: kCATransition)
     }
     
+    //    adds beutiful transition when navigating between view controllers (backwards, from top)
     func makeVerticalTransitionFromBottom(){
         let transition:CATransition = CATransition()
         transition.duration = 0.5
