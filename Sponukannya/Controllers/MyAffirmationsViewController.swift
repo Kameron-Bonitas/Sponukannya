@@ -52,14 +52,11 @@ class MyAffirmationsViewController: UIViewController,UITableViewDelegate,UITable
         super.viewDidLoad()
         setupLayout()
         setupView()
-        
         setCategories()
         configureTableView()
         view.backgroundColor = .white //  Vyrishennya zatemnenogo backgroundImage
         countAppLaunchesSwitchOnThem()          // Prompt Screen
-        
-        
-    }
+        }
     
     override func viewDidAppear(_ animated: Bool) {
         if(!appDelegate.hasAlreadyLaunched){
@@ -73,12 +70,9 @@ class MyAffirmationsViewController: UIViewController,UITableViewDelegate,UITable
     // addAffiBatton
     @objc func addAffiPopUpButtonPressed(_ sender: UIButton) {
         let addAffiVC = AddAffirmationViewController()
-        
         makeVerticalTransitionFromTop()
-        
         self.navigationController?.pushViewController(addAffiVC, animated: true)
-        
-    }
+        }
     
     // MARK: CORE DATA SACHEN
     //  MARK: - Fetching z perezavantazhennyam stola
@@ -182,9 +176,9 @@ func configureTableView(){
                 [weak self] sender in
                 let popaVC = PopUpViewController ()
                 popaVC.modalPresentationStyle = .overCurrentContext
-                popaVC.transferedAffi = self!.myAffis[indexPath.row]
+            popaVC.transferedAffi = self!.myAffis[indexPath.row]
                 popaVC.editingAffi = true
-                popaVC.textNewAffirmation.text = self!.myAffis[indexPath.row].name
+            popaVC.textNewAffirmation.text = self!.myAffis[indexPath.row].name
                 self?.makeVerticalTransitionFromTop()
                 self?.navigationController?.pushViewController(popaVC, animated: true)
                 return true
@@ -225,7 +219,7 @@ func configureTableView(){
             imageView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
         ])
         //MARK: Castom Font Instance
-        guard let customFont = UIFont(name: "Lato-Light", size:UIFont.labelFontSize) else {
+        guard let customFont = UIFont(name: "Lato-Regular", size:UIFont.labelFontSize) else {
             fatalError("""
                         Failed to load the "Lato-Light" font.
                         Make sure the font file is included in the project and the font name is spelled correctly.
@@ -275,17 +269,15 @@ func configureTableView(){
                 DispatchQueue.main.async {
                     // UI work here
                     self.goToPopupAndSetReminder()
-                    
-                    //                print("F getNotificationSettingStatus")
                 }
             case .denied, .notDetermined, .provisional:
                 self.goToSettingsAllert(alertTitle: SettingsAlertNotifications.title, alertMessage: SettingsAlertNotifications.message, alertActionTitle: SettingsAlertNotifications.settingActionTitle, alertCancelActionTitle: SettingsAlertNotifications.cancelActionTitle)
             @unknown default:
                 print("unknown case of authorisationStatus")
-            }
-        }
+             }
+         }
         
-    }
+     }
     
     func goToPopupAndSetReminder () {
         let dpVC = DatePickerPopupViewController()
@@ -300,9 +292,8 @@ func configureTableView(){
             guard let `self` = self else {return}
             //the $0 refers to the param which we get in datePicker when we pass the local repeatIsSet (the one in datePicker)
             self.repeatIsSet = $0
-        }
-        
-    }
+             }
+          }
     
     func setReminder (_ components: DateComponents) ->(){
         let content = UNMutableNotificationContent()

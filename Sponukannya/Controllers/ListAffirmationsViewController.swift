@@ -23,35 +23,36 @@ class ListAffirmationsViewController: UIViewController, UITableViewDelegate, UIT
     var selectedAffis = [String]()
     
     // Pryklady Affirmations (hardcoded)
-    private var sampleAffis = ["Smile at yourself!",
-    "You are the best!",
-    "I am secure and safe in the world.",
-    "My capability and potential are endless.",
-    "I am a great person.",
-    "I believe in myself. I can succeed.",
-    "I can accomplish anything I set my mind to.",
-    "I love who I have become.",
-    "I am confident and brave. I live in the present, and I look forward to the future.",
-    "I feel great about myself and my life.",
-    "My life is abundant and full of joy.",
-    "I deserve to be happy and successful.",
-    "I can trust myself to handle anything.",
-    "I recognize the many good qualities I have.",
-    "I trust myself. I am excellent exactly as I am.",
-    "I accept myself and know that I am worthy of great things in life.",
-    "I have the knowledge and resources to achieve my dreams.",
-    "I am releasing all of my fears and worries. I am living my full potential.",
-    "I feel tremendous confidence that I can do anything.",
-    "I see problems as challenges that evolve me and make me grow.",
-    "I am willing to step out of my comfort zone.",
-    "I have the energy I need to accomplish my goals and to fulfill my desires.",
-    "New ideas come to me regularly.",
-    "I choose happiness no matter what the circumstances are.",
-    "I work for the good of others.",
-    "I am positive-minded and filled with self-esteem.",
-    "I think only positive things about people. I accept that everyone does their best.",
-    "I have something special to offer the world.",
-    "My future depends only on me!" 
+    private var sampleAffis = [
+    NSLocalizedString("Smile at yourself!",comment: "Smile at yourself!"),
+    NSLocalizedString("I am the best!",comment: "I am the best!"),
+    NSLocalizedString("I am secure and safe in the world.",comment: "I am secure and safe in the world."),
+    NSLocalizedString("My capability and potential are endless.",comment: "My capability and potential are endless."),
+    NSLocalizedString("I am a great person.",comment: "I am a great person."),
+    NSLocalizedString("I believe in myself. I can succeed.",comment: "I believe in myself. I can succeed."),
+    NSLocalizedString("I can accomplish anything I set my mind to.",comment: "I can accomplish anything I set my mind to."),
+    NSLocalizedString("I love who I have become.",comment: "I love who I have become."),
+    NSLocalizedString("I am confident and brave. I live in the present, and I look forward to the future.",comment: "I am confident and brave. I live in the present, and I look forward to the future."),
+    NSLocalizedString("I feel great about myself and my life.",comment: "I feel great about myself and my life."),
+    NSLocalizedString("My life is abundant and full of joy.",comment:"My life is abundant and full of joy."),
+    NSLocalizedString("I deserve to be happy and successful.",comment: "I deserve to be happy and successful."),
+    NSLocalizedString("I can trust myself to handle anything.",comment: "I can trust myself to handle anything."),
+    NSLocalizedString("I recognize the many good qualities I have.",comment: "I recognize the many good qualities I have."),
+    NSLocalizedString("I trust myself. I am excellent exactly as I am.",comment: "I trust myself. I am excellent exactly as I am."),
+    NSLocalizedString("I accept myself and know that I am worthy of great things in life.",comment: "I accept myself and know that I am worthy of great things in life."),
+    NSLocalizedString("I have the knowledge and resources to achieve my dreams.",comment: "I have the knowledge and resources to achieve my dreams."),
+    NSLocalizedString("I am releasing all of my fears and worries. I am living my full potential.",comment: "I am releasing all of my fears and worries. I am living my full potential."),
+    NSLocalizedString("I feel tremendous confidence that I can do anything.",comment: "I feel tremendous confidence that I can do anything."),
+    NSLocalizedString("I see problems as challenges that evolve me and make me grow.",comment: "I see problems as challenges that evolve me and make me grow."),
+    NSLocalizedString("I am willing to step out of my comfort zone.",comment: "I am willing to step out of my comfort zone."),
+    NSLocalizedString("I have the energy I need to accomplish my goals and to fulfill my desires.",comment: "I have the energy I need to accomplish my goals and to fulfill my desires."),
+    NSLocalizedString("New ideas come to me regularly.",comment: "New ideas come to me regularly."),
+    NSLocalizedString("I choose happiness no matter what the circumstances are.",comment: "I choose happiness no matter what the circumstances are."),
+    NSLocalizedString("I work for the good of others.",comment: "I work for the good of others."),
+    NSLocalizedString("I am positive-minded and filled with self-esteem.",comment: "I am positive-minded and filled with self-esteem."),
+    NSLocalizedString("I think only positive things about people. I accept that everyone does their best.",comment: "I think only positive things about people. I accept that everyone does their best."),
+    NSLocalizedString("I have something special to offer the world.",comment: "I have something special to offer the world."),
+    NSLocalizedString("My future depends only on me!", comment: "My future depends only on me!")
 ]
     
     
@@ -129,7 +130,7 @@ class ListAffirmationsViewController: UIViewController, UITableViewDelegate, UIT
         cancelButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
         cancelButton.heightAnchor.constraint(equalToConstant: 62),
-        cancelButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant:-47),
+        cancelButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant:-50),
         cancelButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 21),
         cancelButton.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -5)
            ])
@@ -203,9 +204,10 @@ class ListAffirmationsViewController: UIViewController, UITableViewDelegate, UIT
             cell.backgroundColor = .clear
             let content = sampleAffis[indexPath.row]
             cell.noteLabel.text = content
-        cell.numberLabel.text = "❍"
-            cell.layer.cornerRadius = 10
-            cell.clipsToBounds = true
+        
+        cell.numberLabel.setImageForLabel(image: UIImage(named: "CircleImage")!)
+        cell.layer.cornerRadius = 10
+        cell.clipsToBounds = true
         //  Selection colour of cell is custom
          cell.selectionStyle = .none
         let backgroundView = UIView()
@@ -244,10 +246,8 @@ class ListAffirmationsViewController: UIViewController, UITableViewDelegate, UIT
     func presentAlertConfirmation (with alertMessage: String) {
                let alert = UIAlertController(title: nil, message: alertMessage, preferredStyle: .alert)
                self.present(alert, animated: true, completion: nil)
-               
                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                    alert.dismiss(animated: true, completion: {[weak self] in
-                    
                     self!.dismiss(animated: true, completion: nil)
                       })
                 }

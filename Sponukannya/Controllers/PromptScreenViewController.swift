@@ -119,34 +119,38 @@ class PromptScreenViewController: UIViewController {
         //Then Label
         thenLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
+            thenLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 60),
             thenLabel.heightAnchor.constraint(equalToConstant: 60),
             thenLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30),
             thenLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -30),
-            thenLabel.bottomAnchor.constraint(equalTo: chooseLabel.topAnchor)
+//            thenLabel.bottomAnchor.constraint(equalTo: chooseLabel.topAnchor)
         ])
         //Choose Label
         chooseLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
+ chooseLabel.topAnchor.constraint(equalTo: thenLabel.bottomAnchor),
             chooseLabel.heightAnchor.constraint(equalToConstant: 80),
             chooseLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30),
             chooseLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -30),
-            chooseLabel.bottomAnchor.constraint(equalTo: setLabel.topAnchor)
+//            chooseLabel.bottomAnchor.constraint(equalTo: setLabel.topAnchor)
         ])
         //Set Label
         setLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
+ setLabel.topAnchor.constraint(equalTo: chooseLabel.bottomAnchor),
             setLabel.heightAnchor.constraint(equalToConstant: 60),
             setLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30),
             setLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -30),
-            setLabel.bottomAnchor.constraint(equalTo: repeatLabel.topAnchor)
+//            setLabel.bottomAnchor.constraint(equalTo: repeatLabel.topAnchor)
         ])
         //Repeat Label
         repeatLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
+repeatLabel.topAnchor.constraint(equalTo: setLabel.bottomAnchor),
             repeatLabel.heightAnchor.constraint(equalToConstant: 80),
             repeatLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30),
             repeatLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -30),
-            repeatLabel.bottomAnchor.constraint(equalTo: gotItButton.topAnchor, constant: -80)
+//            repeatLabel.bottomAnchor.constraint(equalTo: gotItButton.topAnchor, constant: -80)
         ])
         
         //gotItButton button

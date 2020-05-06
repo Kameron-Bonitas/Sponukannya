@@ -38,31 +38,22 @@ var numberLabel = UILabel()
             // cellView
             cellView.backgroundColor = UIColor (named: "cellBackgroundColor")
             cellView.layer.cornerRadius = 10
-        
             contentView.addSubview(cellView)
             // noteLabel
             noteLabel.textAlignment = .left
         //Custom fonts Dynamic stile
         let fontA = UIFont(name: NSLocalizedString("Lato-Light", comment: "Lato-Light"), size: 28)
         let fontMetrics = UIFontMetrics(forTextStyle: .body)
-        noteLabel.font = fontMetrics.scaledFont(for: fontA!)
-
+            noteLabel.font = fontMetrics.scaledFont(for: fontA!)
             noteLabel.adjustsFontForContentSizeCategory = true
             noteLabel.textColor = UIColor (named: "textColor")
             noteLabel.backgroundColor = UIColor.clear
             noteLabel.numberOfLines = 0
             //  shob ne bulo krapochok v kintsi ...
-        noteLabel.lineBreakMode = NSLineBreakMode.byWordWrapping
-        
+            noteLabel.lineBreakMode = NSLineBreakMode.byWordWrapping
             cellView.addSubview(noteLabel)
             // numberLabel
             numberLabel.textAlignment = .center
-                //Custom fonts Dynamic stile
-                let fontB = UIFont(name: NSLocalizedString("Lato-Light", comment: "Lato-Light"), size: 28)
-                numberLabel.font = fontMetrics.scaledFont(for: fontB!)
- 
-            numberLabel.adjustsFontForContentSizeCategory = true
-            numberLabel.textColor = UIColor (named: "textColor")
             numberLabel.backgroundColor = UIColor.clear
         numberLabel.numberOfLines = 0
             cellView.addSubview(numberLabel)
@@ -100,14 +91,7 @@ var numberLabel = UILabel()
 //    MARK: Selection
     override func setSelected(_ selected: Bool, animated: Bool) {
            super.setSelected(selected, animated: animated)
-//    //        //  Labels Taxt Selected color
-//            noteLabel.textColor = selected ? UIColor.red : UIColor.black
-//            numberLabel.textColor = selected ? UIColor.red : UIColor.black
-//    //        //  Labels Background Selected color
             cellView.backgroundColor = selected ? UIColor(named: "selectedCellColor"): UIColor (named: "cellBackgroundColor")
-//    //        //  Image View Selected color
-//    //        backgroundCellView.backgroundColor = selected ? UIColor.green : UIColor.clear
-//
         }
 
     
@@ -118,19 +102,24 @@ var numberLabel = UILabel()
     }
 }
 
+//    Dlya dodavannya Image do Label
 
-////MARK: Fonts
-//    
-//    extension UIFont {
-//        class func cellLB( size:CGFloat ) -> UIFont{
-//            return  UIFont(name: Fonts.cellLabelFont, size: size)!
-//        }
-//    }
-//
-//    enum Fonts {
-//             // Font
-//             static let cellLabelFont = NSLocalizedString("IndieFlower", comment: "IndieFlower")
-//             }
-    
+extension UILabel {
+  func setImageForLabel(image: UIImage) {
+    let attachment = NSTextAttachment()
+    attachment.image = image
+    attachment.bounds = CGRect(x: 0, y: 0, width: 10, height: 10)
+    let attachmentStr = NSAttributedString(attachment: attachment)
+    let mutableAttributedString = NSMutableAttributedString()
+    mutableAttributedString.append(attachmentStr)
+    self.attributedText = mutableAttributedString
+  }
+}
+
+
+
+
+
+
    
 

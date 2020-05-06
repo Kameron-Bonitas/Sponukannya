@@ -11,7 +11,7 @@ import UIKit
 class PopUpViewController: UIViewController {
     
     //MARK: Constants
-    var transferedAffi: MyAffirmationItem?
+  weak  var transferedAffi: MyAffirmationItem?
     var editingAffi = false
     
     let backgroundImage = UIImageView()

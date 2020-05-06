@@ -25,9 +25,7 @@ class DatePickerPopupViewController: UIViewController {
     var transferRepeatIsSet:((Bool) -> ())?
         var dateForCalendar = false
         var setReminder: ((_ components: DateComponents) -> ())?
-        var saveEventToCalendar: ((_ date: Date) ->())?
 
-        
         
         //MARK: - views
          let backgroundImage = UIImageView()
@@ -44,14 +42,13 @@ class DatePickerPopupViewController: UIViewController {
             let view = UIView()
             if #available(iOS 13.0, *) {
                 view.backgroundColor = UIColor (named: "cellBackgroundColor")
-            } else {
+             } else {
                 // Fallback on earlier versions
-            }
+             }
             view.layer.cornerRadius = 10
             view.clipsToBounds = true
             return view
-        }()
-        
+            }()
         
         
         lazy var buttonStackView: UIStackView  = {
@@ -89,7 +86,6 @@ class DatePickerPopupViewController: UIViewController {
             cancelButton.addBorder(side: .Right, color: alertViewGrayColor!, width: 0.5)
             okButton.addBorder(side: .Top, color: alertViewGrayColor!, width: 1)
             okButton.addBorder(side: .Left, color: alertViewGrayColor!, width: 0.5)
-//            switchLabel.addBorderSwitch(side: .Top, color: alertViewGrayColor!, width: 1)
             titleLabel.addBorderSwitch(side: .Bottom, color: alertViewGrayColor!, width: 1)
         }
         
@@ -252,14 +248,13 @@ class DatePickerPopupViewController: UIViewController {
         func presentAlertConfirmation (with alertMessage: String) {
             let alert = UIAlertController(title: nil, message: alertMessage, preferredStyle: .alert)
             self.present(alert, animated: true, completion: nil)
-            
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 alert.dismiss(animated: true, completion: {[weak self] in
                     self?.makeVerticalTransitionFromBottom()
                     self?.navigationController?.popToRootViewController(animated: true)
                    })
                 }
-            }
+             }
     
     // Custom class MyLabel. Making text marging shob vidstup buv zliva
        class MyLabel: UILabel{
