@@ -1,53 +1,62 @@
 {
   "images" : [
     {
+      "filename" : "Mask Group 19.png",
       "idiom" : "iphone",
-      "size" : "20x20",
-      "scale" : "2x"
+      "scale" : "2x",
+      "size" : "20x20"
     },
     {
+      "filename" : "Mask Group 3.png",
       "idiom" : "iphone",
-      "size" : "20x20",
-      "scale" : "3x"
+      "scale" : "3x",
+      "size" : "20x20"
     },
     {
+      "filename" : "Mask Group 20@2x.png",
       "idiom" : "iphone",
-      "size" : "29x29",
-      "scale" : "2x"
+      "scale" : "2x",
+      "size" : "29x29"
     },
     {
+      "filename" : "Mask Group 17.png",
       "idiom" : "iphone",
-      "size" : "29x29",
-      "scale" : "3x"
+      "scale" : "3x",
+      "size" : "29x29"
     },
     {
+      "filename" : "Mask Group 19@2x.png",
       "idiom" : "iphone",
-      "size" : "40x40",
-      "scale" : "2x"
+      "scale" : "2x",
+      "size" : "40x40"
     },
     {
+      "filename" : "Mask Group 3@2x.png",
       "idiom" : "iphone",
-      "size" : "40x40",
-      "scale" : "3x"
+      "scale" : "3x",
+      "size" : "40x40"
     },
     {
+      "filename" : "Mask Group 11.png",
       "idiom" : "iphone",
-      "size" : "60x60",
-      "scale" : "2x"
+      "scale" : "2x",
+      "size" : "60x60"
     },
     {
+      "filename" : "Mask Group 16.png",
       "idiom" : "iphone",
-      "size" : "60x60",
-      "scale" : "3x"
+      "scale" : "3x",
+      "size" : "60x60"
     },
     {
+      "filename" : "Mask Group 1.png",
       "idiom" : "ios-marketing",
-      "size" : "1024x1024",
-      "scale" : "1x"
+      "scale" : "1x",
+      "size" : "1024x1024"
     }
   ],
   "info" : {
-    "version" : 1,
-    "author" : "xcode"
+    "author" : "xcode",
+    "version" : 1
   }
 }
