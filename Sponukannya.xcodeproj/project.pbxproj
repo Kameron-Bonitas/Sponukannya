@@ -90,6 +90,7 @@
 		B5DA3E6323F1B5BE00DC8959 /* ListAffirmationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAffirmationsViewController.swift; sourceTree = "<group>"; };
 		B5DA3E6523F1D72000DC8959 /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		B5DA3E6723F1DA1600DC8959 /* UIButton + Border.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton + Border.swift"; sourceTree = "<group>"; };
+		B5EB05872465C1D90097757E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -500,6 +501,7 @@
 			children = (
 				B56C0082243C8A28000F96F0 /* Base */,
 				B56C0088243C8C4A000F96F0 /* uk */,
+				B5EB05872465C1D90097757E /* en */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
