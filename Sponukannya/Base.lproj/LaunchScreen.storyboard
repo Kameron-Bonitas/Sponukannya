@@ -18,12 +18,11 @@
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="LounchSuperImage" translatesAutoresizingMaskIntoConstraints="NO" id="KYq-EI-onS">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" name="switchThumbColor"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" layoutMarginsFollowReadableWidth="YES" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="223" translatesAutoresizingMaskIntoConstraints="NO" id="CkB-S5-bjd">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" layoutMarginsFollowReadableWidth="YES" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="223" translatesAutoresizingMaskIntoConstraints="NO" id="CkB-S5-bjd">
                                 <rect key="frame" x="0.0" y="150" width="414" height="386"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <attributedString key="attributedText">
                                     <fragment content="YOU ARE SUCCESSFUL">
                                         <attributes>
@@ -36,13 +35,21 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="CkB-S5-bjd" firstAttribute="trailing" secondItem="97N-kY-ArT" secondAttribute="trailing" id="5B4-eD-RLz"/>
+                            <constraint firstItem="CkB-S5-bjd" firstAttribute="leading" secondItem="97N-kY-ArT" secondAttribute="leading" id="DTs-gO-1eq"/>
+                            <constraint firstItem="CkB-S5-bjd" firstAttribute="top" secondItem="97N-kY-ArT" secondAttribute="top" constant="150" id="OCU-GS-Nps"/>
+                            <constraint firstItem="CkB-S5-bjd" firstAttribute="top" secondItem="97N-kY-ArT" secondAttribute="top" constant="150" id="cWQ-Nf-XE2"/>
+                            <constraint firstItem="97N-kY-ArT" firstAttribute="bottom" secondItem="CkB-S5-bjd" secondAttribute="bottom" constant="200" id="koV-pl-lyX"/>
+                            <constraint firstItem="97N-kY-ArT" firstAttribute="bottom" secondItem="CkB-S5-bjd" secondAttribute="bottom" constant="200" id="mVE-BD-xLy"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="97N-kY-ArT"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LounchSuperImage" id="PeE-ZX-koN">
                     <rect key="frame" x="0.0" y="0.0" width="395" height="839"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 </imageView>
             </objects>
             <point key="canvasLocation" x="50.625" y="373.75"/>
