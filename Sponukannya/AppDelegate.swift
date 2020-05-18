@@ -17,8 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 //printFonts()
+        
         //  Asking for user authorisation
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { (granted, error) in
 //print("granted: (\(granted)")
         }
         UNUserNotificationCenter.current().delegate = self
@@ -31,7 +32,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }else{
             UserDefaults.standard.set(true, forKey: "hasAlreadyLaunched")
         }
+      
+       application.applicationIconBadgeNumber = 0
+
         return true
+        
+    }
+    
+//    func applicationWillResignActive(_ application: UIApplication) {
+//
+//        UIApplication.shared.applicationIconBadgeNumber = 0
+//    }
+//
+//    private func application(_ application: UIApplication, didReceive notification: UNNotificationRequest) {
+//        UIApplication.shared.applicationIconBadgeNumber = 0
+//    }
+    
+    
+    func applicationDidBecomeActive(_ application: UIApplication) {
+//        UIApplication.shared.applicationIconBadgeNumber = 0
     }
     
     func sethasAlreadyLaunched(){
@@ -106,6 +125,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func applicationWillEnterForeground(_ application: UIApplication) {
     NotificationCenter.default.post(name: NSNotification.Name("ReloadNotification"), object: nil)
         }
+    
   
 //   Dlya vymknennya nagaduvan' v nagaduvanni
     func userNotificationCenter(_ center: UNUserNotificationCenter,
@@ -122,8 +142,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     break
             }
                 completionHandler()
+        
         }
         
+    
 //    func printFonts(){
 //        for family: String in UIFont.familyNames
 //        {

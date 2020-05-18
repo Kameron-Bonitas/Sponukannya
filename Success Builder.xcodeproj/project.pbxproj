@@ -69,7 +69,7 @@
 		B56C009E243CA4AC000F96F0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = "en.lproj/OpenSansCondensed-LightItalic.ttf"; sourceTree = "<group>"; };
 		B5A0CE0C24324CA500B89927 /* PromptScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptScreenViewController.swift; sourceTree = "<group>"; };
 		B5D727BC245591E80097B65F /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
-		B5DA3E1E23F1478D00DC8959 /* Sponukannya.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sponukannya.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5DA3E1E23F1478D00DC8959 /* Success Builder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Success Builder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5DA3E2123F1478D00DC8959 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5DA3E2323F1478D00DC8959 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		B5DA3E2623F1478D00DC8959 /* Sponukannya.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Sponukannya.xcdatamodel; sourceTree = "<group>"; };
@@ -77,10 +77,10 @@
 		B5DA3E2A23F1478E00DC8959 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B5DA3E2D23F1478E00DC8959 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B5DA3E3223F1478E00DC8959 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B5DA3E3723F1478E00DC8959 /* SponukannyaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SponukannyaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5DA3E3723F1478E00DC8959 /* Success BuilderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Success BuilderTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5DA3E3B23F1478E00DC8959 /* SponukannyaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SponukannyaTests.swift; sourceTree = "<group>"; };
 		B5DA3E3D23F1478E00DC8959 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B5DA3E4223F1478E00DC8959 /* SponukannyaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SponukannyaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5DA3E4223F1478E00DC8959 /* Success BuilderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Success BuilderUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5DA3E4623F1478E00DC8959 /* SponukannyaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SponukannyaUITests.swift; sourceTree = "<group>"; };
 		B5DA3E4823F1478E00DC8959 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5DA3E5623F14C3C00DC8959 /* MyAffirmationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAffirmationsViewController.swift; sourceTree = "<group>"; };
@@ -153,9 +153,9 @@
 		B5DA3E1F23F1478D00DC8959 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B5DA3E1E23F1478D00DC8959 /* Sponukannya.app */,
-				B5DA3E3723F1478E00DC8959 /* SponukannyaTests.xctest */,
-				B5DA3E4223F1478E00DC8959 /* SponukannyaUITests.xctest */,
+				B5DA3E1E23F1478D00DC8959 /* Success Builder.app */,
+				B5DA3E3723F1478E00DC8959 /* Success BuilderTests.xctest */,
+				B5DA3E4223F1478E00DC8959 /* Success BuilderUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -250,9 +250,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		B5DA3E1D23F1478D00DC8959 /* Sponukannya */ = {
+		B5DA3E1D23F1478D00DC8959 /* Success Builder */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B5DA3E4B23F1478E00DC8959 /* Build configuration list for PBXNativeTarget "Sponukannya" */;
+			buildConfigurationList = B5DA3E4B23F1478E00DC8959 /* Build configuration list for PBXNativeTarget "Success Builder" */;
 			buildPhases = (
 				B101A39AEADA90969424D1A5 /* [CP] Check Pods Manifest.lock */,
 				B5DA3E1A23F1478D00DC8959 /* Sources */,
@@ -264,14 +264,14 @@
 			);
 			dependencies = (
 			);
-			name = Sponukannya;
+			name = "Success Builder";
 			productName = Sponukannya;
-			productReference = B5DA3E1E23F1478D00DC8959 /* Sponukannya.app */;
+			productReference = B5DA3E1E23F1478D00DC8959 /* Success Builder.app */;
 			productType = "com.apple.product-type.application";
 		};
-		B5DA3E3623F1478E00DC8959 /* SponukannyaTests */ = {
+		B5DA3E3623F1478E00DC8959 /* Success BuilderTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B5DA3E4E23F1478E00DC8959 /* Build configuration list for PBXNativeTarget "SponukannyaTests" */;
+			buildConfigurationList = B5DA3E4E23F1478E00DC8959 /* Build configuration list for PBXNativeTarget "Success BuilderTests" */;
 			buildPhases = (
 				B5DA3E3323F1478E00DC8959 /* Sources */,
 				B5DA3E3423F1478E00DC8959 /* Frameworks */,
@@ -282,14 +282,14 @@
 			dependencies = (
 				B5DA3E3923F1478E00DC8959 /* PBXTargetDependency */,
 			);
-			name = SponukannyaTests;
+			name = "Success BuilderTests";
 			productName = SponukannyaTests;
-			productReference = B5DA3E3723F1478E00DC8959 /* SponukannyaTests.xctest */;
+			productReference = B5DA3E3723F1478E00DC8959 /* Success BuilderTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		B5DA3E4123F1478E00DC8959 /* SponukannyaUITests */ = {
+		B5DA3E4123F1478E00DC8959 /* Success BuilderUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B5DA3E5123F1478E00DC8959 /* Build configuration list for PBXNativeTarget "SponukannyaUITests" */;
+			buildConfigurationList = B5DA3E5123F1478E00DC8959 /* Build configuration list for PBXNativeTarget "Success BuilderUITests" */;
 			buildPhases = (
 				B5DA3E3E23F1478E00DC8959 /* Sources */,
 				B5DA3E3F23F1478E00DC8959 /* Frameworks */,
@@ -300,9 +300,9 @@
 			dependencies = (
 				B5DA3E4423F1478E00DC8959 /* PBXTargetDependency */,
 			);
-			name = SponukannyaUITests;
+			name = "Success BuilderUITests";
 			productName = SponukannyaUITests;
-			productReference = B5DA3E4223F1478E00DC8959 /* SponukannyaUITests.xctest */;
+			productReference = B5DA3E4223F1478E00DC8959 /* Success BuilderUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -328,7 +328,7 @@
 					};
 				};
 			};
-			buildConfigurationList = B5DA3E1923F1478D00DC8959 /* Build configuration list for PBXProject "Sponukannya" */;
+			buildConfigurationList = B5DA3E1923F1478D00DC8959 /* Build configuration list for PBXProject "Success Builder" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -342,9 +342,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B5DA3E1D23F1478D00DC8959 /* Sponukannya */,
-				B5DA3E3623F1478E00DC8959 /* SponukannyaTests */,
-				B5DA3E4123F1478E00DC8959 /* SponukannyaUITests */,
+				B5DA3E1D23F1478D00DC8959 /* Success Builder */,
+				B5DA3E3623F1478E00DC8959 /* Success BuilderTests */,
+				B5DA3E4123F1478E00DC8959 /* Success BuilderUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -467,12 +467,12 @@
 /* Begin PBXTargetDependency section */
 		B5DA3E3923F1478E00DC8959 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B5DA3E1D23F1478D00DC8959 /* Sponukannya */;
+			target = B5DA3E1D23F1478D00DC8959 /* Success Builder */;
 			targetProxy = B5DA3E3823F1478E00DC8959 /* PBXContainerItemProxy */;
 		};
 		B5DA3E4423F1478E00DC8959 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B5DA3E1D23F1478D00DC8959 /* Sponukannya */;
+			target = B5DA3E1D23F1478D00DC8959 /* Success Builder */;
 			targetProxy = B5DA3E4323F1478E00DC8959 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -685,7 +685,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Sponukannya.app/Sponukannya";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Success Builder.app/Success Builder";
 			};
 			name = Debug;
 		};
@@ -707,7 +707,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Sponukannya.app/Sponukannya";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Success Builder.app/Success Builder";
 			};
 			name = Release;
 		};
@@ -754,7 +754,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B5DA3E1923F1478D00DC8959 /* Build configuration list for PBXProject "Sponukannya" */ = {
+		B5DA3E1923F1478D00DC8959 /* Build configuration list for PBXProject "Success Builder" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B5DA3E4923F1478E00DC8959 /* Debug */,
@@ -763,7 +763,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B5DA3E4B23F1478E00DC8959 /* Build configuration list for PBXNativeTarget "Sponukannya" */ = {
+		B5DA3E4B23F1478E00DC8959 /* Build configuration list for PBXNativeTarget "Success Builder" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B5DA3E4C23F1478E00DC8959 /* Debug */,
@@ -772,7 +772,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B5DA3E4E23F1478E00DC8959 /* Build configuration list for PBXNativeTarget "SponukannyaTests" */ = {
+		B5DA3E4E23F1478E00DC8959 /* Build configuration list for PBXNativeTarget "Success BuilderTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B5DA3E4F23F1478E00DC8959 /* Debug */,
@@ -781,7 +781,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B5DA3E5123F1478E00DC8959 /* Build configuration list for PBXNativeTarget "SponukannyaUITests" */ = {
+		B5DA3E5123F1478E00DC8959 /* Build configuration list for PBXNativeTarget "Success BuilderUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B5DA3E5223F1478E00DC8959 /* Debug */,

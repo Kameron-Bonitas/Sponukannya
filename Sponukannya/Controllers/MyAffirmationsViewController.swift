@@ -29,6 +29,7 @@ class MyAffirmationsViewController: UIViewController,UITableViewDelegate,UITable
     var repeatIsSet = Bool ()
     let appDelegate = UIApplication.shared.delegate as! AppDelegate // Prompt Screen
     
+    var numberOfUnreadMessage: Int = 0
     
     //MARK:- Navigation. Making Navigation Bar Prozzoroyu UND Fetching all Affis
     override func viewWillAppear(_ animated: Bool) {
@@ -56,6 +57,7 @@ class MyAffirmationsViewController: UIViewController,UITableViewDelegate,UITable
         configureTableView()
         view.backgroundColor = .white //  Vyrishennya zatemnenogo backgroundImage
         countAppLaunchesSwitchOnThem()          // Prompt Screen
+    
         }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -300,8 +302,10 @@ func configureTableView(){
         content.title = NotificationReminder.title
         content.body = NotificationReminder.body
         content.sound = UNNotificationSound.default
-        content.badge = 1
+        content.badge = 0
+//        content.badge = NSNumber (value: UIApplication.shared.applicationIconBadgeNumber + 1)
         content.categoryIdentifier = "alarm.category"
+        
         
         let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: repeatIsSet)
         let request = UNNotificationRequest(identifier: content.body, content: content, trigger: trigger)
@@ -321,6 +325,7 @@ func configureTableView(){
         let alarmCategory = UNNotificationCategory(identifier: "alarm.category",actions: [doNotRepeatAction],intentIdentifiers: [], options: [])
         UNUserNotificationCenter.current().setNotificationCategories([alarmCategory])
     }
+
     
     //MARK: - DIFFERENT METHODS
     func countAppLaunchesSwitchOnThem () {

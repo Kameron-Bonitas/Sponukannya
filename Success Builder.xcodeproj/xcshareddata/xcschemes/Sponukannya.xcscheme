@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B5DA3E1D23F1478D00DC8959"
-               BuildableName = "Sponukannya.app"
-               BlueprintName = "Sponukannya"
-               ReferencedContainer = "container:Sponukannya.xcodeproj">
+               BuildableName = "Success Builder.app"
+               BlueprintName = "Success Builder"
+               ReferencedContainer = "container:Success Builder.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B5DA3E3623F1478E00DC8959"
-               BuildableName = "SponukannyaTests.xctest"
-               BlueprintName = "SponukannyaTests"
-               ReferencedContainer = "container:Sponukannya.xcodeproj">
+               BuildableName = "Success BuilderTests.xctest"
+               BlueprintName = "Success BuilderTests"
+               ReferencedContainer = "container:Success Builder.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B5DA3E4123F1478E00DC8959"
-               BuildableName = "SponukannyaUITests.xctest"
-               BlueprintName = "SponukannyaUITests"
-               ReferencedContainer = "container:Sponukannya.xcodeproj">
+               BuildableName = "Success BuilderUITests.xctest"
+               BlueprintName = "Success BuilderUITests"
+               ReferencedContainer = "container:Success Builder.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -54,8 +54,8 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      language = "uk"
-      region = "UA"
+      language = "en"
+      region = "US"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
@@ -67,9 +67,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B5DA3E1D23F1478D00DC8959"
-            BuildableName = "Sponukannya.app"
-            BlueprintName = "Sponukannya"
-            ReferencedContainer = "container:Sponukannya.xcodeproj">
+            BuildableName = "Success Builder.app"
+            BlueprintName = "Success Builder"
+            ReferencedContainer = "container:Success Builder.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -96,9 +96,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B5DA3E1D23F1478D00DC8959"
-            BuildableName = "Sponukannya.app"
-            BlueprintName = "Sponukannya"
-            ReferencedContainer = "container:Sponukannya.xcodeproj">
+            BuildableName = "Success Builder.app"
+            BlueprintName = "Success Builder"
+            ReferencedContainer = "container:Success Builder.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

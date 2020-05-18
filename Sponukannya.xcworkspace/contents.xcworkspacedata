@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Sponukannya.xcodeproj">
+      location = "group:/Users/ben/Desktop/Sponukannya/Success Builder.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
